@@ -1,11 +1,4 @@
-﻿  rb_tree.c
-  Scheduler.c
-  task.c
-  Generating Code...
-C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(9,9): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-  C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(9,9):
-  consider using '%zd' in the format string
-  
+﻿  Scheduler.c
 C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(10,9): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
   C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(10,9):
   consider using '%zd' in the format string
@@ -14,4 +7,59 @@ C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\schedul
   C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(11,9):
   consider using '%zd' in the format string
   
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(12,9): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+  C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\Scheduler.c(12,9):
+  consider using '%zd' in the format string
+  
+  rb_tree.c
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(60,33): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(60,39): warning C4020: 'change_colors_hierarchical': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(64,18): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(64,24): warning C4020: 'rotate_tree': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(70,33): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(70,39): warning C4020: 'change_colors_hierarchical': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(74,18): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(74,24): warning C4020: 'rotate_tree': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(112,27): warning C4028: formal parameter 1 different from declaration
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(112,51): warning C4029: declared formal parameter list different from definition
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(132,20): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(132,33): warning C4020: 'right_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(137,25): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(137,31): warning C4020: 'left_right_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(142,31): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(142,37): warning C4020: 'change_colors_hierarchical': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(150,20): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(150,33): warning C4020: 'right_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(155,25): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(155,31): warning C4020: 'left_right_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(166,19): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(166,32): warning C4020: 'left_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(171,25): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(171,31): warning C4020: 'right_left_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(177,31): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(177,37): warning C4020: 'change_colors_hierarchical': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(184,25): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(184,31): warning C4020: 'right_left_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(188,19): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(188,32): warning C4020: 'left_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(197,42): warning C4028: formal parameter 1 different from declaration
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(197,70): warning C4029: declared formal parameter list different from definition
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(208,35): warning C4028: formal parameter 1 different from declaration
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(208,56): warning C4029: declared formal parameter list different from definition
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(210,16): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(210,22): warning C4020: 'left_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(211,17): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(211,23): warning C4020: 'right_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(215,35): warning C4028: formal parameter 1 different from declaration
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(215,56): warning C4029: declared formal parameter list different from definition
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(217,17): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(217,23): warning C4020: 'right_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(218,16): warning C4133: 'function': incompatible types - from 'rb_tree *' to 'rb_node *'
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(218,22): warning C4020: 'left_rotation': too many actual parameters
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(222,29): warning C4028: formal parameter 1 different from declaration
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(222,50): warning C4029: declared formal parameter list different from definition
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(247,30): warning C4028: formal parameter 1 different from declaration
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(247,51): warning C4029: declared formal parameter list different from definition
+C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\Scheduler\rb_tree.c(287,43): warning C4244: '=': conversion from 'long double' to 'int', possible loss of data
+  Generating Code...
   Scheduler.vcxproj -> C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\github\Scheduler\x64\Debug\Scheduler.exe

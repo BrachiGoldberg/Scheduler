@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\Scheduler.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\Scheduler.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\rb_tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\rb_tree.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\rb_tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\Scheduler.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\Scheduler.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D05508A7-A4D0-4042-AC5C-DC21467C70B7}|Scheduler\\Scheduler.vcxproj|solutionrelative:Scheduler\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "task.h",
               "DocumentMoniker": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\task.h",
               "RelativeDocumentMoniker": "Scheduler\\task.h",
@@ -42,37 +42,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "rb_tree.c",
               "DocumentMoniker": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.c",
               "RelativeDocumentMoniker": "Scheduler\\rb_tree.c",
-              "ToolTip": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.c",
-              "RelativeToolTip": "Scheduler\\rb_tree.c",
-              "ViewState": "AQIAANEAAAAAAAAAAAAowNwAAAAcAAAA",
+              "ToolTip": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.c*",
+              "RelativeToolTip": "Scheduler\\rb_tree.c*",
+              "ViewState": "AQIAAP8AAAAAAAAAAAAAABcBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-08-05T07:01:14.29Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "rb_tree.h",
-              "DocumentMoniker": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.h",
-              "RelativeDocumentMoniker": "Scheduler\\rb_tree.h",
-              "ToolTip": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.h",
-              "RelativeToolTip": "Scheduler\\rb_tree.h",
-              "ViewState": "AQIAACoAAAAAAAAAAAAowDwAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-05T07:01:07.852Z"
+              "WhenOpened": "2024-08-05T07:01:14.29Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "rb_tree.h",
+              "DocumentMoniker": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.h",
+              "RelativeDocumentMoniker": "Scheduler\\rb_tree.h",
+              "ToolTip": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\rb_tree.h*",
+              "RelativeToolTip": "Scheduler\\rb_tree.h*",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAowDIAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-05T07:01:07.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Scheduler.c",
               "DocumentMoniker": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\Scheduler.c",
               "RelativeDocumentMoniker": "Scheduler\\Scheduler.c",
               "ToolTip": "C:\\Users\\user1\\Documents\\\u05D1\u05E8\u05DB\u05D9\\\u05EA\u05D9\u05DB\u05E0\u05D5\u05EA\\\u05E7\u05DE\u05D0\u05D8\u05E7 - \u05D1\u05D5\u05D3\u05E7\u05DE\u05E4\\scheduler-project\\github\\Scheduler\\Scheduler\\Scheduler.c",
               "RelativeToolTip": "Scheduler\\Scheduler.c",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAACcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-08-05T06:55:08.51Z",
               "EditorCaption": ""
