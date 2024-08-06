@@ -24,12 +24,24 @@
     <ClCompile Include="task.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cfs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rb_tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cfs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="general_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

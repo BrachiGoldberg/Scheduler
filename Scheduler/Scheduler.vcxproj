@@ -127,12 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cfs.c" />
     <ClCompile Include="rb_tree.c" />
     <ClCompile Include="Scheduler.c" />
     <ClCompile Include="task.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cfs.h" />
+    <ClInclude Include="general_settings.h" />
     <ClInclude Include="rb_tree.h" />
+    <ClInclude Include="scheduler.h" />
     <ClInclude Include="task.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
