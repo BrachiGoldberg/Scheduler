@@ -26,6 +26,13 @@ void execute_queue(struct real_time_task_queue* queue) {
 	current_task->quantum = sleep_time;
 
 	//sleep the system for sleep_time milliseconds
+	/*int success = */ Sleep(sleep_time);
+	/*if (success > 0) {
+
+		//the task get only success time.
+		sleep_time = success;
+	}*/
+	//update the task's times
 	current_task->remaining_time -= sleep_time;
 	current_task->execution_time += sleep_time;
 
