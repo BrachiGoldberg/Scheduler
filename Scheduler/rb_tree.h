@@ -39,6 +39,9 @@ void left_rotation(rb_node* node);
 void right_rotation(rb_node* node);
 
 void change_colors_after_rotation(rb_node* node);
+
+//check if the most left NULL
+int is_most_left_empty(rb_tree* tree);
 //remvoe task from the rb_tree
 
 //free tree

@@ -277,6 +277,10 @@ void change_colors_after_rotation(rb_node* node) {
 	if (node->right)
 		node->right->color = RED;
 }
+
+int is_most_left_empty(rb_tree* tree) {
+	return tree->most_left == NULL;
+}
 //remvoe task from the rb_tree
 
 //free tree
