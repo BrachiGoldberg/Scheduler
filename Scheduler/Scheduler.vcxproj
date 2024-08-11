@@ -130,6 +130,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="QueueNode.c" />
     <ClCompile Include="cfs.c" />
+    <ClCompile Include="rb_node.c" />
     <ClCompile Include="rb_tree.c" />
     <ClCompile Include="round_robin.c" />
     <ClCompile Include="RealTimeTask.c" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QueueNode.h" />
+    <ClInclude Include="rb_node.h" />
     <ClInclude Include="RealTimeTask.h" />
     <ClInclude Include="RealTimeTaskQueue .h" />
     <ClInclude Include="cfs.h" />
