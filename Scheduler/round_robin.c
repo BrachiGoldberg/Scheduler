@@ -38,11 +38,13 @@ void execute_queue(struct real_time_task_queue* queue) {
 
 	//check why the loop finished
 	if (current_task->remaining_time <= 0) {
+		//remove the task's weight from the toal weights
 		queue->total_weights -= current_task->weight;
-
+		//tha task finished - remove the task from the system
 		free_queue_node(node);
 	}
 	else {
+		//insert the task again to the end of the queue
 		push_task_node(queue, node);
 	}
 }
