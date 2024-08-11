@@ -134,7 +134,6 @@
     <ClCompile Include="round_robin.c" />
     <ClCompile Include="RealTimeTask.c" />
     <ClCompile Include="RealTimeTaskQueue.c" />
-    <ClCompile Include="Scheduler.c" />
     <ClCompile Include="task.c" />
   </ItemGroup>
   <ItemGroup>
