@@ -2,11 +2,17 @@
 #define SCHEDULER_H
 
 #include "rb_tree.h"
-
-#define sched_latency 1
+#include "RealTimeTaskQueue .h"
+#include "general_settings.h"
+#include "round_robin.h"
+#include "cfs.h"
 
 typedef struct
 {
-	rb_tree* tasks_tree;
+	struct real_time_task_queue* queue;
+	struct rb_tree* tasks_tree;
 }scheduler;
+
+
+void scheduling_tasks(scheduler* sched);
 #endif // !SCHEDULER_H
