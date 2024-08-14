@@ -24,6 +24,6 @@ void execute_tree(rb_tree* tasks_tree) {
 	}
 	else
 	{
-		insert_task(tasks_tree, t);
+		rb_tree_task_arrival(tasks_tree, t);
 	}
 }

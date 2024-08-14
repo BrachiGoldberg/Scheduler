@@ -10,42 +10,43 @@ rb_tree* initial_rb_tree() {
 	return tree;
 }
 
-//insert task to the rb_tree
-void rb_tree_task_arrival(rb_tree* tree, task* task) {
+void rb_tree_new_task_arrival(rb_tree* tree, task* task){
+	//create new node
+	rb_node* node = create_rb_node(task);
 
-	if (task == NULL) {
-		//how will the errors be handled?
+	//update the tree properties
+	tree->num_of_tasks++;
+	tree->total_weights += task->weight;
+
+	rb_tree_task_arrival(tree, node);
+}
+
+//insert task to the rb_tree
+void rb_tree_task_arrival(rb_tree* tree, rb_node* node) {
+	
+	if (node == NULL) {
+		//ERROR
 	}
 
 	if (tree == NULL) {
 		//ERROR
 	}
 
-	tree->total_weights += task->weight;
-	tree->num_of_tasks++;
-
-	//create new node
-	rb_node* node = (rb_node*)malloc(sizeof(rb_node));
-	if (node == NULL) {
-		//Alocation failed
-		exit(1);
-	}
 	node->color = RED;
-	node->left = node->right = node->parent = NULL;
-	node->task = task;
 
 	//TODO lock the tree
 
 	//if the tree is empty, 
 	if (tree->root == NULL) {
-		task->vruntime = 0;
+		node->task->vruntime = 0;
 		node->color = BLACK;
 		tree->root = tree->most_left = node;
 	}
 	else {
 		//the tree is not empty
-
-		task->vruntime = tree->most_left->task->vruntime + 1;
+		
+		//update the vruntime by the most left leaf
+		node->task->vruntime = tree->most_left->task->weight + 0.5;
 
 		//insert the node to the tree
 		add_node_to_tree(tree->root, node);
@@ -276,6 +277,10 @@ void change_colors_after_rotation(rb_node* node) {
 	if (node->right)
 		node->right->color = RED;
 }
+
+int is_most_left_empty(rb_tree* tree) {
+	return tree->most_left == NULL;
+}
 //remvoe task from the rb_tree
 
 //free tree
@@ -297,4 +302,13 @@ void free_rb_tree(rb_node* node) {
 	free_rb_tree(node->right);
 	free_task(temp->task);
 	free(temp);
+}
+
+void remove_node_from_rb_tree(rb_tree* tree, rb_node* node) {
+	if (node == NULL || tree == NULL)
+		return;
+
+	tree->num_of_tasks--;
+	tree->total_weights -= node->task->weight;
+	free_rb_node(node);
 }
