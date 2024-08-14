@@ -22,7 +22,7 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task){
 }
 
 //insert task to the rb_tree
-void rb_tree_task_arrival(rb_tree* tree, rb_node* node) {
+void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 	
 	if (node == NULL) {
 		//ERROR
