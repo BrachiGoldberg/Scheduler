@@ -3,12 +3,10 @@
 
 #include "rb_tree.h"
 #include "RealTimeTaskQueue .h"
-<<<<<<< HEAD
+
 #include "QueueNode.h"
 #include "RealTimeTask.c"
 
-#define sched_latency 1
-=======
 #include "general_settings.h"
 #include "round_robin.h"
 #include "cfs.h"
