@@ -1,68 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="QueueNode.c" />
+    <ClCompile Include="cfs.c" />
+    <ClCompile Include="rb_tree.c" />
+    <ClCompile Include="RealTimeTask.c" />
+    <ClCompile Include="RealTimeTaskQueue.c" />
+    <ClCompile Include="task.c" />
+    <ClCompile Include="round_robin.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="scheduler.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scheduler.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rb_tree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="task.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="RealTimeTask.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QueueNode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RealTimeTaskQueue.c">
-=======
-    <ClCompile Include="cfs.c">
->>>>>>> 7dff3c95672a497b15dd28728bfce9cecf18f68c
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="rb_tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="task.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="RealTimeTask.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RealTimeTaskQueue .h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QueueNode.h">
-=======
-    <ClInclude Include="scheduler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cfs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="general_settings.h">
->>>>>>> 7dff3c95672a497b15dd28728bfce9cecf18f68c
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="QueueNode.h" />
+    <ClInclude Include="RealTimeTask.h" />
+    <ClInclude Include="RealTimeTaskQueue .h" />
+    <ClInclude Include="cfs.h" />
+    <ClInclude Include="general_settings.h" />
+    <ClInclude Include="rb_tree.h" />
+    <ClInclude Include="scheduler.h" />
+    <ClInclude Include="task.h" />
+    <ClInclude Include="round_robin.h" />
   </ItemGroup>
 </Project>
