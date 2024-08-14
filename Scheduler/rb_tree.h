@@ -19,7 +19,7 @@ rb_tree* initial_rb_tree();
 //insert new task to the rb_tree
 void rb_tree_new_task_arrival(rb_tree* tree, task* task);
 
-void rb_tree_task_arrival(rb_tree* tree, rb_node* node);
+void rb_tree_insert_task(rb_tree* tree, rb_node* node);
 
 void add_node_to_tree(rb_node* root, rb_node* node);
 
