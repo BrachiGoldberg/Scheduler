@@ -127,25 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.c" />
     <ClCompile Include="QueueNode.c" />
     <ClCompile Include="cfs.c" />
     <ClCompile Include="rb_tree.c" />
     <ClCompile Include="RealTimeTask.c" />
     <ClCompile Include="RealTimeTaskQueue.c" />
-    <ClCompile Include="Scheduler.c" />
+    <ClCompile Include="round_robin.c" />
+    <ClCompile Include="scheduler.c" />
     <ClCompile Include="task.c" />
   </ItemGroup>
   <ItemGroup>
-
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="RealTimeTask.h" />
     <ClInclude Include="RealTimeTaskQueue .h" />
-
     <ClInclude Include="cfs.h" />
     <ClInclude Include="general_settings.h" />
     <ClInclude Include="rb_tree.h" />
+    <ClInclude Include="round_robin.h" />
     <ClInclude Include="scheduler.h" />
-
     <ClInclude Include="task.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

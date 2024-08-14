@@ -6,3 +6,7 @@
 
 #define QUANTUM_TREE 1
 #define QUANTUM_QUEUE 1
+
+#define DEFULT_WEIGHT 1024
+
+#define MIN_TIME_SLICE 1

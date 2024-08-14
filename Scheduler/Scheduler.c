@@ -1,13 +1,13 @@
-﻿#define _CTR_SECURE_NO_WARNINGS
-
-#include <stdio.h>
-
-#include "rb_tree.h"
-
-int main() {
-
-	printf("sizeof rb_tree %d\n", sizeof(rb_tree));
-	printf("sizeof rb_node %d\n", sizeof(rb_node));
-	printf("sizeof task %d\n", sizeof(task));
-
+#include "scheduler.h"
+#include "general_settings.h"
+void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
+	long double weight = DEFULT_WEIGHT / pow(1.25, nice);
+	if (nice < -20) {
+		struct queue_node* node = create_queue_node(nice, execution_time, weight);
+		push_task_node(sched_point->queue, node);
+	}
+	else {
+		task* new_task = create_task(nice, execution_time, weight);
+		rb_tree_task_arrival(sched_point->tasks_tree, new_task);
+	}
 }
