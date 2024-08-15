@@ -127,6 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="consts.c" />
+    <ClCompile Include="logger.c" />
+    <ClCompile Include="loggerconf.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="QueueNode.c" />
     <ClCompile Include="cfs.c" />
@@ -139,6 +142,8 @@
     <ClCompile Include="task.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="logger.h" />
+    <ClInclude Include="loggerconf.h" />
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="rb_node.h" />
     <ClInclude Include="RealTimeTask.h" />
