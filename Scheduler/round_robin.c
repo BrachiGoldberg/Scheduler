@@ -1,4 +1,6 @@
 #include "round_robin.h"
+#include "logger.h"
+#include "consts.h"
 
 void execute_queue(struct real_time_task_queue* queue) {
 
@@ -26,20 +28,26 @@ void execute_queue(struct real_time_task_queue* queue) {
 	current_task->quantum = sleep_time;
 
 	//sleep the system for sleep_time milliseconds
-	/*int success = */ Sleep(sleep_time);
-	/*if (success > 0) {
+	Sleep(sleep_time);
 
-		//the task get only success time.
-		sleep_time = success;
-	}*/
 	//update the task's times
 	current_task->remaining_time -= sleep_time;
 	current_task->execution_time += sleep_time;
+	
+	//info log massege
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_TASK_GET_CPU(mess, current_task->id, sleep_time);
+	LOG_INFO(mess);
 
 	//check why the loop finished
 	if (current_task->remaining_time <= 0) {
 		//remove the task's weight from the toal weights
 		queue->total_weights -= current_task->weight;
+
+		char mess[STANDART_SIZE_MESS];
+		INFO_MESSAGE_TASK_FINISHED(mess, current_task->id);
+		LOG_INFO(mess);
+
 		//tha task finished - remove the task from the system
 		free_queue_node(node);
 	}

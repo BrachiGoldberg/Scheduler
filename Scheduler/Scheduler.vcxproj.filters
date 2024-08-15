@@ -13,7 +13,7 @@
     <ClCompile Include="rb_node.c" />
     <ClCompile Include="logger.c" />
     <ClCompile Include="loggerconf.c" />
-    <ClCompile Include="consts.c" />
+    <ClCompile Include="consts.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QueueNode.h" />
