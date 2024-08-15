@@ -237,6 +237,18 @@ static char getLevelChar(LogLevel level)
     }
 }
 
+static const char* getLevelString(LogLevel level) {
+    switch (level) {
+    case LogLevel_TRACE: return "TRACE";
+    case LogLevel_DEBUG: return "DEBUG";
+    case LogLevel_INFO:  return "INFO";
+    case LogLevel_WARN:  return "WARN";
+    case LogLevel_ERROR: return "ERROR";
+    case LogLevel_FATAL: return "FATAL";
+    default:            return "UNKNOWN";
+    }
+}
+
 static void getTimestamp(const struct timeval* time, char* timestamp, size_t size)
 {
     time_t sec = time->tv_sec; /* a necessary variable to avoid a runtime error on Windows */
@@ -308,14 +320,14 @@ static int rotateLogFiles(void)
     return 1;
 }
 
-static long vflog(FILE* fp, char levelc, const char* timestamp, long threadID,
+static long vflog(FILE* fp, static char* levels, const char* timestamp, long threadID,
         const char* file, int line, const char* fmt, va_list arg,
         unsigned long long currentTime, unsigned long long* flushedTime)
 {
     int size;
     long totalsize = 0;
 
-    if ((size = fprintf(fp, "%c %s %ld %s:%d: ", levelc, timestamp, threadID, file, line)) > 0) {
+    if ((size = fprintf(fp, "%s %s %ld %s:%d: ", levels, timestamp, threadID, file, line)) > 0) {
         totalsize += size;
     }
     if ((size = vfprintf(fp, fmt, arg)) > 0) {
@@ -337,7 +349,10 @@ void logger_log(LogLevel level, const char* file, int line, const char* fmt, ...
 {
     struct timeval now;
     unsigned long long currentTime; /* milliseconds */
+    /**/
     char levelc;
+    static char* levels;
+    /**/
     char timestamp[32];
     long threadID;
     va_list carg, farg;
@@ -352,20 +367,23 @@ void logger_log(LogLevel level, const char* file, int line, const char* fmt, ...
     }
     gettimeofday(&now, NULL);
     currentTime = now.tv_sec * 1000 + now.tv_usec / 1000;
+    /**/
     levelc = getLevelChar(level);
+    levels = getLevelString(level);
+    /**/
     getTimestamp(&now, timestamp, sizeof(timestamp));
     threadID = getCurrentThreadID();
     lock();
     if (hasFlag(s_logger, kConsoleLogger)) {
         va_start(carg, fmt);
-        vflog(s_clog.output, levelc, timestamp, threadID,
+        vflog(s_clog.output, levels, timestamp, threadID,
                 file, line, fmt, carg, currentTime, &s_clog.flushedTime);
         va_end(carg);
     }
     if (hasFlag(s_logger, kFileLogger)) {
         if (rotateLogFiles()) {
             va_start(farg, fmt);
-            s_flog.currentFileSize += vflog(s_flog.output, levelc, timestamp, threadID,
+            s_flog.currentFileSize += vflog(s_flog.output, levels, timestamp, threadID,
                     file, line, fmt, farg, currentTime, &s_flog.flushedTime);
             va_end(farg);
         }
