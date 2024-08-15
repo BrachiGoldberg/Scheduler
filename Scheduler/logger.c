@@ -383,7 +383,7 @@ void logger_log(LogLevel level, const char* file, int line, const char* fmt, ...
     if (hasFlag(s_logger, kFileLogger)) {
         if (rotateLogFiles()) {
             va_start(farg, fmt);
-            s_flog.currentFileSize += vflog(s_flog.output, levelc, timestamp, threadID,
+            s_flog.currentFileSize += vflog(s_flog.output, levels, timestamp, threadID,
                     file, line, fmt, farg, currentTime, &s_flog.flushedTime);
             va_end(farg);
         }
