@@ -1,7 +1,16 @@
 #include "cfs.h"
 #include "general_settings.h"
+#include "logger.h"
+#include "consts.h"
 
 void execute_tree(rb_tree* tasks_tree) {
+
+	//does it unnecessary??
+	/*if (tasks_tree == NULL) {
+		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
+		return;
+	}*/
+
 	double time_slice = tasks_tree->most_left->task->slice;
 	long double weight = tasks_tree->most_left->task->weight;
 	long double total_weights = tasks_tree->total_weights;
