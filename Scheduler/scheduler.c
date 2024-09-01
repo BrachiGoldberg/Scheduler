@@ -9,7 +9,7 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 	}
 	else {
 		task* new_task = create_task(nice, execution_time, weight);
-		rb_tree_task_arrival(sched_point->tasks_tree, new_task);
+		rb_tree_new_task_arrival(sched_point->tasks_tree, new_task);
 	}
 }
 

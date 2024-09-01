@@ -1,4 +1,6 @@
 #include "task.h"
+#include "logger.h"
+#include "consts.h"
 
 task* create_task(int nice_input, double execution_time_input,
 	long double weight_calculation) {
@@ -6,6 +8,7 @@ task* create_task(int nice_input, double execution_time_input,
 	task* new_task = (task*)malloc(sizeof(task));
 	if (new_task == NULL) {
 		//handle error
+		LOG_ERROR(MEMORY_ALLOCATION_FAILED);
 		exit(1);
 	}
 	new_task->id = id++;
@@ -23,8 +26,9 @@ task* create_task(int nice_input, double execution_time_input,
 
 void free_task(task* task) {
 
-	if (task != NULL)
+	if (task == NULL)
+		LOG_ERROR(ACCESSING_NULL_PIONTER);
+	else
 		free(task);
-
 	task = NULL;
 }

@@ -10,7 +10,7 @@ void execute_queue(struct real_time_task_queue* queue) {
 
 	//calculate the current quantum
 	double quantum = SCHED_LATENCY * (current_task->weight / queue->total_weights);
-
+	
 	double sleep_time;//in milliseconds
 	//choose to sleep_time (the task's execution_time):
 	if (quantum > MIN_QUANTUM) {

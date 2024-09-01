@@ -5,6 +5,12 @@
 rb_tree* initial_rb_tree() {
 
 	rb_tree* tree = (rb_tree*)malloc(sizeof(rb_tree));
+	if (tree == NULL) {
+		//memory allocatin failed
+		LOG_ERROR(MEMORY_ALLOCATION_FAILED);
+		exit(1);
+	}
+
 	tree->root = tree->most_left = NULL;
 	tree->num_of_tasks = 0;
 	tree->total_weights = 0;
@@ -20,7 +26,7 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task){
 	tree->num_of_tasks++;
 	tree->total_weights += task->weight;
 
-	rb_tree_task_arrival(tree, node);
+	rb_tree_insert_task(tree, node);
 
 	//info log message
 	char mess[STANDART_SIZE_MESS];
@@ -37,6 +43,8 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 
 	if (tree == NULL) {
 		//ERROR
+		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
+		//????/exit
 	}
 
 	node->color = RED;
@@ -286,6 +294,10 @@ void change_colors_after_rotation(rb_node* node) {
 }
 
 int is_most_left_empty(rb_tree* tree) {
+	if (tree == NULL) {
+		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
+		return 0;
+	}
 	return tree->most_left == NULL;
 }
 //remvoe task from the rb_tree
