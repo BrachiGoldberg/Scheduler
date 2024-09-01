@@ -1,4 +1,6 @@
 #include "rb_tree.h"
+#include "consts.h"
+#include "logger.h"
 
 rb_tree* initial_rb_tree() {
 
@@ -19,6 +21,11 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task){
 	tree->total_weights += task->weight;
 
 	rb_tree_task_arrival(tree, node);
+
+	//info log message
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(mess, node->task->id, node->task->execution_time);
+	LOG_INFO(mess);
 }
 
 //insert task to the rb_tree
