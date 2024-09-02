@@ -1,4 +1,3 @@
-
 #ifndef RB_TREE_H
 #define RB_TREE_H
 
@@ -6,6 +5,8 @@
 
 #include "rb_node.h"
 #include "mutex.h"
+#include "consts.h"
+#include "logger.h"
 
 typedef struct {
 	int num_of_tasks;

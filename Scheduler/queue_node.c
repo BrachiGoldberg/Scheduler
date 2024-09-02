@@ -1,8 +1,4 @@
-
 #include "queue_node.h"
-#include "consts.h"
-#include "logger.h"
-#include <stdlib.h>
 
  queue_node* create_queue_node(int priority, double execution_time, long double weight) {
      queue_node* new_queue_node = ( queue_node*)malloc(sizeof( queue_node));

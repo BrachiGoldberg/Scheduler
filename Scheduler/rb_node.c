@@ -1,6 +1,4 @@
 #include "rb_node.h"
-#include "logger.h"
-#include "consts.h"
 
 rb_node* create_rb_node(task* task) {
     // Check if task is NULL and log an error if necessary

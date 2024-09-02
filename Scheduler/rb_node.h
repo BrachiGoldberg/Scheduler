@@ -2,6 +2,8 @@
 #define _RB_NODE_H
 
 #include "task.h"
+#include "logger.h"
+#include "consts.h"
 
 #define BLACK 0
 #define RED 1
