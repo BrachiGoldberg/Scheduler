@@ -5,9 +5,7 @@
 rb_tree* initial_rb_tree() {
 	rb_tree* tree = (rb_tree*)malloc(sizeof(rb_tree));
 	if (tree == NULL) {
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
 		exit(EXIT_FAILURE); // Use a standard exit code
 	}
 
@@ -33,23 +31,19 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 	rb_tree_insert_task(tree, node);
 
 	// Info log message
-	char mess[STANDART_SIZE_MESS];
-	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(mess, node->task->id, node->task->execution_time);
-	LOG_INFO(mess);
+	char message[STANDART_SIZE_MESS];
+	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->execution_time);
+	LOG_INFO(message);
 }
 
 void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 	if (node == NULL) {
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 		return;
 	}
 
 	if (tree == NULL) {
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_TREE_NOT_INITIALIZED(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
 		return;
 	}
 
@@ -181,30 +175,18 @@ void change_colors_hierarchical(rb_tree* tree, rb_node* grandfather) {
 	if (grandfather->parent != NULL && grandfather->parent->color == RED) {
 		rotate_tree(tree, grandfather);
 	}
-
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Changed colors hierarchically for node %p", (void*)grandfather);
-	LOG_DEBUG(message);
 }
 
 void left_right_rotation(rb_tree* tree, rb_node* node) {
 	left_rotation(tree, node);
 	right_rotation(tree, node);
 	change_colors_after_rotation(node);
-
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Performed left-right rotation for node %p", (void*)node);
-	LOG_DEBUG(message);
 }
 
 void right_left_rotation(rb_tree* tree, rb_node* node) {
 	right_rotation(tree, node);
 	left_rotation(tree, node);
 	change_colors_after_rotation(node);
-
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Performed right-left rotation for node %p", (void*)node);
-	LOG_DEBUG(message);
 }
 
 void left_rotation(rb_tree* tree, rb_node* node) {
@@ -228,10 +210,6 @@ void left_rotation(rb_tree* tree, rb_node* node) {
 	node->left = node->parent;
 	node->parent = node->parent->parent;
 	node->left->parent = node;
-
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Performed left rotation for node %p", (void*)node);
-	LOG_DEBUG(message);
 }
 
 void right_rotation(rb_tree* tree, rb_node* node) {
@@ -255,10 +233,6 @@ void right_rotation(rb_tree* tree, rb_node* node) {
 	node->right = node->parent;
 	node->parent = node->parent->parent;
 	node->right->parent = node;
-
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Performed right rotation for node %p", (void*)node);
-	LOG_DEBUG(message);
 }
 
 void change_colors_after_rotation(rb_node* node) {
@@ -268,17 +242,15 @@ void change_colors_after_rotation(rb_node* node) {
 	if (node->right)
 		node->right->color = RED;
 }
+
 int is_most_left_empty(rb_tree* tree) {
 	if (tree == NULL) {
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_TREE_NOT_INITIALIZED(message);
-		LOG_ERROR(message);
-
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
 		return 0;
 	}
 	return tree->most_left == NULL;
 }
-//remvoe task from the rb_tree
+
 //free tree
 void free_struct_rb_tree(rb_tree* tree) {
 	free_rb_tree(tree->root);
@@ -286,25 +258,204 @@ void free_struct_rb_tree(rb_tree* tree) {
 	tree->most_left = NULL;
 	tree->num_of_tasks = tree->total_weights = 0;
 }
+
 void free_rb_tree(rb_node* node) {
-	if (node == NULL)
+	if (node == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 		return;
+	}
 	rb_node* temp = node;
 	free_rb_tree(node->left);
 	free_rb_tree(node->right);
 	free_task(temp->task);
 	free(temp);
 }
+
+//remvoe task from the rb_tree
 void remove_node_from_rb_tree(rb_tree* tree, rb_node* node) {
-	if (node == NULL || tree == NULL)
+	if (node == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 		return;
+	}
+
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		return;
+	}
+
+	if (tree->root == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_EMPTY);
+		return;
+	}
+	rb_node* y = node;
+	rb_node* x = NULL;
+	int y_original_color = y->color;
+
+	// Finding the node to replace and preparing for deletion
+	if (node->left == NULL) {
+		x = node->right;
+		if (x) x->parent = node->parent;
+		if (node->parent == NULL) {
+			tree->root = x;
+		}
+		else if (node == node->parent->left) {
+			node->parent->left = x;
+		}
+		else {
+			node->parent->right = x;
+		}
+		if (node == tree->most_left) {
+			tree->most_left = node->right ? node->right : node->parent;
+		}
+	}
+	else if (node->right == NULL) {
+		x = node->left;
+		if (x) x->parent = node->parent;
+		if (node->parent == NULL) {
+			tree->root = x;
+		}
+		else if (node == node->parent->left) {
+			node->parent->left = x;
+		}
+		else {
+			node->parent->right = x;
+		}
+		if (node == tree->most_left) {
+			tree->most_left = node->left ? node->left : node->parent;
+		}
+	}
+	else {
+		y = node->right;
+		while (y->left != NULL) {
+			y = y->left;
+		}
+		y_original_color = y->color;
+		x = y->right;
+		if (y->parent == node) {
+			if (x) x->parent = y;
+		}
+		else {
+			if (x) x->parent = y->parent;
+			y->parent->left = x;
+			y->right = node->right;
+			y->right->parent = y;
+		}
+		if (node->parent == NULL) {
+			tree->root = y;
+		}
+		else if (node == node->parent->left) {
+			node->parent->left = y;
+		}
+		else {
+			node->parent->right = y;
+		}
+		y->parent = node->parent;
+		y->left = node->left;
+		y->left->parent = y;
+		y->color = node->color;
+	}
+
+	if (y_original_color == BLACK && x != NULL) {
+		// Rebalancing after deletion
+		deleteFixup(tree, x);
+	}
+
+	// Updating the number of tasks and the total weight
 	tree->num_of_tasks--;
 	tree->total_weights -= node->task->weight;
-	free_rb_node(node);
+
+	free(node->task);
+	free(node);
 }
 
+void deleteFixup(rb_tree* tree, rb_node* x) {
+	while (x != tree->root && x->color == BLACK) {
+		if (x == x->parent->left) {
+			rb_node* w = x->parent->right;
+			if (w->color == RED) {
+				w->color = BLACK;
+				x->parent->color = RED;
+				left_rotation(tree, x->parent);
+				w = x->parent->right;
+			}
+			if (w->left->color == BLACK && w->right->color == BLACK) {
+				w->color = RED;
+				x = x->parent;
+			}
+			else {
+				if (w->right->color == BLACK) {
+					w->left->color = BLACK;
+					w->color = RED;
+					right_rotation(tree, w);
+					w = x->parent->right;
+				}
+				w->color = x->parent->color;
+				x->parent->color = BLACK;
+				w->right->color = BLACK;
+				left_rotation(tree, x->parent);
+				x = tree->root;
+			}
+		}
+		else {
+			rb_node* w = x->parent->left;
+			if (w->color == RED) {
+				w->color = BLACK;
+				x->parent->color = RED;
+				right_rotation(tree, x->parent);
+				w = x->parent->left;
+			}
+			if (w->right->color == BLACK && w->left->color == BLACK) {
+				w->color = RED;
+				x = x->parent;
+			}
+			else {
+				if (w->left->color == BLACK) {
+					w->right->color = BLACK;
+					w->color = RED;
+					left_rotation(tree, w);
+					w = x->parent->left;
+				}
+				w->color = x->parent->color;
+				x->parent->color = BLACK;
+				w->left->color = BLACK;
+				right_rotation(tree, x->parent);
+				x = tree->root;
+			}
+		}
+	}
+	x->color = BLACK;
+}
 
+void delete_most_left_leaf(rb_tree* tree) {
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		return;
+	}
 
+	if (tree->most_left == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
+		return;
+	}
+	rb_node* most_left_leaf = tree->most_left;
+
+	// Updating the pointer to the new leftmost leaf
+	if (most_left_leaf->right != NULL) {
+		tree->most_left = most_left_leaf->right;
+		while (tree->most_left->left != NULL) {
+			tree->most_left = tree->most_left->left;
+		}
+	}
+	else {
+		rb_node* parent = most_left_leaf->parent;
+		tree->most_left = parent;
+		while (tree->most_left != NULL && tree->most_left->left == NULL) {
+			tree->most_left = tree->most_left->parent;
+		}
+	}
+
+	// Deleting the leaf from the tree and maintaining the balance
+	remove_node_from_rb_tree(tree, most_left_leaf);
+}
 
 
 

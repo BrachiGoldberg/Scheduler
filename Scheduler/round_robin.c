@@ -32,7 +32,7 @@ void execute_queue(struct real_time_task_queue* queue) {
     LOG_DEBUG("Selected sleep time: %f ms for task ID: %d.", sleep_time, current_task->id);
 
     //sleep the system for sleep_time milliseconds
-    Sleep(sleep_time);
+    Sleep((DWORD)sleep_time);
     LOG_TRACE("Task ID: %d finished sleeping for: %f ms.", current_task->id, sleep_time);
 
     //update the task's times

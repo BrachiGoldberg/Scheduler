@@ -5,9 +5,7 @@
 rb_node* create_rb_node(task* task) {
     // Check if task is NULL and log an error if necessary
     if (task == NULL) {
-        char message[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
-        LOG_ERROR(message);
+        LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
         // Optionally handle the error, e.g., by returning NULL
         return NULL;
     }
@@ -15,9 +13,7 @@ rb_node* create_rb_node(task* task) {
     // Create new rb node
     rb_node* node = (rb_node*)malloc(sizeof(rb_node));
     if (node == NULL) {
-        char message[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(message);
-        LOG_ERROR(message);
+        LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
         exit(EXIT_FAILURE); // Use a standard exit code
     }
     node->task = task;
@@ -28,9 +24,7 @@ rb_node* create_rb_node(task* task) {
 
 void free_rb_node(rb_node* node) {
     if (node == NULL) {
-        char message[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
-        LOG_ERROR(message);
+        LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
         return;
     }
 

@@ -6,9 +6,7 @@ task* create_task(int nice_input, double execution_time_input, long double weigh
     task* new_task = (task*)malloc(sizeof(task));
     if (new_task == NULL) {
         // Handle error
-        char mess[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(mess);
-        LOG_ERROR(mess);
+        LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
         exit(1);
     }
 
@@ -27,9 +25,7 @@ task* create_task(int nice_input, double execution_time_input, long double weigh
 
 void free_task(task* task) {
     if (task == NULL) {
-        char mess[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_ACCESSING_NULL_POINTER(mess);
-        LOG_ERROR(mess);
+        LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
         return; // Return instead of freeing NULL pointer
     }
     free(task);

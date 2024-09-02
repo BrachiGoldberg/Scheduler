@@ -29,8 +29,6 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 void scheduling_tasks(scheduler* sched) {
     // Log the start of the scheduling process
     LOG_INFO("Starting task scheduling process");
-    char message[STANDART_SIZE_MESS];
-
     // Scheduling tasks
     while (1) {
         // First, schedule the tasks' queue for QUANTUM_QUEUE times
