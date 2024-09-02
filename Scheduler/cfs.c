@@ -21,12 +21,20 @@ void execute_tree(rb_tree* tasks_tree) {
 		return;
 	}
 
+	//lock the tree
+	lock_tree_mutex();
+	//get the most left leaf
+	rb_node* most_left = tasks_tree->most_left;
+
+	//unlock the tree
+	release_tree_mutex();
+
 	// Extract task details
-	double time_slice = tasks_tree->most_left->task->slice;
-	long double weight = tasks_tree->most_left->task->weight;
+	double time_slice = most_left->task->slice;
+	long double weight = most_left->task->weight;
 	long double total_weights = tasks_tree->total_weights;
-	double remaining_time = tasks_tree->most_left->task->remaining_time;
-	double execution_time = tasks_tree->most_left->task->execution_time;
+	double remaining_time = most_left->task->remaining_time;
+	double execution_time = most_left->task->execution_time;
 
 	// Calculate the time slice based on task weight and total weights
 	time_slice = SCHED_LATENCY * (weight / total_weights);
@@ -37,16 +45,16 @@ void execute_tree(rb_tree* tasks_tree) {
 
 	// Log the scheduling details
 	char message[STANDART_SIZE_MESS];
-	DEBUG_MESSAGE_TASK_SCHEDULED(message, tasks_tree->most_left->task->id, sleep_time);
+	DEBUG_MESSAGE_TASK_SCHEDULED(message, most_left->task->id, sleep_time);
 	LOG_DEBUG(message);
 
 	// Sleep for the determined time
 	Sleep(sleep_time);
 
 	// Update task times
-	tasks_tree->most_left->task->remaining_time -= sleep_time;
-	tasks_tree->most_left->task->execution_time += sleep_time;
-	task* t = tasks_tree->most_left->task;
+	most_left->task->remaining_time -= sleep_time;
+	most_left->task->execution_time += sleep_time;
+	task* t = most_left->task;
 
 	// Log the task execution
 	INFO_MESSAGE_TASK_GET_CPU(message, t->id, sleep_time);

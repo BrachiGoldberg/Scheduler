@@ -30,29 +30,38 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 }
 
 void scheduling_tasks(scheduler* sched) {
-    // Log the start of the scheduling process
+	
+
+	//scheduling tasks
+	if (sched == NULL) {
+		LOG_ERROR(ACCESSING_NULL_PIONTER);
+	}
+	//where does check the initialized?
+	/*else if (sched->queue == NULL) {
+		LOG_ERROR(QUEUE_WAS_NOT_INITIALIZED);
+	}
+	else if (sched->tasks_tree == NULL) {
+		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
+	}*/
+	
+	// Log the start of the scheduling process
     LOG_INFO("Starting task scheduling process");
     char message[STANDART_SIZE_MESS];
+	while (1) {
 
-    // Scheduling tasks
-    while (1) {
-        // First, schedule the tasks' queue for QUANTUM_QUEUE times
-        // while the queue is not empty
-        for (int time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE; time_queue++) {
-            // Log the start of queue execution
-            //char message[STANDART_SIZE_MESS];
-           
+		//first, schedule the tasks' queue for QUANTUM_QUEUE times
+		//while the queue is not empty
+		for (int time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
+			time_queue++) {
+			execute_queue(sched->queue);
+		}
 
-            execute_queue(sched->queue);
-        }
+		//if the QUANTUM_QUEUE time finished or the queue is empty,
+		//the scheduler schedule the tasks' rb_tree
+		for (int time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE;
+			time_tree++) {
+			execute_tree(sched->tasks_tree);
+		}
+	}
 
-        // If the QUANTUM_QUEUE time finished or the queue is empty,
-        // the scheduler schedules the tasks' rb_tree
-        for (int time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE; time_tree++) {
-            // Log the start of tree execution
-            
-
-            execute_tree(sched->tasks_tree);
-        }
-    }
 }

@@ -55,7 +55,8 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 
 	node->color = RED;
 
-	// TODO lock the tree
+	//lock the tree
+	lock_tree_mutex();
 
 	if (tree->root == NULL) {
 		node->task->vruntime = 0;
@@ -85,6 +86,9 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 			}
 		}
 	}
+
+	//release the tree
+	release_tree_mutex();
 }
 
 void add_node_to_tree(rb_node* root, rb_node* node) {

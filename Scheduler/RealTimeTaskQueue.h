@@ -1,5 +1,6 @@
 #pragma once
 #include "QueueNode.h"
+#include "mutex.h"
 //#include "RealTimeTask.h"
 // A queue of real-time tasks
 struct real_time_task_queue {

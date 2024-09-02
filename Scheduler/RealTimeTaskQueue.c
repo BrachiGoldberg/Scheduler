@@ -22,6 +22,9 @@ void push_task_node(struct real_time_task_queue* real_time_task_queue, struct qu
         return;
     }
 
+    //lock the queue
+    lock_queue_mutex();
+
     // Insert the new node at the end of the queue
     if (real_time_task_queue->rear) {
         real_time_task_queue->rear->next = real_time_node;
@@ -30,6 +33,10 @@ void push_task_node(struct real_time_task_queue* real_time_task_queue, struct qu
         real_time_task_queue->front = real_time_node;
     }
     real_time_task_queue->rear = real_time_node;
+
+    //release the queue
+    release_queue_mutex();
+
     real_time_task_queue->num_of_tasks++;
     real_time_task_queue->total_weights += real_time_node->task->weight;
 
@@ -54,15 +61,22 @@ struct queue_node* pop_task_node(struct real_time_task_queue* real_time_task_que
         return NULL;
     }
 
+    //lock the queue
+    lock_queue_mutex();
+
     struct queue_node* queue_node = real_time_task_queue->front;
     real_time_task_queue->front = real_time_task_queue->front->next;
     if (!real_time_task_queue->front) {
         real_time_task_queue->rear = NULL;
     }
 
+    queue_node->next = NULL;
+
+    //release the queue
+    release_queue_mutex();
+
     real_time_task_queue->num_of_tasks--;
     real_time_task_queue->total_weights -= queue_node->task->weight;
-    queue_node->next = NULL;
 
     // Log an info message about the task removal
     char mess[STANDART_SIZE_MESS];
