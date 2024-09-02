@@ -2,7 +2,7 @@
 #define SCHEDULER_H
 
 #include "rb_tree.h"
-#include "RealTimeTaskQueue .h"
+#include "RealTimeTaskQueue.h"
 
 #include "QueueNode.h"
 #include "RealTimeTask.c"
@@ -10,6 +10,9 @@
 #include "general_settings.h"
 #include "round_robin.h"
 #include "cfs.h"
+
+#include "logger.h"
+#include "consts.h"
 
 typedef struct 
 {

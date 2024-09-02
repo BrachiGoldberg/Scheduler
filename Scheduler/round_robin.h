@@ -5,7 +5,7 @@
 #include <Windows.h>
 
 #include "general_settings.h"
-#include "RealTimeTaskQueue .h"
+#include "RealTimeTaskQueue.h"
 #include "QueueNode.h"
 #include "RealTimeTask.h"
 
