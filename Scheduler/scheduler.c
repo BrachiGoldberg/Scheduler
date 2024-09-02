@@ -1,7 +1,10 @@
+
+ 
 #include "scheduler.h"
 #include "general_settings.h"
 #include "logger.h"
 #include "consts.h"
+
 
 void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
     long double weight = DEFULT_WEIGHT / pow(1.25, nice);

@@ -95,3 +95,40 @@ int is_queue_empty(struct real_time_task_queue* real_time_task_queue) {
     }
     return real_time_task_queue->front == NULL;
 }
+
+struct real_time_task_queue* initialize_queue() {
+    // Allocate memory for the queue
+    struct real_time_task_queue* queue = (struct real_time_task_queue*)malloc(sizeof(struct real_time_task_queue));
+    if (queue == NULL) {
+        LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
+        return NULL;
+    }
+
+    queue->front = NULL;
+    queue->rear = NULL;
+    queue->total_weights = 0.0;
+    queue->num_of_tasks = 0;
+
+    return queue;
+}
+
+
+void free_queue(struct real_time_task_queue* queue) {
+    if (queue == NULL) return;
+
+    struct queue_node* current = queue->front;
+    struct queue_node* next;
+
+    // Free all nodes in the queue
+    while (current != NULL) {
+        next = current->next;  
+        free(current);         
+        current = next;        
+    }
+
+    // Reset queue attributes
+    queue->front = NULL;
+    queue->rear = NULL;
+    queue->total_weights = 0.0;
+    queue->num_of_tasks = 0;
+}
