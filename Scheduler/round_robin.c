@@ -1,61 +1,61 @@
 #include "round_robin.h"
 
 void execute_queue(real_time_task_queue* queue) {
-    LOG_TRACE("Starting to execute task queue.");
+	LOG_TRACE("Starting to execute task queue.");
 
-    //must be a node in the queue
-     queue_node* node = pop_task_node(queue);
-     real_time_task* current_task = node->task;
+	//must be a node in the queue
+	queue_node* node = pop_task_node(queue);
+	real_time_task* current_task = node->task;
 
-    //calculate the current quantum
-    double quantum = SCHED_LATENCY * (current_task->weight / queue->total_weights);
-    LOG_DEBUG("Calculated quantum: %f for task ID: %d.", quantum, current_task->id);
+	//calculate the current quantum
+	double quantum = SCHED_LATENCY * (current_task->weight / queue->total_weights);
+	LOG_DEBUG("Calculated quantum: %f for task ID: %d.", quantum, current_task->id);
 
-    double sleep_time;//in milliseconds
-    //choose to sleep_time (the task's execution_time):
-    if (quantum > MIN_QUANTUM) {
-        if (current_task->remaining_time > quantum)
-            sleep_time = quantum;
-        else
-            sleep_time = current_task->remaining_time;
-    }
-    else {
-        if (MIN_QUANTUM > current_task->remaining_time)
-            sleep_time = current_task->remaining_time;
-        else
-            sleep_time = MIN_QUANTUM;
-    }
-    current_task->quantum = sleep_time;
-    LOG_DEBUG("Selected sleep time: %f ms for task ID: %d.", sleep_time, current_task->id);
+	double sleep_time;//in milliseconds
+	//choose to sleep_time (the task's execution_time):
+	if (quantum > MIN_QUANTUM) {
+		if (current_task->remaining_time > quantum)
+			sleep_time = quantum;
+		else
+			sleep_time = current_task->remaining_time;
+	}
+	else {
+		if (MIN_QUANTUM > current_task->remaining_time)
+			sleep_time = current_task->remaining_time;
+		else
+			sleep_time = MIN_QUANTUM;
+	}
+	current_task->quantum = sleep_time;
+	LOG_DEBUG("Selected sleep time: %f ms for task ID: %d.", sleep_time, current_task->id);
 
-    //sleep the system for sleep_time milliseconds
-    Sleep((DWORD)sleep_time);
-    LOG_TRACE("Task ID: %d finished sleeping for: %f ms.", current_task->id, sleep_time);
+	//sleep the system for sleep_time milliseconds
+	Sleep((DWORD)sleep_time);
+	LOG_TRACE("Task ID: %d finished sleeping for: %f ms.", current_task->id, sleep_time);
 
-    //update the task's times
-    current_task->remaining_time -= sleep_time;
-    current_task->execution_time += sleep_time;
-    LOG_DEBUG("Task ID: %d updated times - Remaining time: %f ms, Execution time: %f ms.", current_task->id, current_task->remaining_time, current_task->execution_time);
+	//update the task's times
+	current_task->remaining_time -= sleep_time;
+	current_task->execution_time += sleep_time;
+	LOG_DEBUG("Task ID: %d updated times - Remaining time: %f ms, Execution time: %f ms.", current_task->id, current_task->remaining_time, current_task->execution_time);
 
-    //info log massege
-    char mess[STANDART_SIZE_MESS];
-    INFO_MESSAGE_TASK_GET_CPU(mess, current_task->id, sleep_time);
-    LOG_INFO(mess);
+	//info log massege
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_TASK_GET_CPU(mess, current_task->id, sleep_time);
+	LOG_INFO(mess);
 
-    //check why the loop finished
-    if (current_task->remaining_time <= 0) {
-        //remove the task's weight from the toal weights
-        queue->total_weights -= current_task->weight;
+	//check why the loop finished
+	if (current_task->remaining_time <= 0) {
+		//remove the task's weight from the toal weights
+		queue->total_weights -= current_task->weight;
 
-        char mess[STANDART_SIZE_MESS];
-        INFO_MESSAGE_TASK_FINISHED(mess, current_task->id);
-        LOG_INFO(mess);
+		char mess[STANDART_SIZE_MESS];
+		INFO_MESSAGE_TASK_FINISHED(mess, current_task->id);
+		LOG_INFO(mess);
 
-        //the task finished - remove the task from the system
-        free_queue_node(node);
-    }
-    else {
-        //insert the task again to the end of the queue
-        push_task_node(queue, node);
-    }
+		//the task finished - remove the task from the system
+		free_queue_node(node);
+	}
+	else {
+		//insert the task again to the end of the queue
+		push_task_node(queue, node);
+	}
 }

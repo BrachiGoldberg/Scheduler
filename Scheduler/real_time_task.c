@@ -27,7 +27,7 @@ real_time_task* create_real_time_task(int priority, double execution_time, long 
 }
 
 // Function to free a real-time task
-void free_real_time_task( real_time_task* real_time_task) {
+void free_real_time_task(real_time_task* real_time_task) {
 	if (real_time_task == NULL) {
 		// Log error if attempting to free a NULL pointer
 		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
