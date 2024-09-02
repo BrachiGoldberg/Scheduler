@@ -34,5 +34,17 @@
 
 #define ERROR_MESSAGE_TREE_EMPTY "The tree is empty of tasks"
 
+#define ERROR_MESSAGE_CREATE_TREE_MUTEX_FAILED "Failed to create tree mutex"
+
+#define ERROR_MESSAGE_LOCK_TREE_MUTEX_FAILED "Failed to lock tree mutex"
+
+#define ERROR_MESSAGE_UNLOCK_TREE_MUTEX_FAILED "Failed to unlock tree mutex"
+
+#define ERROR_MESSAGE_CREATE_QUEUE_MUTEX_FAILED "Failed to create queue mutex"
+
+#define ERROR_MESSAGE_LOCK_QUEUE_MUTEX_FAILED "Failed to lock tree mutex"
+
+#define ERROR_MESSAGE_UNLOCK_QUEUE_MUTEX_FAILED "Failed to unlock tree mutex"
+
 // ìåâ ùâéàåú
 //#define LOG_ERROR(msg) fprintf(stderr, "%s\n", (msg))
