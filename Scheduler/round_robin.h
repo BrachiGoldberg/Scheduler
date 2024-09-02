@@ -9,6 +9,6 @@
 #include "logger.h"
 #include "consts.h"
 
-void execute_queue( real_time_task_queue* queue);
+void execute_queue(real_time_task_queue* queue);
 
 #endif // !_ROUND_ROBIN_H
