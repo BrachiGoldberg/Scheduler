@@ -34,7 +34,7 @@ void scheduling_tasks(scheduler* sched) {
 
 	//scheduling tasks
 	if (sched == NULL) {
-		LOG_ERROR(ACCESSING_NULL_PIONTER);
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 	}
 	//where does check the initialized?
 	/*else if (sched->queue == NULL) {

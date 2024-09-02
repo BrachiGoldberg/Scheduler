@@ -5,7 +5,7 @@ int main() {
     scheduler sched;
     // Initialize the scheduler and other necessary components
     sched.tasks_tree=initial_rb_tree();
-    void initialize_queue(struct real_time_task_queue* queue);
+    sched.queue =  initialize_queue();
     create_tree_mutex();
     create_queue_mutex();
 
