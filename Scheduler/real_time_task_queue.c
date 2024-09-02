@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include "consts.h"
 #include "logger.h"
-#include "RealTimeTaskQueue.h"
+#include "real_time_task_queue.h"
 
 
-void push_task_node(struct real_time_task_queue* real_time_task_queue, struct queue_node* real_time_node) {
+void push_task_node( real_time_task_queue* real_time_task_queue,  queue_node* real_time_node) {
     // Check if the queue or node is NULL and log an error
     if (real_time_task_queue == NULL) {
         char mess[STANDART_SIZE_MESS];
@@ -46,7 +46,7 @@ void push_task_node(struct real_time_task_queue* real_time_task_queue, struct qu
     LOG_INFO(mess);
 }
 
-struct queue_node* pop_task_node(struct real_time_task_queue* real_time_task_queue) {
+ queue_node* pop_task_node( real_time_task_queue* real_time_task_queue) {
     if (real_time_task_queue == NULL) {
         char mess[STANDART_SIZE_MESS];
         ERROR_MESSAGE_QUEUE_NOT_INITIALIZED(mess);
@@ -64,7 +64,7 @@ struct queue_node* pop_task_node(struct real_time_task_queue* real_time_task_que
     //lock the queue
     lock_queue_mutex();
 
-    struct queue_node* queue_node = real_time_task_queue->front;
+     queue_node* queue_node = real_time_task_queue->front;
     real_time_task_queue->front = real_time_task_queue->front->next;
     if (!real_time_task_queue->front) {
         real_time_task_queue->rear = NULL;
@@ -86,7 +86,7 @@ struct queue_node* pop_task_node(struct real_time_task_queue* real_time_task_que
     return queue_node;
 }
 
-int is_queue_empty(struct real_time_task_queue* real_time_task_queue) {
+int is_queue_empty( real_time_task_queue* real_time_task_queue) {
     if (real_time_task_queue == NULL) {
         char mess[STANDART_SIZE_MESS];
         ERROR_MESSAGE_ACCESSING_NULL_POINTER(mess);
@@ -96,9 +96,9 @@ int is_queue_empty(struct real_time_task_queue* real_time_task_queue) {
     return real_time_task_queue->front == NULL;
 }
 
-struct real_time_task_queue* initialize_queue() {
+ real_time_task_queue* initialize_queue() {
     // Allocate memory for the queue
-    struct real_time_task_queue* queue = (struct real_time_task_queue*)malloc(sizeof(struct real_time_task_queue));
+     real_time_task_queue* queue = ( real_time_task_queue*)malloc(sizeof( real_time_task_queue));
     if (queue == NULL) {
         LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
         return NULL;
@@ -113,11 +113,11 @@ struct real_time_task_queue* initialize_queue() {
 }
 
 
-void free_queue(struct real_time_task_queue* queue) {
+void free_queue( real_time_task_queue* queue) {
     if (queue == NULL) return;
 
-    struct queue_node* current = queue->front;
-    struct queue_node* next;
+     queue_node* current = queue->front;
+     queue_node* next;
 
     // Free all nodes in the queue
     while (current != NULL) {

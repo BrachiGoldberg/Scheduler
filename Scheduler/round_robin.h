@@ -5,10 +5,10 @@
 #include <Windows.h>
 
 #include "general_settings.h"
-#include "RealTimeTaskQueue.h"
-#include "QueueNode.h"
-#include "RealTimeTask.h"
+#include "real_time_task_queue.h"
+#include "queue_node.h"
+#include "real_time_task.h"
 
-void execute_queue(struct real_time_task_queue* queue);
+void execute_queue( real_time_task_queue* queue);
 
 #endif // !_ROUND_ROBIN_H
