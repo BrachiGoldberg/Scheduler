@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -131,6 +131,7 @@
     <ClCompile Include="logger.c" />
     <ClCompile Include="loggerconf.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="mutex.c" />
     <ClCompile Include="QueueNode.c" />
     <ClCompile Include="cfs.c" />
     <ClCompile Include="rb_node.c" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="logger.h" />
     <ClInclude Include="loggerconf.h" />
+    <ClInclude Include="mutex.h" />
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="rb_node.h" />
     <ClInclude Include="RealTimeTask.h" />
