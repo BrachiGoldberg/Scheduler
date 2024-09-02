@@ -1,5 +1,7 @@
 #include "scheduler.h"
 #include "general_settings.h"
+#include "logger.h"
+#include "consts.h"
 
 void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 	long double weight = DEFULT_WEIGHT / pow(1.25, nice);
@@ -16,6 +18,16 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 void scheduling_tasks(scheduler* sched) {
 
 	//scheduling tasks
+	if (sched == NULL) {
+		LOG_ERROR(ACCESSING_NULL_PIONTER);
+	}
+	//where does check the initialized?
+	/*else if (sched->queue == NULL) {
+		LOG_ERROR(QUEUE_WAS_NOT_INITIALIZED);
+	}
+	else if (sched->tasks_tree == NULL) {
+		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
+	}*/
 	while (1) {
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
