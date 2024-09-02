@@ -18,7 +18,7 @@
   <ItemGroup>
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="RealTimeTask.h" />
-    <ClInclude Include="RealTimeTaskQueue .h" />
+    <ClInclude Include="RealTimeTaskQueue.h" />
     <ClInclude Include="cfs.h" />
     <ClInclude Include="general_settings.h" />
     <ClInclude Include="rb_tree.h" />
