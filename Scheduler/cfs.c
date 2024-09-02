@@ -1,8 +1,4 @@
 #include "cfs.h"
-#include "general_settings.h"
-#include "logger.h"
-#include "consts.h"
-
 
 void execute_tree(rb_tree* tasks_tree) {
 

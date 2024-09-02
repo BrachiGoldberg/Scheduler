@@ -65,3 +65,23 @@ void scheduling_tasks(scheduler* sched) {
 	}
 
 }
+
+DWORD WINAPI input_thread(LPVOID param) {
+	scheduler* sched = (scheduler*)param;
+	int nice = 10; // Set the appropriate value for `nice`
+	double execution_time = 5.0; // Set the appropriate value for execution time
+
+	// Call the function that the thread is supposed to operate
+	new_task_arrival(nice, execution_time, sched);
+
+	return 0;
+}
+
+DWORD WINAPI task_thread(LPVOID param) {
+	scheduler* sched = (scheduler*)param;
+
+	// Call the function that the thread is supposed to operate
+	scheduling_tasks(sched);
+
+	return 0;
+}

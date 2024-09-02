@@ -22,8 +22,7 @@
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
 //macors for error messages
-#define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(mess) \
-    snprintf((mess), STANDART_SIZE_MESS, "Memory allocation failed")
+#define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
 
 #define ERROR_MESSAGE_ACCESSING_NULL_POINTER "Accessing a null pointer"
 

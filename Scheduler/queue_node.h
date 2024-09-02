@@ -1,6 +1,10 @@
 #ifndef QUEUE_NODE_H
 #define QUEUE_NODE_H
+
+#include <stdlib.h>
 #include "real_time_task.h"
+#include "consts.h"
+#include "logger.h"
 
 struct queue_node {
 	real_time_task* task;

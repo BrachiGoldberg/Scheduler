@@ -1,8 +1,4 @@
-#include <math.h>
-#include <stdlib.h>
 #include "real_time_task.h"
-#include "consts.h"
-#include "logger.h"
 
 // Function to create a new real-time task
 real_time_task* create_real_time_task(int priority, double execution_time, long double weight) {
@@ -13,9 +9,7 @@ real_time_task* create_real_time_task(int priority, double execution_time, long 
 	real_time_task* new_task = (real_time_task*)malloc(sizeof(real_time_task));
 	if (new_task == NULL) {
 		// Log error and exit if memory allocation fails
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
 		exit(EXIT_FAILURE);
 	}
 
@@ -36,9 +30,7 @@ real_time_task* create_real_time_task(int priority, double execution_time, long 
 void free_real_time_task( real_time_task* real_time_task) {
 	if (real_time_task == NULL) {
 		// Log error if attempting to free a NULL pointer
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 		return;
 	}
 

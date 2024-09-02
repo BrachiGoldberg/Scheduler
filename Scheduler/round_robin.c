@@ -1,9 +1,6 @@
 #include "round_robin.h"
-#include "logger.h"
-#include "consts.h"
-#include "real_time_task_queue.h"
 
-void execute_queue( real_time_task_queue* queue) {
+void execute_queue(real_time_task_queue* queue) {
     LOG_TRACE("Starting to execute task queue.");
 
     //must be a node in the queue

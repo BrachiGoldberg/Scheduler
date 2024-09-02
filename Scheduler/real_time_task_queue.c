@@ -1,10 +1,4 @@
-#pragma once
-
-#include <stdlib.h>
-#include "consts.h"
-#include "logger.h"
 #include "real_time_task_queue.h"
-
 
 void push_task_node( real_time_task_queue* real_time_task_queue,  queue_node* real_time_node) {
     // Check if the queue or node is NULL and log an error

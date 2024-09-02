@@ -1,6 +1,4 @@
 #include "rb_tree.h"
-#include "consts.h"
-#include "logger.h"
 
 rb_tree* initial_rb_tree() {
 	rb_tree* tree = (rb_tree*)malloc(sizeof(rb_tree));
