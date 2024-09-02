@@ -32,7 +32,7 @@ void execute_tree(rb_tree* tasks_tree) {
 	// Extract task details
 	double time_slice = most_left->task->slice;
 	long double weight = most_left->task->weight;
-	long double total_weights = total_weights;
+	long double total_weights = tasks_tree->total_weights;
 	double remaining_time = most_left->task->remaining_time;
 	double execution_time = most_left->task->execution_time;
 
