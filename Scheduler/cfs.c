@@ -27,7 +27,7 @@ void execute_tree(rb_tree* tasks_tree) {
 	rb_node* most_left = tasks_tree->most_left;
 
 	//unlock the tree
-	unlock_tree_mutex();
+	release_tree_mutex();
 
 	// Extract task details
 	double time_slice = most_left->task->slice;
