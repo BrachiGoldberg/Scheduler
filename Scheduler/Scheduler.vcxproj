@@ -132,13 +132,13 @@
     <ClCompile Include="loggerconf.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mutex.c" />
-    <ClCompile Include="QueueNode.c" />
+    <ClCompile Include="queue_node.c" />
     <ClCompile Include="cfs.c" />
     <ClCompile Include="rb_node.c" />
     <ClCompile Include="rb_tree.c" />
     <ClCompile Include="round_robin.c" />
-    <ClCompile Include="RealTimeTask.c" />
-    <ClCompile Include="RealTimeTaskQueue.c" />
+    <ClCompile Include="real_time_task.c" />
+    <ClCompile Include="real_time_task_queue.c" />
     <ClCompile Include="scheduler.c" />
     <ClCompile Include="task.c" />
   </ItemGroup>
@@ -146,10 +146,10 @@
     <ClInclude Include="logger.h" />
     <ClInclude Include="loggerconf.h" />
     <ClInclude Include="mutex.h" />
-    <ClInclude Include="QueueNode.h" />
+    <ClInclude Include="queue_node.h" />
     <ClInclude Include="rb_node.h" />
-    <ClInclude Include="RealTimeTask.h" />
-    <ClInclude Include="RealTimeTaskQueue.h" />
+    <ClInclude Include="real_time_task.h" />
+    <ClInclude Include="real_time_task_queue.h" />
     <ClInclude Include="cfs.h" />
     <ClInclude Include="general_settings.h" />
     <ClInclude Include="rb_tree.h" />

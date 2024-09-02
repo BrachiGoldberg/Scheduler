@@ -42,19 +42,19 @@ void execute_tree(rb_tree* tasks_tree) {
 
 	// Log the scheduling details
 	char message[STANDART_SIZE_MESS];
-	DEBUG_MESSAGE_TASK_SCHEDULED(message, tasks_tree->most_left->task->id, sleep_time);
+	DEBUG_MESSAGE_TASK_SCHEDULED(message, most_left->task->id, sleep_time);
 	LOG_DEBUG(message);
 
 	// Sleep for the determined time
 	Sleep((DWORD)sleep_time);
 
 	// Update task times
-	tasks_tree->most_left->task->remaining_time -= sleep_time;
-	tasks_tree->most_left->task->execution_time += sleep_time;
-	rb_node* old_most_left = tasks_tree->most_left;
+	most_left->task->remaining_time -= sleep_time;
+	most_left->task->execution_time += sleep_time;
+	task* t = most_left->task;
 
 	// Log the task execution
-	INFO_MESSAGE_TASK_GET_CPU(message, old_most_left->task->id, sleep_time);
+	INFO_MESSAGE_TASK_GET_CPU(message, t->id, sleep_time);
 	LOG_INFO(message);
 
 	//TODO
@@ -66,6 +66,6 @@ void execute_tree(rb_tree* tasks_tree) {
 		tasks_tree->total_weights -= weight;
 	}
 	else {
-		rb_tree_insert_task(tasks_tree, old_most_left);
+		rb_tree_insert_task(tasks_tree, tasks_tree->most_left);
 	}
 }

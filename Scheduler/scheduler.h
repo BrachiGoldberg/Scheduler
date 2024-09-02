@@ -2,8 +2,8 @@
 #define SCHEDULER_H
 
 #include "rb_tree.h"
-#include "RealTimeTaskQueue.h"
-#include "QueueNode.h"
+#include "real_time_task_queue.h"
+#include "queue_node.h"
 #include "general_settings.h"
 #include "round_robin.h"
 #include "cfs.h"
@@ -15,7 +15,7 @@
 typedef struct
 {
     rb_tree* tasks_tree;
-    struct real_time_task_queue* queue;
+     real_time_task_queue* queue;
 } scheduler;
 
 void new_task_arrival(int nice, double execution_time, scheduler* sched_point);

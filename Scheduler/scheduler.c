@@ -12,7 +12,7 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
     // Create a log message for the new task arrival
     char message[STANDART_SIZE_MESS];
     if (nice < -20) {
-        struct queue_node* node = create_queue_node(nice, execution_time, weight);
+         queue_node* node = create_queue_node(nice, execution_time, weight);
         push_task_node(sched_point->queue, node);
 
         // Log the addition of a new task to the queue

@@ -5,11 +5,9 @@ int main() {
     scheduler sched;
     // Initialize the scheduler and other necessary components
     sched.tasks_tree=initial_rb_tree();
-    sched.queue =  initialize_queue();
+    sched.queue =initialize_queue();
     create_tree_mutex();
     create_queue_mutex();
-
-    
 
     HANDLE input_thread_handle, task_thread_handle;
 

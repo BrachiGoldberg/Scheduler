@@ -1,14 +1,14 @@
 #include "round_robin.h"
 #include "logger.h"
 #include "consts.h"
-#include "RealTimeTaskQueue.h"
+#include "real_time_task_queue.h"
 
-void execute_queue(struct real_time_task_queue* queue) {
+void execute_queue( real_time_task_queue* queue) {
     LOG_TRACE("Starting to execute task queue.");
 
     //must be a node in the queue
-    struct queue_node* node = pop_task_node(queue);
-    struct real_time_task* current_task = node->task;
+     queue_node* node = pop_task_node(queue);
+     real_time_task* current_task = node->task;
 
     //calculate the current quantum
     double quantum = SCHED_LATENCY * (current_task->weight / queue->total_weights);

@@ -1,6 +1,6 @@
 #define STANDART_SIZE_MESS 256
 
-// î÷øåàéí ìäåãòåú îéãò
+//macros of info messages
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the real-time tasks queue", (task_id), (exec_time))
 
@@ -21,8 +21,9 @@
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
-// î÷øåàéí ìùâéàåú
-#define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
+//macors for error messages
+#define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(mess) \
+    snprintf((mess), STANDART_SIZE_MESS, "Memory allocation failed")
 
 #define ERROR_MESSAGE_ACCESSING_NULL_POINTER "Accessing a null pointer"
 
@@ -45,6 +46,3 @@
 #define ERROR_MESSAGE_LOCK_QUEUE_MUTEX_FAILED "Failed to lock tree mutex"
 
 #define ERROR_MESSAGE_UNLOCK_QUEUE_MUTEX_FAILED "Failed to unlock tree mutex"
-
-// ìåâ ùâéàåú
-//#define LOG_ERROR(msg) fprintf(stderr, "%s\n", (msg))
