@@ -1,5 +1,4 @@
 #define STANDART_SIZE_MESS 256
-static char message[STANDART_SIZE_MESS];
 
 //macros of info messages
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
@@ -9,7 +8,7 @@ static char message[STANDART_SIZE_MESS];
     snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the red-black tree", (task_id), (exec_time))
 
 #define INFO_MESSAGE_TASK_GET_CPU(mess, task_id, time) \
-    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld got the CPU for %d milliseconds", (task_id), (time))
+    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld got the CPU for %f milliseconds", (task_id), (time))
 
 #define INFO_MESSAGE_TASK_FINISHED(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld finished", (task_id))
@@ -26,14 +25,15 @@ static char message[STANDART_SIZE_MESS];
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(mess) \
     snprintf((mess), STANDART_SIZE_MESS, "Memory allocation failed")
 
-#define ERROR_MESSAGE_ACCESSING_NULL_POINTER(mess) \
-    snprintf((mess), STANDART_SIZE_MESS, "Accessing a null pointer")
+#define ERROR_MESSAGE_ACCESSING_NULL_POINTER "Accessing a null pointer"
 
-#define ERROR_MESSAGE_QUEUE_NOT_INITIALIZED(mess) \
-    snprintf((mess), STANDART_SIZE_MESS, "The queue was not initialized")
+#define ERROR_MESSAGE_QUEUE_NOT_INITIALIZED "The queue was not initialized"
 
-#define ERROR_MESSAGE_TREE_NOT_INITIALIZED(mess) \
-    snprintf((mess), STANDART_SIZE_MESS, "The red-black tree was not initialized")
+#define ERROR_MESSAGE_TREE_NOT_INITIALIZED "The red-black tree was not initialized"
+
+#define ERROR_MESSAGE_QUEUE_EMPTY "The queue is empty of tasks"
+
+#define ERROR_MESSAGE_TREE_EMPTY "The tree is empty of tasks"
 
 #define ERROR_MESSAGE_CREATE_TREE_MUTEX_FAILED "Failed to create tree mutex"
 

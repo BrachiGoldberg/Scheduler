@@ -7,9 +7,7 @@
  queue_node* create_queue_node(int priority, double execution_time, long double weight) {
      queue_node* new_queue_node = ( queue_node*)malloc(sizeof( queue_node));
     if (new_queue_node == NULL) {
-        char message[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED(message);
-        LOG_ERROR(message);
+        LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
         exit(EXIT_FAILURE); // Or handle the error as appropriate
     }
 
@@ -20,9 +18,7 @@
 
 void free_queue_node( queue_node* node) {
     if (node == NULL) {
-        char message[STANDART_SIZE_MESS];
-        ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
-        LOG_ERROR(message);
+        LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
         return;
     }
 

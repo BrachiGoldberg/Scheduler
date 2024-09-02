@@ -3,21 +3,18 @@
 #include "logger.h"
 #include "consts.h"
 
+
 void execute_tree(rb_tree* tasks_tree) {
 
 	// Check if the tasks_tree is NULL and log an error
 	if (tasks_tree == NULL) {
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_TREE_NOT_INITIALIZED(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
 		return;
 	}
 
 	// Check if the most_left node is NULL and log an error
 	if (tasks_tree->most_left == NULL || tasks_tree->most_left->task == NULL) {
-		char message[STANDART_SIZE_MESS];
-		ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
-		LOG_ERROR(message);
+		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 		return;
 	}
 
@@ -49,7 +46,7 @@ void execute_tree(rb_tree* tasks_tree) {
 	LOG_DEBUG(message);
 
 	// Sleep for the determined time
-	Sleep(sleep_time);
+	Sleep((DWORD)sleep_time);
 
 	// Update task times
 	most_left->task->remaining_time -= sleep_time;
@@ -62,6 +59,8 @@ void execute_tree(rb_tree* tasks_tree) {
 
 	//TODO
 	//remove node from the tree without deleting from the memory, update the most left leaf
+
+	delete_most_left_leaf(tasks_tree);
 
 	if (remaining_time == 0) {
 		tasks_tree->total_weights -= weight;
