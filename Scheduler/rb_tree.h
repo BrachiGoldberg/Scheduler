@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include "rb_node.h"
+#include "mutex.h"
 
 typedef struct {
 	int num_of_tasks;

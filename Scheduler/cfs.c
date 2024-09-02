@@ -18,12 +18,20 @@ void execute_tree(rb_tree* tasks_tree) {
 		return;
 	}
 
+	//lock the tree
+	lock_tree_mutex();
+	//get the most left leaf
+	rb_node* most_left = tasks_tree->most_left;
+
+	//unlock the tree
+	release_tree_mutex();
+
 	// Extract task details
-	double time_slice = tasks_tree->most_left->task->slice;
-	long double weight = tasks_tree->most_left->task->weight;
+	double time_slice = most_left->task->slice;
+	long double weight = most_left->task->weight;
 	long double total_weights = tasks_tree->total_weights;
-	double remaining_time = tasks_tree->most_left->task->remaining_time;
-	double execution_time = tasks_tree->most_left->task->execution_time;
+	double remaining_time = most_left->task->remaining_time;
+	double execution_time = most_left->task->execution_time;
 
 	// Calculate the time slice based on task weight and total weights
 	time_slice = SCHED_LATENCY * (weight / total_weights);

@@ -1,6 +1,6 @@
 #define STANDART_SIZE_MESS 256
 
-// Ó˜¯Â‡ÈÌ Ï‰Â„ÚÂ˙ ÓÈ„Ú
+// √Æ√∑√∏√•√†√©√≠ √¨√§√•√£√≤√•√∫ √Æ√©√£√≤
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the real-time tasks queue", (task_id), (exec_time))
 
@@ -17,11 +17,11 @@
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld removed from the real-time tasks queue", (task_id))
 
 
-
+//macros for debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
-// Ó˜¯Â‡ÈÌ Ï˘‚È‡Â˙
+// √Æ√∑√∏√•√†√©√≠ √¨√π√¢√©√†√•√∫
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
 
 #define ERROR_MESSAGE_ACCESSING_NULL_POINTER "Accessing a null pointer"
@@ -34,5 +34,5 @@
 
 #define ERROR_MESSAGE_TREE_EMPTY "The tree is empty of tasks"
 
-// ÏÂ‚ ˘‚È‡Â˙
+// √¨√•√¢ √π√¢√©√†√•√∫
 //#define LOG_ERROR(msg) fprintf(stderr, "%s\n", (msg))

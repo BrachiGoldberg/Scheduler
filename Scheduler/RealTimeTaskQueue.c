@@ -18,6 +18,9 @@ void push_task_node(struct real_time_task_queue* real_time_task_queue, struct qu
         return;
     }
 
+    //lock the queue
+    lock_queue_mutex();
+
     // Insert the new node at the end of the queue
     if (real_time_task_queue->rear) {
         real_time_task_queue->rear->next = real_time_node;
@@ -26,6 +29,10 @@ void push_task_node(struct real_time_task_queue* real_time_task_queue, struct qu
         real_time_task_queue->front = real_time_node;
     }
     real_time_task_queue->rear = real_time_node;
+
+    //release the queue
+    release_queue_mutex();
+
     real_time_task_queue->num_of_tasks++;
     real_time_task_queue->total_weights += real_time_node->task->weight;
 
@@ -46,15 +53,22 @@ struct queue_node* pop_task_node(struct real_time_task_queue* real_time_task_que
         return NULL;
     }
 
+    //lock the queue
+    lock_queue_mutex();
+
     struct queue_node* queue_node = real_time_task_queue->front;
     real_time_task_queue->front = real_time_task_queue->front->next;
     if (!real_time_task_queue->front) {
         real_time_task_queue->rear = NULL;
     }
 
+    queue_node->next = NULL;
+
+    //release the queue
+    release_queue_mutex();
+
     real_time_task_queue->num_of_tasks--;
     real_time_task_queue->total_weights -= queue_node->task->weight;
-    queue_node->next = NULL;
 
     // Log an info message about the task removal
     char message[STANDART_SIZE_MESS];
@@ -70,4 +84,41 @@ int is_queue_empty(struct real_time_task_queue* real_time_task_queue) {
         return 1; // Consider the queue empty if it’s not initialized
     }
     return real_time_task_queue->front == NULL;
+}
+
+struct real_time_task_queue* initialize_queue() {
+    // Allocate memory for the queue
+    struct real_time_task_queue* queue = (struct real_time_task_queue*)malloc(sizeof(struct real_time_task_queue));
+    if (queue == NULL) {
+        LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
+        return NULL;
+    }
+
+    queue->front = NULL;
+    queue->rear = NULL;
+    queue->total_weights = 0.0;
+    queue->num_of_tasks = 0;
+
+    return queue;
+}
+
+
+void free_queue(struct real_time_task_queue* queue) {
+    if (queue == NULL) return;
+
+    struct queue_node* current = queue->front;
+    struct queue_node* next;
+
+    // Free all nodes in the queue
+    while (current != NULL) {
+        next = current->next;  
+        free(current);         
+        current = next;        
+    }
+
+    // Reset queue attributes
+    queue->front = NULL;
+    queue->rear = NULL;
+    queue->total_weights = 0.0;
+    queue->num_of_tasks = 0;
 }
