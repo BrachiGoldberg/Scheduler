@@ -5,34 +5,60 @@
 
 void execute_tree(rb_tree* tasks_tree) {
 
-	//does it unnecessary??
-	/*if (tasks_tree == NULL) {
-		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
+	// Check if the tasks_tree is NULL and log an error
+	if (tasks_tree == NULL) {
+		char message[STANDART_SIZE_MESS];
+		ERROR_MESSAGE_TREE_NOT_INITIALIZED(message);
+		LOG_ERROR(message);
 		return;
-	}*/
+	}
 
+	// Check if the most_left node is NULL and log an error
+	if (tasks_tree->most_left == NULL || tasks_tree->most_left->task == NULL) {
+		char message[STANDART_SIZE_MESS];
+		ERROR_MESSAGE_ACCESSING_NULL_POINTER(message);
+		LOG_ERROR(message);
+		return;
+	}
+
+	// Extract task details
 	double time_slice = tasks_tree->most_left->task->slice;
 	long double weight = tasks_tree->most_left->task->weight;
 	long double total_weights = tasks_tree->total_weights;
 	double remaining_time = tasks_tree->most_left->task->remaining_time;
 	double execution_time = tasks_tree->most_left->task->execution_time;
 
+	// Calculate the time slice based on task weight and total weights
 	time_slice = SCHED_LATENCY * (weight / total_weights);
 	double delta_exec = time_slice;
 
+	// Determine the sleep time, ensuring it is within the remaining execution time
 	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);
-	sleep(sleep_time);
 
+	// Log the scheduling details
+	char message[STANDART_SIZE_MESS];
+	DEBUG_MESSAGE_TASK_SCHEDULED(message, tasks_tree->most_left->task->id, sleep_time);
+	LOG_DEBUG(message);
+
+	// Sleep for the determined time
+	Sleep(sleep_time);
+
+	// Update task times
 	tasks_tree->most_left->task->remaining_time -= sleep_time;
 	tasks_tree->most_left->task->execution_time += sleep_time;
 	task* t = tasks_tree->most_left->task;
-	//remove task from tree, update most left
+
+	// Log the task execution
+	INFO_MESSAGE_TASK_GET_CPU(message, t->id, sleep_time);
+	LOG_INFO(message);
+
+	//TODO
+	//remove node from the tree without deleting from the memory, update the most left leaf
 
 	if (remaining_time == 0) {
 		tasks_tree->total_weights -= weight;
 	}
-	else
-	{
-		rb_tree_insert_task(tasks_tree, t);
+	else {
+		rb_tree_insert_task(tasks_tree, tasks_tree->most_left);
 	}
 }
