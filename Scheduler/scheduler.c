@@ -68,11 +68,14 @@ void scheduling_tasks(scheduler* sched) {
 
 DWORD WINAPI input_thread(LPVOID param) {
 	scheduler* sched = (scheduler*)param;
-	int nice = 10; // Set the appropriate value for `nice`
-	double execution_time = 5.0; // Set the appropriate value for execution time
+	int nice;
+	double execution_time;
 
-	// Call the function that the thread is supposed to operate
-	new_task_arrival(nice, execution_time, sched);
+	while (1) {
+		//get the input from the console
+		scanf("%d%f", &nice, &execution_time);
+		new_task_arrival(nice, execution_time, sched);
+	}
 
 	return 0;
 }
