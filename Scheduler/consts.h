@@ -45,3 +45,5 @@
 #define ERROR_MESSAGE_LOCK_QUEUE_MUTEX_FAILED "Failed to lock tree mutex"
 
 #define ERROR_MESSAGE_UNLOCK_QUEUE_MUTEX_FAILED "Failed to unlock tree mutex"
+
+#define ERROR_MESSAGE_LOGGER_INIT_FAILED "ERROR! init logger file failed"

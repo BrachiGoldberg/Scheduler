@@ -5,26 +5,32 @@
 #include "rb_tree.h"
 #include "real_time_task_queue.h"
 #include "mutex.h"
+#include "logger.h"
+#include "general_settings.h"
 
 int main() {
 	scheduler sched;
+
 	// Initialize the scheduler and other necessary components
+	int success = logger_initFileLogger(LOGGER_FILE, MAX_LOGGER_FILE_SIZE, MAX_LOGGER_BUCKUP_FILES);
+	if (success == 0) {
+		printf(ERROR_MESSAGE_LOGGER_INIT_FAILED);
+		exit(EXIT_FAILURE);
+	}
+	logger_setLevel(LogLevel_TRACE);
+
 	sched.tasks_tree = initial_rb_tree();
 	sched.queue = initialize_queue();
+
 	create_tree_mutex();
 	create_queue_mutex();
+
+	
 
 	HANDLE input_thread_handle, task_thread_handle;
 
 	// Create the input thread
-	input_thread_handle = CreateThread(
-		NULL,                  // Default security attributes
-		0,                     // Default stack size
-		input_thread,          // Thread function
-		&sched,                // Argument to thread function
-		0,                     // Default creation flags
-		NULL                   // Pointer to receive thread ID
-	);
+	input_thread_handle = CreateThread(NULL, 0, input_thread, &sched, 0, NULL);
 
 	if (input_thread_handle == NULL) {
 		printf("Failed to create input thread\n");
@@ -32,14 +38,7 @@ int main() {
 	}
 
 	// Create the task execution thread
-	task_thread_handle = CreateThread(
-		NULL,                  // Default security attributes
-		0,                     // Default stack size
-		task_thread,           // Thread function
-		&sched,                // Argument to thread function
-		0,                     // Default creation flags
-		NULL                   // Pointer to receive thread ID
-	);
+	task_thread_handle = CreateThread(NULL, 0, task_thread, &sched, 0, NULL);
 
 	if (task_thread_handle == NULL) {
 		printf("Failed to create task thread\n");
