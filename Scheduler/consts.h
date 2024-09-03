@@ -47,3 +47,7 @@
 #define ERROR_MESSAGE_UNLOCK_QUEUE_MUTEX_FAILED "Failed to unlock tree mutex"
 
 #define ERROR_MESSAGE_LOGGER_INIT_FAILED "ERROR! init logger file failed"
+
+#define ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED "Failed to create task thread"
+
+#define ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED "Failed to create input thread"
