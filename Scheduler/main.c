@@ -7,6 +7,7 @@
 #include "mutex.h"
 #include "logger.h"
 #include "general_settings.h"
+#include "consts.h"
 
 int main() {
 	scheduler sched;
@@ -25,24 +26,22 @@ int main() {
 	create_tree_mutex();
 	create_queue_mutex();
 
-	
-
 	HANDLE input_thread_handle, task_thread_handle;
 
 	// Create the input thread
 	input_thread_handle = CreateThread(NULL, 0, input_thread, &sched, 0, NULL);
 
 	if (input_thread_handle == NULL) {
-		printf("Failed to create input thread\n");
-		return 1;
+		LOG_ERROR(ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED);
+		return EXIT_FAILURE;
 	}
 
 	// Create the task execution thread
 	task_thread_handle = CreateThread(NULL, 0, task_thread, &sched, 0, NULL);
 
 	if (task_thread_handle == NULL) {
-		printf("Failed to create task thread\n");
-		return 1;
+		LOG_ERROR(ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED);
+		return EXIT_FAILURE;
 	}
 
 	// Wait for threads to finish (they run indefinitely in this case)
@@ -52,9 +51,12 @@ int main() {
 	// Clean up resources
 	CloseHandle(input_thread_handle);
 	CloseHandle(task_thread_handle);
+
 	CloseHandle(queue_mutex);
 	CloseHandle(tree_mutex);
+
 	free_queue(sched.queue);
 	free_struct_rb_tree(sched.tasks_tree);
+
 	return 0;
 }

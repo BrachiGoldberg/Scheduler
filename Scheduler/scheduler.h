@@ -12,6 +12,8 @@
 #include "cfs.h"
 #include "logger.h"
 #include "consts.h"
+#include "logger.h"
+#include "consts.h"
 
 typedef struct
 {
