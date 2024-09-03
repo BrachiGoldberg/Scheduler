@@ -4,7 +4,7 @@
 #include <Windows.h>
 
 #include "logger.h"
-#include "consts.h"
+#include "consts_logs.h"
 
 HANDLE tree_mutex;
 HANDLE queue_mutex;

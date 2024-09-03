@@ -7,7 +7,7 @@
 #include "mutex.h"
 #include "logger.h"
 #include "general_settings.h"
-#include "consts.h"
+#include "consts_logs.h"
 
 int main() {
 	scheduler sched;

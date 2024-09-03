@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="consts.h" />
+    <ClCompile Include="consts_logs.h" />
     <ClCompile Include="logger.c" />
     <ClCompile Include="loggerconf.c" />
     <ClCompile Include="main.c" />

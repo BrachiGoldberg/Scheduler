@@ -3,7 +3,7 @@
 
 #include "task.h"
 #include "logger.h"
-#include "consts.h"
+#include "consts_logs.h"
 
 #define BLACK 0
 #define RED 1
