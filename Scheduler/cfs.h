@@ -5,7 +5,7 @@
 #include "scheduler.h"
 #include "general_settings.h"
 #include "logger.h"
-#include "consts.h"
+#include "consts_logs.h"
 
 void execute_tree(rb_tree* tasks_tree);
 

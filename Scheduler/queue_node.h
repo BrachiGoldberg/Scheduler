@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 #include "real_time_task.h"
-#include "consts.h"
+#include "consts_logs.h"
 #include "logger.h"
 
 struct queue_node {

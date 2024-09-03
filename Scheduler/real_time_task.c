@@ -19,10 +19,9 @@ real_time_task* create_real_time_task(int priority, double execution_time, long 
 	new_task->weight = weight;
 
 	// Log task creation
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Created new real-time task ID %ld with execution time %f and weight %Lf", new_task->id, execution_time, weight);
-	LOG_INFO(message);
-
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_CREATED_NEW_REAL_TIME_TASK(mess, new_task->id, execution_time, weight);
+	LOG_INFO(mess);
 	return new_task;
 }
 
@@ -35,9 +34,9 @@ void free_real_time_task(real_time_task* real_time_task) {
 	}
 
 	// Log task freeing
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Freeing real-time task ID %ld", real_time_task->id);
-	LOG_INFO(message);
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_FREEING_REAL_TIME_TASK(mess, real_time_task->id);
+	LOG_INFO(mess);
 
 	// Free the task memory and avoid dangling pointers
 	free(real_time_task);

@@ -5,7 +5,7 @@
 
 #include "rb_node.h"
 #include "mutex.h"
-#include "consts.h"
+#include "consts_logs.h"
 #include "logger.h"
 
 typedef struct {

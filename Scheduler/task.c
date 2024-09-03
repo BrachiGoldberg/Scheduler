@@ -1,6 +1,6 @@
 #include "task.h"
 #include "logger.h"
-#include "consts.h"
+#include "consts_logs.h"
 
 task* create_task(int nice_input, double execution_time_input, long double weight_calculation) {
 	task* new_task = (task*)malloc(sizeof(task));

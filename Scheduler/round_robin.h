@@ -7,7 +7,7 @@
 #include "queue_node.h"
 #include "real_time_task.h"
 #include "logger.h"
-#include "consts.h"
+#include "consts_logs.h"
 
 void execute_queue(real_time_task_queue* queue);
 
