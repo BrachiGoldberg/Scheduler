@@ -12,7 +12,7 @@
 
 #define MIN_TIME_SLICE 1
 
-#define LOGGER_FILE "log.txt"
+#define LOGGER_FILE "log.log"
 #define MAX_LOGGER_FILE_SIZE (1024 * 1024)
 #define MAX_LOGGER_BUCKUP_FILES 20
 

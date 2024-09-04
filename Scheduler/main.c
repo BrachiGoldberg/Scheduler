@@ -26,9 +26,12 @@ int main() {
 	create_tree_mutex();
 	create_queue_mutex();
 
+	/* check the loggr */
+	LOG_INFO("Start the project");
+
 	HANDLE input_thread_handle, task_thread_handle;
 
-	// Create the input thread
+	//Create the input thread
 	input_thread_handle = CreateThread(NULL, 0, input_thread, &sched, 0, NULL);
 
 	if (input_thread_handle == NULL) {
