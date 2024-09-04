@@ -2,6 +2,8 @@
 #define CONSTS_LOGS_H
 
 #define STANDART_SIZE_MESS 256
+//macros of trace messages
+#define TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK "Execute real- time task (form the queue)"
 
 //macros of info messages
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
@@ -32,11 +34,19 @@
     snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the tree got the CPU in the current round", (acount))
 
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
-//macros for debug messages
+
+//macros of debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
-//macors for error messages
+#define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
+    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
+
+#define DEBAG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
+    snprinf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
+
+
+//macors 0f error messages
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
 
 #define ERROR_MESSAGE_ACCESSING_NULL_POINTER "Accessing a null pointer"
