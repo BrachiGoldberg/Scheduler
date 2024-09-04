@@ -25,6 +25,12 @@
 #define INFO_MESSAGE_FREEING_REAL_TIME_TASK(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Freeing real-time task ID %ld", (task_id))
 
+#define INFO_MESSAGE_QUEUE_GOT_CPU(mess, acount) \
+    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the queue got the CPU in the current round", (acount))
+
+#define INFO_MESSAGE_TREE_GOT_CPU(mess, acount) \
+    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the tree got the CPU in the current round", (acount))
+
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
 //macros for debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \

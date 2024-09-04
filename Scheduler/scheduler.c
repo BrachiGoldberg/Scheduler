@@ -40,22 +40,29 @@ void scheduling_tasks(scheduler* sched) {
 
 	// Log the start of the scheduling process
 	LOG_INFO(INFO_MESSAGE_START_SECHEDULING_TASKS);
+	int time_queue, time_tree;
 	char message[STANDART_SIZE_MESS];
 	while (1) {
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
 		//while the queue is not empty
-		for (int time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
+		for (time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
 			time_queue++) {
 			execute_queue(sched->queue);
 		}
 
+		INFO_MESSAGE_QUEUE_GOT_CPU(message, time_queue);
+		LOG_INFO(message);
+
 		//if the QUANTUM_QUEUE time finished or the queue is empty,
 		//the scheduler schedule the tasks' rb_tree
-		for (int time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE;
+		for (time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE;
 			time_tree++) {
 			execute_tree(sched->tasks_tree);
 		}
+
+		INFO_MESSAGE_TREE_GOT_CPU(message, time_tree);
+		LOG_INFO(message);
 	}
 
 }
