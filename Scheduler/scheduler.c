@@ -39,7 +39,7 @@ void scheduling_tasks(scheduler* sched) {
 	}*/
 
 	// Log the start of the scheduling process
-	LOG_INFO("Starting task scheduling process");
+	LOG_INFO(INFO_MESSAGE_START_SECHEDULING_TASKS);
 	char message[STANDART_SIZE_MESS];
 	while (1) {
 
