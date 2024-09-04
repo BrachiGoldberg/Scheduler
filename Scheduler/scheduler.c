@@ -1,4 +1,6 @@
 #include "scheduler.h"
+#define _CRT_SECURE_NO_WARNINGS
+HANDLE start_event;
 
 void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 	long double weight = DEFULT_WEIGHT / pow(1.25, nice);
@@ -42,7 +44,6 @@ void scheduling_tasks(scheduler* sched) {
 	LOG_INFO("Starting task scheduling process");
 	char message[STANDART_SIZE_MESS];
 	while (1) {
-
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
 		//while the queue is not empty
 		for (int time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
@@ -67,9 +68,11 @@ DWORD WINAPI input_thread(LPVOID param) {
 
 	while (1) {
 		//get the input from the console
-		scanf("%d%f", &nice, &execution_time);
+		scanf_s("%d%f", &nice, &execution_time);
 		new_task_arrival(nice, execution_time, sched);
+		SetEvent(start_event);
 	}
+	
 
 	return 0;
 }

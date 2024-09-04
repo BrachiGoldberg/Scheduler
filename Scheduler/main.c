@@ -27,7 +27,7 @@ int main() {
 	create_queue_mutex();
 
 	HANDLE input_thread_handle, task_thread_handle;
-
+	
 	// Create the input thread
 	input_thread_handle = CreateThread(NULL, 0, input_thread, &sched, 0, NULL);
 
