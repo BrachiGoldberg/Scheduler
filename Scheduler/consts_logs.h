@@ -1,3 +1,6 @@
+#ifndef CONSTS_LOGS_H
+#define CONSTS_LOGS_H
+
 #define STANDART_SIZE_MESS 256
 
 //macros of info messages
@@ -56,3 +59,5 @@
 #define ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED "Failed to create task thread"
 
 #define ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED "Failed to create input thread"
+
+#endif // !CONSTS_LOGS_H
