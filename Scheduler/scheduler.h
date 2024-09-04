@@ -1,8 +1,13 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
+
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
+#include <stdlib.h>
 #include <windows.h>
 #include "rb_tree.h"
 #include "real_time_task_queue.h"

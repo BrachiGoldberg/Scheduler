@@ -64,10 +64,10 @@ DWORD WINAPI input_thread(LPVOID param) {
 	scheduler* sched = (scheduler*)param;
 	int nice;
 	double execution_time;
-
-	while (1) {
-		//get the input from the console
-		scanf("%d%f", &nice, &execution_time);
+	srand(time(NULL));
+	while(1) {
+		scanf("%d", &nice);
+		scanf("%lf", &execution_time);
 		new_task_arrival(nice, execution_time, sched);
 	}
 
