@@ -64,7 +64,6 @@ DWORD WINAPI input_thread(LPVOID param) {
 	scheduler* sched = (scheduler*)param;
 	int nice;
 	double execution_time;
-	srand(time(NULL));
 	while(1) {
 		scanf("%d", &nice);
 		scanf("%lf", &execution_time);
