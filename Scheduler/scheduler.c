@@ -24,24 +24,16 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 }
 
 void scheduling_tasks(scheduler* sched) {
-
-
-	//scheduling tasks
 	if (sched == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 	}
-	//where does check the initialized?
-	/*else if (sched->queue == NULL) {
-		LOG_ERROR(QUEUE_WAS_NOT_INITIALIZED);
-	}
-	else if (sched->tasks_tree == NULL) {
-		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
-	}*/
 
 	// Log the start of the scheduling process
 	LOG_INFO(INFO_MESSAGE_START_SECHEDULING_TASKS);
 	int time_queue, time_tree;
 	char message[STANDART_SIZE_MESS];
+	
+	//scheduling tasks
 	while (1) {
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times

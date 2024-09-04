@@ -7,7 +7,7 @@ task* create_task(int nice_input, double execution_time_input, long double weigh
 	if (new_task == NULL) {
 		// Handle error
 		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	new_task->id = id++;
@@ -29,6 +29,5 @@ void free_task(task* task) {
 		return; // Return instead of freeing NULL pointer
 	}
 	free(task);
-	// Optionally set the pointer to NULL if needed, but this does not affect the caller
 	task = NULL;
 }

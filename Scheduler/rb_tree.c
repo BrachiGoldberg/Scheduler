@@ -4,7 +4,7 @@ rb_tree* initial_rb_tree() {
 	rb_tree* tree = (rb_tree*)malloc(sizeof(rb_tree));
 	if (tree == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
-		exit(EXIT_FAILURE); // Use a standard exit code
+		exit(EXIT_FAILURE);
 	}
 
 	tree->root = tree->most_left = NULL;

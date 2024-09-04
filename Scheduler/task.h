@@ -16,7 +16,6 @@ typedef struct {
 static int id;
 
 task* create_task(int nice_input, double execution_time_input, long double weight_calculation);
-
 void free_task(task* task);
 
 
