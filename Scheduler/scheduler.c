@@ -24,19 +24,18 @@ void scheduling_tasks(scheduler* sched) {
 	if (sched == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 	}
-
 	// Log the start of the scheduling process
 	LOG_INFO(INFO_MESSAGE_START_SECHEDULING_TASKS);
-	int time_queue, time_tree;
+	int number_of_tasks_per_queue, number_of_tasks_per_tree;
 	char message[STANDART_SIZE_MESS];
-	
+
 	//scheduling tasks
 	while (1) {
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
 		//while the queue is not empty
-		for (time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
-			time_queue++) {
+		for (number_of_tasks_per_queue = 0; !is_queue_empty(sched->queue) && number_of_tasks_per_queue < QUANTUM_QUEUE;
+			number_of_tasks_per_queue++) {
 			execute_queue(sched->queue);
 		}
 
@@ -45,8 +44,8 @@ void scheduling_tasks(scheduler* sched) {
 
 		//if the QUANTUM_QUEUE time finished or the queue is empty,
 		//the scheduler schedule the tasks' rb_tree
-		for (time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE;
-			time_tree++) {
+		for (number_of_tasks_per_tree = 0; !is_most_left_empty(sched->tasks_tree) && number_of_tasks_per_tree < QUANTUM_TREE;
+			number_of_tasks_per_tree++) {
 			execute_tree(sched->tasks_tree);
 		}
 
@@ -60,13 +59,12 @@ DWORD WINAPI input_thread(LPVOID param) {
 	scheduler* sched = (scheduler*)param;
 	int nice;
 	double execution_time;
-	srand(time(NULL));
-	while(1) {
+	while (1) {
 		scanf("%d", &nice);
 		scanf("%lf", &execution_time);
-		execution_time *= 1000;
 		new_task_arrival(nice, execution_time, sched);
 	}
+
 
 	return 0;
 }

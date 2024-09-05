@@ -30,7 +30,7 @@ int main() {
 	create_queue_mutex();
 
 	HANDLE input_thread_handle, task_thread_handle;
-
+	
 	//Create the input thread
 	create_input_thread(&input_thread_handle, &sched);
 
