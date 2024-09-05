@@ -43,7 +43,7 @@
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
 #define DEBAG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
-    snprinf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
+    snprintf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
 
 
 //macors 0f error messages

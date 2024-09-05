@@ -43,8 +43,8 @@ void scheduling_tasks(scheduler* sched) {
 			execute_queue(sched->queue);
 		}
 
-		INFO_MESSAGE_QUEUE_GOT_CPU(message, time_queue);
-		LOG_INFO(message);
+		/*INFO_MESSAGE_QUEUE_GOT_CPU(message, time_queue);
+		LOG_INFO(message);*/
 
 		//if the QUANTUM_QUEUE time finished or the queue is empty,
 		//the scheduler schedule the tasks' rb_tree
@@ -53,8 +53,8 @@ void scheduling_tasks(scheduler* sched) {
 			execute_tree(sched->tasks_tree);
 		}
 
-		INFO_MESSAGE_TREE_GOT_CPU(message, time_tree);
-		LOG_INFO(message);
+		//INFO_MESSAGE_TREE_GOT_CPU(message, time_tree);
+		//LOG_INFO(message);
 	}
 
 }
