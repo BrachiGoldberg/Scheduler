@@ -5,8 +5,7 @@
 #include <stdlib.h>
 #include "consts_logs.h"
 #include "logger.h"
-
-static int ID = 0;
+#include "general_settings.h"
 
 struct {
 	long id;

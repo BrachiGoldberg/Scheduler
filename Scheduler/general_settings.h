@@ -1,6 +1,8 @@
 #ifndef GENERAL_SETTINGS_H
 #define GENERAL_SETTINGS_H
 
+static long ID = 0;
+
 #define SCHED_LATENCY 200000
 #define MIN_QUANTUM 5
 

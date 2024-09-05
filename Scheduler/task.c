@@ -1,6 +1,4 @@
 #include "task.h"
-#include "logger.h"
-#include "consts_logs.h"
 
 task* create_task(int nice_input, double execution_time_input, long double weight_calculation) {
 	task* new_task = (task*)malloc(sizeof(task));
@@ -10,7 +8,7 @@ task* create_task(int nice_input, double execution_time_input, long double weigh
 		exit(EXIT_FAILURE);
 	}
 
-	new_task->id = id++;
+	new_task->id = ID++;
 
 	new_task->execution_time = 0;
 	new_task->remaining_time = execution_time_input;
