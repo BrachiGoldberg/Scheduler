@@ -11,9 +11,7 @@ rb_tree* initial_rb_tree() {
 	tree->num_of_tasks = 0;
 	tree->total_weights = 0;
 
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Initialized a new red-black tree");
-	LOG_INFO(message);
+	LOG_INFO(INFO_MESSAGE_TREE_INITIALIZED);
 
 	return tree;
 }

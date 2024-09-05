@@ -35,6 +35,8 @@
 
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
 
+#define INFO_MESSAGE_TREE_INITIALIZED "The red-black tree was initialized"
+
 //macros of debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
