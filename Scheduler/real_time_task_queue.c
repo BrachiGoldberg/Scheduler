@@ -94,6 +94,8 @@ real_time_task_queue* initialize_queue() {
 	queue->total_weights = 0.0;
 	queue->num_of_tasks = 0;
 
+	LOG_INFO(INFO_MESSAGE_QUEUE_INITIALIZED);
+
 	return queue;
 }
 
