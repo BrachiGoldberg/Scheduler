@@ -30,7 +30,7 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 
 	// Info log message
 	char message[STANDART_SIZE_MESS];
-	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->execution_time);
+	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->remaining_time);
 	LOG_INFO(message);
 }
 
