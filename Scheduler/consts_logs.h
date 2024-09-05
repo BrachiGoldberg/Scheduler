@@ -3,7 +3,7 @@
 
 #define STANDART_SIZE_MESS 256
 //macros of trace messages
-#define TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK "Execute real- time task (form the queue)"
+#define TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK "Execute real-time task (form the queue)"
 
 //macros of info messages
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
@@ -36,9 +36,6 @@
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
 
 //macros of debug messages
-#define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
-    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
-
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
