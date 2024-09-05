@@ -9,6 +9,9 @@
 #include "general_settings.h"
 #include "consts_logs.h"
 
+void create_input_thread(HANDLE* thread_name, scheduler* sched);
+void create_task_thread(HANDLE* thread_name, scheduler* sched);
+
 int main() {
 	scheduler sched;
 
@@ -29,20 +32,10 @@ int main() {
 	HANDLE input_thread_handle, task_thread_handle;
 
 	//Create the input thread
-	input_thread_handle = CreateThread(NULL, 0, input_thread, &sched, 0, NULL);
-
-	if (input_thread_handle == NULL) {
-		LOG_ERROR(ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED);
-		return EXIT_FAILURE;
-	}
+	create_input_thread(&input_thread_handle, &sched);
 
 	// Create the task execution thread
-	task_thread_handle = CreateThread(NULL, 0, task_thread, &sched, 0, NULL);
-
-	if (task_thread_handle == NULL) {
-		LOG_ERROR(ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED);
-		return EXIT_FAILURE;
-	}
+	create_task_thread(&task_thread_handle, &sched);
 
 	// Wait for threads to finish (they run indefinitely in this case)
 	WaitForSingleObject(input_thread_handle, INFINITE);
@@ -59,4 +52,22 @@ int main() {
 	free_struct_rb_tree(sched.tasks_tree);
 
 	return 0;
+}
+
+void create_input_thread(HANDLE* thread_name, scheduler* sched) {
+	thread_name = CreateThread(NULL, 0, input_thread, sched, 0, NULL);
+
+	if (thread_name == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED);
+		return EXIT_FAILURE;
+	}
+}
+
+void create_task_thread(HANDLE* thread_name, scheduler* sched) {
+	thread_name = CreateThread(NULL, 0, task_thread, sched, 0, NULL);
+
+	if (thread_name == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED);
+		return EXIT_FAILURE;
+	}
 }
