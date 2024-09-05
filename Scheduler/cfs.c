@@ -53,7 +53,6 @@ void execute_tree(rb_tree* tasks_tree) {
 	INFO_MESSAGE_TASK_GET_CPU(message, t->id, sleep_time);
 	LOG_INFO(message);
 
-	//TODO
 	//remove node from the tree without deleting from the memory, update the most left leaf
 
 	delete_most_left_leaf(tasks_tree);
@@ -62,6 +61,6 @@ void execute_tree(rb_tree* tasks_tree) {
 		tasks_tree->total_weights -= weight;
 	}
 	else {
-		rb_tree_insert_task(tasks_tree, tasks_tree->most_left);
+		rb_tree_insert_task(tasks_tree, most_left);
 	}
 }
