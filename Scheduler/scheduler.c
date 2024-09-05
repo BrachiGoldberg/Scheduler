@@ -24,38 +24,36 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 }
 
 void scheduling_tasks(scheduler* sched) {
-
-
-	//scheduling tasks
 	if (sched == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 	}
-	//where does check the initialized?
-	/*else if (sched->queue == NULL) {
-		LOG_ERROR(QUEUE_WAS_NOT_INITIALIZED);
-	}
-	else if (sched->tasks_tree == NULL) {
-		LOG_ERROR(TREE_WAS_NOT_INITIALIZED);
-	}*/
-
 	// Log the start of the scheduling process
-	LOG_INFO("Starting task scheduling process");
+	LOG_INFO(INFO_MESSAGE_START_SECHEDULING_TASKS);
+	int time_queue, time_tree;
 	char message[STANDART_SIZE_MESS];
+	
+	//scheduling tasks
 	while (1) {
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
 		//while the queue is not empty
-		for (int time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
+		for (time_queue = 0; !is_queue_empty(sched->queue) && time_queue < QUANTUM_QUEUE;
 			time_queue++) {
 			execute_queue(sched->queue);
 		}
 
+		/*INFO_MESSAGE_QUEUE_GOT_CPU(message, time_queue);
+		LOG_INFO(message);*/
+
 		//if the QUANTUM_QUEUE time finished or the queue is empty,
 		//the scheduler schedule the tasks' rb_tree
-		for (int time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE;
+		for (time_tree = 0; !is_most_left_empty(sched->tasks_tree) && time_tree < QUANTUM_TREE;
 			time_tree++) {
 			execute_tree(sched->tasks_tree);
 		}
+
+		//INFO_MESSAGE_TREE_GOT_CPU(message, time_tree);
+		//LOG_INFO(message);
 	}
 
 }
@@ -66,7 +64,7 @@ DWORD WINAPI input_thread(LPVOID param) {
 	double execution_time;
 	while(1) {
 		scanf("%d", &nice);
-		scanf("%d%f", &nice, &execution_time);
+		scanf("%lf", &execution_time);
 		new_task_arrival(nice, execution_time, sched);
 	}
 	

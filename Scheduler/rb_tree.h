@@ -18,46 +18,30 @@ typedef struct {
 
 rb_tree* initial_rb_tree();
 
-//insert new task to the rb_tree
 void rb_tree_new_task_arrival(rb_tree* tree, task* task);
-
 void rb_tree_insert_task(rb_tree* tree, rb_node* node);
-
 void add_node_to_tree(rb_node* root, rb_node* node);
-
 void rotate_tree(rb_tree* tree, rb_node* node);
-
 void change_colors_hierarchical(rb_tree* tree, rb_node* grandfather);
 
 //rotation
 
-// left right rotation
 void left_right_rotation(rb_tree* tree, rb_node* node);
-
 void right_left_rotation(rb_tree* tree, rb_node* node);
-
 void left_rotation(rb_tree* tree, rb_node* node);
-
 void right_rotation(rb_tree* tree, rb_node* node);
 
 void change_colors_after_rotation(rb_node* node);
 
 //check if the most left NULL
 int is_most_left_empty(rb_tree* tree);
-//remvoe task from the rb_tree
 
 //free tree
 void free_struct_rb_tree(rb_tree* tree);
-
 void free_rb_tree(rb_node* node);
 
 void remove_node_from_rb_tree(rb_tree* tree, rb_node* node);
-
 void deleteFixup(rb_tree* tree, rb_node* x);
-
 void delete_most_left_leaf(rb_tree* tree);
-
-
-
 
 #endif // !RB_TREE_H

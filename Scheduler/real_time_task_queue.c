@@ -24,11 +24,12 @@ void push_task_node(real_time_task_queue* real_time_task_queue, queue_node* real
 	}
 	real_time_task_queue->rear = real_time_node;
 
-	//release the queue
-	release_queue_mutex();
 
 	real_time_task_queue->num_of_tasks++;
 	real_time_task_queue->total_weights += real_time_node->task->weight;
+	
+	//release the queue
+	release_queue_mutex();
 
 	// Log an info message about the new task insertion
 	char message[STANDART_SIZE_MESS];

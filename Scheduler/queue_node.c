@@ -4,7 +4,7 @@ queue_node* create_queue_node(int priority, double execution_time, long double w
 	queue_node* new_queue_node = (queue_node*)malloc(sizeof(queue_node));
 	if (new_queue_node == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
-		exit(EXIT_FAILURE); // Or handle the error as appropriate
+		exit(EXIT_FAILURE);
 	}
 
 	new_queue_node->task = create_real_time_task(priority, execution_time, weight);
@@ -20,5 +20,5 @@ void free_queue_node(queue_node* node) {
 
 	free_real_time_task(node->task);
 	free(node);
-	node = NULL; // Optional, since node is not used after this
+	node = NULL;
 }
