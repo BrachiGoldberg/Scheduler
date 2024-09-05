@@ -67,6 +67,7 @@ DWORD WINAPI input_thread(LPVOID param) {
 	while(1) {
 		scanf("%d", &nice);
 		scanf("%lf", &execution_time);
+		execution_time *= 1000;
 		new_task_arrival(nice, execution_time, sched);
 	}
 
