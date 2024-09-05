@@ -44,12 +44,12 @@ void execute_tree(rb_tree* tasks_tree) {
 	Sleep(sleep_time);
 
 	// Update task times
-	tasks_tree->most_left->task->remaining_time -= sleep_time;
-	tasks_tree->most_left->task->execution_time += sleep_time;
-	task* t = tasks_tree->most_left->task;
+	most_left->task->remaining_time -= sleep_time;
+	most_left->task->execution_time += sleep_time;
+	rb_node* old_most_left = tasks_tree->most_left;
 
 	// Log the task execution
-	INFO_MESSAGE_TASK_GET_CPU(message, t->id, sleep_time);
+	INFO_MESSAGE_TASK_GET_CPU(message, old_most_left->task->id, sleep_time);
 	LOG_INFO(message);
 
 	//TODO
@@ -59,6 +59,6 @@ void execute_tree(rb_tree* tasks_tree) {
 		tasks_tree->total_weights -= weight;
 	}
 	else {
-		rb_tree_insert_task(tasks_tree, tasks_tree->most_left);
+		rb_tree_insert_task(tasks_tree, old_most_left);
 	}
 }
