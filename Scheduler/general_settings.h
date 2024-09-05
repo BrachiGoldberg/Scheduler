@@ -1,6 +1,7 @@
 #ifndef GENERAL_SETTINGS_H
 #define GENERAL_SETTINGS_H
 
+static long ID = 0;
 #define SCHED_LATENCY 20      // Latency  in milliseconds
 #define MIN_QUANTUM 5         // Minimum quantum time in milliseconds
 

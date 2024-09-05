@@ -2,6 +2,9 @@
 #define TASK_H
 
 #include <stdlib.h>
+#include "logger.h"
+#include "consts_logs.h"
+#include "general_settings.h"
 
 typedef struct {
 	int id;
@@ -13,7 +16,7 @@ typedef struct {
 	double remaining_time;
 }task;
 
-static int id;
+//static int id;
 
 task* create_task(int nice_input, double execution_time_input, long double weight_calculation);
 void free_task(task* task);

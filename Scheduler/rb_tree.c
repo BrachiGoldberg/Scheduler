@@ -11,9 +11,7 @@ rb_tree* initial_rb_tree() {
 	tree->num_of_tasks = 0;
 	tree->total_weights = 0;
 
-	char message[STANDART_SIZE_MESS];
-	snprintf(message, sizeof(message), "Initialized a new red-black tree");
-	LOG_INFO(message);
+	LOG_INFO(INFO_MESSAGE_TREE_INITIALIZED);
 
 	return tree;
 }
@@ -30,7 +28,7 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 
 	// Info log message
 	char message[STANDART_SIZE_MESS];
-	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->execution_time);
+	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->remaining_time);
 	LOG_INFO(message);
 }
 
@@ -109,18 +107,14 @@ void add_node_to_tree(rb_node* root, rb_node* node) {
 
 void rotate_tree(rb_tree* tree, rb_node* current) {
 	if (current->parent == NULL) {
-		char message[STANDART_SIZE_MESS];
-		snprintf(message, sizeof(message), "Rotation skipped as parent of node is NULL");
-		LOG_DEBUG(message);
+		LOG_DEBUG(DEBAG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL);
 		return;
 	}
 
 	rb_node* node_parent = current->parent;
 	rb_node* grandfather = node_parent->parent;
 	if (grandfather == NULL) {
-		char message[STANDART_SIZE_MESS];
-		snprintf(message, sizeof(message), "Rotation skipped as the grandparent of the node is NULL");
-		LOG_DEBUG(message);
+		LOG_DEBUG(DEBAG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL);
 		return;
 	}
 

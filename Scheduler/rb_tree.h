@@ -7,6 +7,7 @@
 #include "mutex.h"
 #include "consts_logs.h"
 #include "logger.h"
+#include "task.h"
 
 typedef struct {
 	int num_of_tasks;

@@ -17,9 +17,6 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 		task* new_task = create_task(nice, execution_time, weight);
 		rb_tree_new_task_arrival(sched_point->tasks_tree, new_task);
 
-		// Log the addition of a new task to the red-black tree
-		INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, new_task->id, execution_time);
-		LOG_INFO(message);
 	}
 }
 

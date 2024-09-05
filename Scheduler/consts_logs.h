@@ -24,6 +24,9 @@
 #define INFO_MESSAGE_CREATED_NEW_REAL_TIME_TASK(mess, task_id, exec_time,weight) \
     snprintf((mess), STANDART_SIZE_MESS, "Created new real-time task ID %ld with execution time %f and weight %Lf", (task_id), (exec_time),(weight))
 
+#define INFO_MESSAGE_CREATED_NEW_TASK(mess, task_id, exec_time,weight) \
+    snprintf((mess), STANDART_SIZE_MESS, "Created new task ID %ld with execution time %f and weight %Lf", (task_id), (exec_time),(weight))
+
 #define INFO_MESSAGE_FREEING_REAL_TIME_TASK(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Freeing real-time task ID %ld", (task_id))
 
@@ -35,6 +38,10 @@
 
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
 
+#define INFO_MESSAGE_TREE_INITIALIZED "The red-black tree was initialized"
+
+#define INFO_MESSAGE_QUEUE_INITIALIZED "The queue was initialized"
+
 //macros of debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
@@ -42,6 +49,9 @@
 #define DEBAG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
     snprintf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
 
+#define DEBAG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL "Rotation skipped as parent of node is NULL"
+
+#define DEBAG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL "Rotation skipped as the grandparent of the node is NULL"
 
 //macors 0f error messages
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
