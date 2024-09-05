@@ -44,6 +44,9 @@
 #define DEBAG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
     snprintf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
 
+#define DEBAG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL "Rotation skipped as parent of node is NULL"
+
+#define DEBAG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL "Rotation skipped as the grandparent of the node is NULL"
 
 //macors 0f error messages
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"

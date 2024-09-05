@@ -107,18 +107,14 @@ void add_node_to_tree(rb_node* root, rb_node* node) {
 
 void rotate_tree(rb_tree* tree, rb_node* current) {
 	if (current->parent == NULL) {
-		char message[STANDART_SIZE_MESS];
-		snprintf(message, sizeof(message), "Rotation skipped as parent of node is NULL");
-		LOG_DEBUG(message);
+		LOG_DEBUG(DEBAG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL);
 		return;
 	}
 
 	rb_node* node_parent = current->parent;
 	rb_node* grandfather = node_parent->parent;
 	if (grandfather == NULL) {
-		char message[STANDART_SIZE_MESS];
-		snprintf(message, sizeof(message), "Rotation skipped as the grandparent of the node is NULL");
-		LOG_DEBUG(message);
+		LOG_DEBUG(DEBAG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL);
 		return;
 	}
 
