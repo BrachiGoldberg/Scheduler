@@ -24,6 +24,9 @@
 #define INFO_MESSAGE_CREATED_NEW_REAL_TIME_TASK(mess, task_id, exec_time,weight) \
     snprintf((mess), STANDART_SIZE_MESS, "Created new real-time task ID %ld with execution time %f and weight %Lf", (task_id), (exec_time),(weight))
 
+#define INFO_MESSAGE_CREATED_NEW_TASK(mess, task_id, exec_time,weight) \
+    snprintf((mess), STANDART_SIZE_MESS, "Created new task ID %ld with execution time %f and weight %Lf", (task_id), (exec_time),(weight))
+
 #define INFO_MESSAGE_FREEING_REAL_TIME_TASK(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Freeing real-time task ID %ld", (task_id))
 
