@@ -55,7 +55,7 @@ int main() {
 }
 
 void create_input_thread(HANDLE* thread_name, scheduler* sched) {
-	thread_name = CreateThread(NULL, 0, input_thread, sched, 0, NULL);
+	*thread_name = CreateThread(NULL, 0, input_thread, sched, 0, NULL);
 
 	if (thread_name == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED);
@@ -64,7 +64,7 @@ void create_input_thread(HANDLE* thread_name, scheduler* sched) {
 }
 
 void create_task_thread(HANDLE* thread_name, scheduler* sched) {
-	thread_name = CreateThread(NULL, 0, task_thread, sched, 0, NULL);
+	*thread_name = CreateThread(NULL, 0, task_thread, sched, 0, NULL);
 
 	if (thread_name == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED);
