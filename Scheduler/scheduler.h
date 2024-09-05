@@ -16,8 +16,9 @@
 #include "round_robin.h"
 #include "cfs.h"
 #include "logger.h"
-#include "consts_logs.h"
 #include "logger.h"
+#include "consts_logs.h"
+
 
 typedef struct
 {
