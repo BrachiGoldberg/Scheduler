@@ -2,6 +2,8 @@
 #define CONSTS_LOGS_H
 
 #define STANDART_SIZE_MESS 256
+//macros of trace messages
+#define TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK "Execute real-time task (form the queue)"
 
 //macros of info messages
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
@@ -25,11 +27,23 @@
 #define INFO_MESSAGE_FREEING_REAL_TIME_TASK(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Freeing real-time task ID %ld", (task_id))
 
-//macros for debug messages
+#define INFO_MESSAGE_QUEUE_GOT_CPU(mess, acount) \
+    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the queue got the CPU in the current round", (acount))
+
+#define INFO_MESSAGE_TREE_GOT_CPU(mess, acount) \
+    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the tree got the CPU in the current round", (acount))
+
+#define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
+
+//macros of debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
-//macors for error messages
+#define DEBAG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
+    snprintf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
+
+
+//macors 0f error messages
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
 
 #define ERROR_MESSAGE_ACCESSING_NULL_POINTER "Accessing a null pointer"

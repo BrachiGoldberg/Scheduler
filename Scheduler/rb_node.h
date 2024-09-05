@@ -17,7 +17,6 @@ typedef struct rb_node {
 }rb_node;
 
 rb_node* create_rb_node(task* task);
-
 void free_rb_node(rb_node* node);
 
 #endif // !1
