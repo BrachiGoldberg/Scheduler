@@ -2,6 +2,8 @@
 #define _RB_NODE_H
 
 #include "task.h"
+#include "logger.h"
+#include "consts_logs.h"
 
 #define BLACK 0
 #define RED 1
@@ -15,7 +17,6 @@ typedef struct rb_node {
 }rb_node;
 
 rb_node* create_rb_node(task* task);
-
 void free_rb_node(rb_node* node);
 
 #endif // !1

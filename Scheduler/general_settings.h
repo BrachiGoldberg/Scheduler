@@ -1,12 +1,19 @@
-#pragma once
+#ifndef GENERAL_SETTINGS_H
+#define GENERAL_SETTINGS_H
 
 #define SCHED_LATENCY 200000
 #define MIN_QUANTUM 5
 
 
-#define QUANTUM_TREE 1
-#define QUANTUM_QUEUE 1
+#define QUANTUM_TREE 3
+#define QUANTUM_QUEUE 5
 
 #define DEFULT_WEIGHT 1024
 
 #define MIN_TIME_SLICE 1
+
+#define LOGGER_FILE "log.log"
+#define MAX_LOGGER_FILE_SIZE (1024 * 1024)
+#define MAX_LOGGER_BUCKUP_FILES 20
+
+#endif // !GENERAL_SETTINGS_H

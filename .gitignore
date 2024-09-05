@@ -491,6 +491,8 @@ Scheduler/Scheduler.vcxproj.filters
 *.sln.docstates
 *.VC.db
 *.ipch
+#logs
+log.log
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
