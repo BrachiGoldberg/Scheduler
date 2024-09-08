@@ -58,11 +58,13 @@ void execute_tree(rb_tree* tasks_tree) {
 	delete_most_left_leaf(tasks_tree);
 
 	if (remaining_time == 0) {
+
+		lock_tree_mutex();
 		tasks_tree->total_weights -= weight;
 		tasks_tree->num_of_tasks--;
+		release_tree_mutex();
 
-		free(most_left->task);
-		free(most_left);
+		free_rb_node(most_left);
 	}
 	else {
 		rb_tree_insert_task(tasks_tree, most_left);
