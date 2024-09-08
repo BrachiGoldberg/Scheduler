@@ -34,13 +34,10 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 	lock_tree_mutex();
 	tree->num_of_tasks++;
 	tree->total_weights += task->weight;
-	if (tree->most_left == NULL) {
-		task->vruntime = 0;
-		tree->most_left = node;
-	}
-	else {
+	if (tree->most_left != NULL) {
 		task->vruntime = tree->most_left->task->vruntime;
 	}
+
 	release_tree_mutex();
 
 	//insert the node to the tree
