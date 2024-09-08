@@ -32,12 +32,7 @@ void execute_tree(rb_tree* tasks_tree) {
 	double time_slice = SCHED_LATENCY * (weight / total_weights);
 
 	// Determine the sleep time, ensuring it is within the remaining execution time
-	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);
-
-	// Log the scheduling details
-	char message[STANDART_SIZE_MESS];
-	DEBUG_MESSAGE_TASK_SCHEDULED(message, most_left->task->id, sleep_time);
-	LOG_DEBUG(message);
+	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);	
 
 	// Sleep for the determined time
 	Sleep((DWORD)sleep_time);
@@ -50,6 +45,7 @@ void execute_tree(rb_tree* tasks_tree) {
 	most_left->task->execution_time += sleep_time;
 
 	// Log the task execution
+	char message[STANDART_SIZE_MESS];
 	INFO_MESSAGE_TASK_GET_CPU(message, most_left->task->id, sleep_time);
 	LOG_INFO(message);
 
