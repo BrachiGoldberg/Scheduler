@@ -8,7 +8,10 @@ void execute_queue(real_time_task_queue* queue) {
 	real_time_task* current_task = node->task;
 
 	//calculate the current quantum
-	double quantum = SCHED_LATENCY * (current_task->weight / (queue->total_weights + current_task->weight));
+	double quantum = SCHED_LATENCY * (current_task->weight / queue->total_weights);
+	if (quantum < 0) {
+		LOG_ERROR("something wrang");
+	}
 
 	char message[STANDART_SIZE_MESS];
 	DEBAG_MESSAGE_CALCULATE_QUANTUM(message, current_task->id, quantum);
@@ -33,6 +36,7 @@ void execute_queue(real_time_task_queue* queue) {
 		
 		//remove the task's weight from the toal weights
 		lock_queue_mutex();
+		queue->num_of_tasks--;
 		queue->total_weights -= current_task->weight;
 		release_queue_mutex();
 

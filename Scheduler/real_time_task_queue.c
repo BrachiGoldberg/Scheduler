@@ -1,5 +1,15 @@
 #include "real_time_task_queue.h"
 
+void queue_new_task_arrival(real_time_task_queue* queue, queue_node* new_node) {
+	
+	lock_queue_mutex();
+	queue->num_of_tasks++;
+	queue->total_weights += new_node->task->weight;
+	release_queue_mutex();
+
+	push_task_node(queue, new_node);
+}
+
 void push_task_node(real_time_task_queue* real_time_task_queue, queue_node* real_time_node) {
 	// Check if the queue or node is NULL and log an error
 	if (real_time_task_queue == NULL) {
@@ -23,10 +33,6 @@ void push_task_node(real_time_task_queue* real_time_task_queue, queue_node* real
 		real_time_task_queue->front = real_time_node;
 	}
 	real_time_task_queue->rear = real_time_node;
-
-
-	real_time_task_queue->num_of_tasks++;
-	real_time_task_queue->total_weights += real_time_node->task->weight;
 	
 	//release the queue
 	release_queue_mutex();
@@ -58,18 +64,9 @@ queue_node* pop_task_node(real_time_task_queue* real_time_task_queue) {
 	}
 
 	queue_node->next = NULL;
-
-	real_time_task_queue->num_of_tasks--;
-	real_time_task_queue->total_weights -= queue_node->task->weight;
 	
 	//release the queue
 	release_queue_mutex();
-
-	//this log have to be in the deletion or to change it to pop
-	//// Log an info message about the task removal
-	//char message[STANDART_SIZE_MESS];
-	//INFO_MESSAGE_TASK_REMOVED_FROM_QUEUE(message, queue_node->task->id);
-	//LOG_INFO(message);
 
 	return queue_node;
 }
