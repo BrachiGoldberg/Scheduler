@@ -33,7 +33,7 @@ void push_task_node(real_time_task_queue* real_time_task_queue, queue_node* real
 
 	// Log an info message about the new task insertion
 	char message[STANDART_SIZE_MESS];
-	INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(message, real_time_node->task->id, real_time_node->task->remaining_time);
+	INFO_MESSAGE_TASK_INSERT_TO_QUEUE(message, real_time_node->task->id, real_time_node->task->remaining_time);
 	LOG_INFO(message);
 }
 
@@ -65,10 +65,11 @@ queue_node* pop_task_node(real_time_task_queue* real_time_task_queue) {
 	//release the queue
 	release_queue_mutex();
 
-	// Log an info message about the task removal
-	char message[STANDART_SIZE_MESS];
-	INFO_MESSAGE_TASK_REMOVED_FROM_QUEUE(message, queue_node->task->id);
-	LOG_INFO(message);
+	//this log have to be in the deletion or to change it to pop
+	//// Log an info message about the task removal
+	//char message[STANDART_SIZE_MESS];
+	//INFO_MESSAGE_TASK_REMOVED_FROM_QUEUE(message, queue_node->task->id);
+	//LOG_INFO(message);
 
 	return queue_node;
 }

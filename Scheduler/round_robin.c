@@ -1,7 +1,7 @@
 #include "round_robin.h"
 
 void execute_queue(real_time_task_queue* queue) {
-	LOG_TRACE(TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK);
+	//LOG_TRACE(TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK);
 
 	//must be a node in the queue
 	queue_node* node = pop_task_node(queue);
@@ -40,15 +40,18 @@ void execute_queue(real_time_task_queue* queue) {
 	current_task->remaining_time -= sleep_time;
 	current_task->execution_time += sleep_time;
 
-	//info log massege
-	char mess[STANDART_SIZE_MESS];
-	INFO_MESSAGE_TASK_GET_CPU(mess, current_task->id, sleep_time);
-	LOG_INFO(mess);
+	////info log massege
+	//char mess[STANDART_SIZE_MESS];
+	//INFO_MESSAGE_TASK_GET_CPU(mess, current_task->id, sleep_time);
+	//LOG_INFO(mess);
 
 	//check why the loop finished
 	if (current_task->remaining_time <= 0) {
+		
 		//remove the task's weight from the toal weights
+		lock_queue_mutex();
 		queue->total_weights -= current_task->weight;
+		release_queue_mutex();
 
 		char mess[STANDART_SIZE_MESS];
 		INFO_MESSAGE_TASK_FINISHED(mess, current_task->id);

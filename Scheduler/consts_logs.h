@@ -6,8 +6,8 @@
 #define TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK "Execute real-time task (form the queue)"
 
 //macros of info messages
-#define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
-    snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the real-time tasks queue", (task_id), (exec_time))
+#define INFO_MESSAGE_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
+    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld with %f execution time was inserted to the real-time tasks queue", (task_id), (exec_time))
 
 #define INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the red-black tree", (task_id), (exec_time))
