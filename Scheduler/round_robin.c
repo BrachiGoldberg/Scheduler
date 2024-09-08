@@ -14,20 +14,8 @@ void execute_queue(real_time_task_queue* queue) {
 	DEBAG_MESSAGE_CALCULATE_QUANTUM(message, current_task->id, quantum);
 	LOG_DEBUG(message);
 
-	double sleep_time;//in milliseconds
-	//choose to sleep_time (the task's execution_time):
-	if (quantum > MIN_QUANTUM) {
-		if (current_task->remaining_time > quantum)
-			sleep_time = quantum;
-		else
-			sleep_time = current_task->remaining_time;
-	}
-	else {
-		if (MIN_QUANTUM > current_task->remaining_time)
-			sleep_time = current_task->remaining_time;
-		else
-			sleep_time = MIN_QUANTUM;
-	}
+	//sleep time in milliseconds
+	double sleep_time = min(max(quantum, MIN_QUANTUM), current_task->remaining_time);
 	current_task->quantum = sleep_time;
 
 	//sleep the system for sleep_time milliseconds
