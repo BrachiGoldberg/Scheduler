@@ -24,6 +24,7 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node);
 void add_node_to_tree(rb_node* root, rb_node* node);
 void rotate_tree(rb_tree* tree, rb_node* node);
 void change_colors_hierarchical(rb_tree* tree, rb_node* grandfather);
+void update_the_most_left_pointer(rb_tree* tree);
 
 //rotation
 

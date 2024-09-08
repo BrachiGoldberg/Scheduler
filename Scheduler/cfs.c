@@ -32,14 +32,13 @@ void execute_tree(rb_tree* tasks_tree) {
 	double time_slice = SCHED_LATENCY * (weight / total_weights);
 
 	// Determine the sleep time, ensuring it is within the remaining execution time
-	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);
-
+	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);	
 
 	// Sleep for the determined time
 	Sleep((DWORD)sleep_time);
 
 	//update vruntime
-	most_left->task->vruntime += (execution_time * (weight / total_weights));
+	most_left->task->vruntime += (sleep_time * (weight / total_weights));
 
 	// Update task times
 	most_left->task->remaining_time -= sleep_time;
@@ -52,12 +51,15 @@ void execute_tree(rb_tree* tasks_tree) {
 
 
 
-	if (remaining_time == 0) {
+	if (most_left->task->remaining_time == 0) {
 
 		lock_tree_mutex();
 		tasks_tree->total_weights -= weight;
 		tasks_tree->num_of_tasks--;
 		release_tree_mutex();
+
+		INFO_MESSAGE_TASK_FINISHED(message, most_left->task->id);
+		LOG_INFO(message);
 
 		free_rb_node(most_left);
 	}
