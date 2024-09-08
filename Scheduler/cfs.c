@@ -59,6 +59,10 @@ void execute_tree(rb_tree* tasks_tree) {
 
 	if (remaining_time == 0) {
 		tasks_tree->total_weights -= weight;
+		tasks_tree->num_of_tasks--;
+
+		free(most_left->task);
+		free(most_left);
 	}
 	else {
 		rb_tree_insert_task(tasks_tree, most_left);

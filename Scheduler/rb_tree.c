@@ -354,14 +354,7 @@ void remove_node_from_rb_tree(rb_tree* tree, rb_node* node) {
 	if (y_original_color == BLACK && x != NULL) {
 		// Rebalancing after deletion
 		deleteFixup(tree, x);
-	}
-
-	// Updating the number of tasks and the total weight
-	tree->num_of_tasks--;
-	tree->total_weights -= node->task->weight;
-
-	free(node->task);
-	free(node);
+	}	
 }
 
 void deleteFixup(rb_tree* tree, rb_node* x) {
