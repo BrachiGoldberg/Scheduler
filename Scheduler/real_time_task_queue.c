@@ -59,11 +59,11 @@ queue_node* pop_task_node(real_time_task_queue* real_time_task_queue) {
 
 	queue_node->next = NULL;
 
-	//release the queue
-	release_queue_mutex();
-
 	real_time_task_queue->num_of_tasks--;
 	real_time_task_queue->total_weights -= queue_node->task->weight;
+	
+	//release the queue
+	release_queue_mutex();
 
 	// Log an info message about the task removal
 	char message[STANDART_SIZE_MESS];
