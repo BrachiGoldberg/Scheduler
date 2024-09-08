@@ -57,7 +57,7 @@ void execute_tree(rb_tree* tasks_tree) {
 
 	delete_most_left_leaf(tasks_tree);
 
-	if (remaining_time == 0) {
+	if (remaining_time <= 0) {
 		tasks_tree->total_weights -= weight;
 	}
 	else {

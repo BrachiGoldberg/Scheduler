@@ -21,6 +21,7 @@ int main() {
 		printf(ERROR_MESSAGE_LOGGER_INIT_FAILED);
 		exit(EXIT_FAILURE);
 	}
+	printf("open file succeeded");
 	logger_setLevel(LogLevel_TRACE);
 
 	sched.tasks_tree = initial_rb_tree();
