@@ -31,5 +31,11 @@ void free_task(task* task) {
 		return; // Return instead of freeing NULL pointer
 	}
 	free(task);
+
+	// Log task freeing
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_FREEING_TASK(mess, task->id);
+	LOG_INFO(mess);
+
 	task = NULL;
 }

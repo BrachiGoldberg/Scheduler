@@ -41,11 +41,6 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 
 	//insert the node to the tree
 	rb_tree_insert_task(tree, node);
-
-	// Info log message
-	char message[STANDART_SIZE_MESS];
-	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->remaining_time);
-	LOG_INFO(message);
 }
 
 void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
@@ -94,6 +89,11 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 
 	//release the tree
 	release_tree_mutex();
+
+	// Info log message
+	char message[STANDART_SIZE_MESS];
+	INFO_MESSAGE_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->remaining_time);
+	LOG_INFO(message);
 }
 
 void add_node_to_tree(rb_node* root, rb_node* node) {

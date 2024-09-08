@@ -51,12 +51,15 @@ void execute_tree(rb_tree* tasks_tree) {
 
 
 
-	if (remaining_time == 0) {
+	if (most_left->task->remaining_time == 0) {
 
 		lock_tree_mutex();
 		tasks_tree->total_weights -= weight;
 		tasks_tree->num_of_tasks--;
 		release_tree_mutex();
+
+		INFO_MESSAGE_TASK_FINISHED(message, most_left->task->id);
+		LOG_INFO(message);
 
 		free_rb_node(most_left);
 	}
