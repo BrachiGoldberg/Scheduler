@@ -8,7 +8,7 @@ void execute_queue(real_time_task_queue* queue) {
 	real_time_task* current_task = node->task;
 
 	//calculate the current quantum
-	double quantum = SCHED_LATENCY * (current_task->weight / (queue->total_weights + current_task->weight));
+	double quantum = SCHED_LATENCY * (current_task->weight / queue->total_weights);
 
 	char message[STANDART_SIZE_MESS];
 	DEBAG_MESSAGE_CALCULATE_QUANTUM(message, current_task->id, quantum);
