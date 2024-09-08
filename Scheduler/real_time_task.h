@@ -9,8 +9,6 @@
 
 struct {
 	long id;
-	// int priority;               
-	double quantum;
 	long double weight;
 	double remaining_time;
 	double execution_time;

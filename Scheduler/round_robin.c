@@ -16,7 +16,6 @@ void execute_queue(real_time_task_queue* queue) {
 
 	//sleep time in milliseconds
 	double sleep_time = min(max(quantum, MIN_QUANTUM), current_task->remaining_time);
-	current_task->quantum = sleep_time;
 
 	//sleep the system for sleep_time milliseconds
 	Sleep((DWORD)sleep_time);
@@ -29,9 +28,8 @@ void execute_queue(real_time_task_queue* queue) {
 	current_task->execution_time += sleep_time;
 
 	////info log massege
-	//char mess[STANDART_SIZE_MESS];
-	//INFO_MESSAGE_TASK_GET_CPU(mess, current_task->id, sleep_time);
-	//LOG_INFO(mess);
+	INFO_MESSAGE_TASK_GET_CPU(message, current_task->id, sleep_time);
+	LOG_INFO(message);
 
 	//check why the loop finished
 	if (current_task->remaining_time <= 0) {

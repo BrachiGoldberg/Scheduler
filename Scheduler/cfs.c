@@ -16,22 +16,20 @@ void execute_tree(rb_tree* tasks_tree) {
 
 	//lock the tree
 	lock_tree_mutex();
-	//get the most left leaf
-	rb_node* most_left = tasks_tree->most_left;
+	//get the most left leaf and delete it from the tree
+	rb_node* most_left = delete_most_left_leaf(tasks_tree);
 
 	//unlock the tree
 	release_tree_mutex();
 
 	// Extract task details
-	double time_slice = most_left->task->slice;
 	long double weight = most_left->task->weight;
 	long double total_weights = tasks_tree->total_weights;
 	double remaining_time = most_left->task->remaining_time;
 	double execution_time = most_left->task->execution_time;
 
 	// Calculate the time slice based on task weight and total weights
-	time_slice = SCHED_LATENCY * (weight / total_weights);
-	double delta_exec = time_slice;
+	double time_slice = SCHED_LATENCY * (weight / total_weights);
 
 	// Determine the sleep time, ensuring it is within the remaining execution time
 	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);
@@ -44,18 +42,18 @@ void execute_tree(rb_tree* tasks_tree) {
 	// Sleep for the determined time
 	Sleep((DWORD)sleep_time);
 
+	//update vruntime
+	most_left->task->vruntime += (execution_time * (weight / total_weights));
+
 	// Update task times
 	most_left->task->remaining_time -= sleep_time;
 	most_left->task->execution_time += sleep_time;
-	task* t = most_left->task;
 
 	// Log the task execution
-	INFO_MESSAGE_TASK_GET_CPU(message, t->id, sleep_time);
+	INFO_MESSAGE_TASK_GET_CPU(message, most_left->task->id, sleep_time);
 	LOG_INFO(message);
 
-	//remove node from the tree without deleting from the memory, update the most left leaf
 
-	delete_most_left_leaf(tasks_tree);
 
 	if (remaining_time == 0) {
 

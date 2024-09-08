@@ -451,16 +451,3 @@ rb_node* delete_most_left_leaf(rb_tree* tree) {
 
 	return most_left_leaf;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

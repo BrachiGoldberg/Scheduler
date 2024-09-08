@@ -11,7 +11,6 @@ typedef struct {
 	int nice;
 	long double weight;
 	double vruntime;
-	double slice;
 	double execution_time;
 	double remaining_time;
 }task;
