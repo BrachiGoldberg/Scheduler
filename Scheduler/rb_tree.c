@@ -419,7 +419,7 @@ void deleteFixup(rb_tree* tree, rb_node* x) {
 	x->color = BLACK;
 }
 
-void delete_most_left_leaf(rb_tree* tree) {
+rb_node* delete_most_left_leaf(rb_tree* tree) {
 	if (tree == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
 		return;
@@ -448,6 +448,8 @@ void delete_most_left_leaf(rb_tree* tree) {
 
 	// Deleting the leaf from the tree and maintaining the balance
 	remove_node_from_rb_tree(tree, most_left_leaf);
+
+	return most_left_leaf;
 }
 
 
