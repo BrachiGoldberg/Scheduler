@@ -17,15 +17,26 @@ rb_tree* initial_rb_tree() {
 }
 
 void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
+	// Check if the tasks_tree is NULL and log an error
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		return;
+	}
+
 	// Create new node
 	rb_node* node = create_rb_node(task);
+	if (node == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
+		exit(EXIT_FAILURE);
+	}
 	
 	// Update the tree properties
 	lock_tree_mutex();
 	tree->num_of_tasks++;
 	tree->total_weights += task->weight;
-
-	task->vruntime = tree->most_left->task->vruntime;
+	if (tree->most_left != NULL) {
+		task->vruntime = tree->most_left->task->vruntime;
+	}
 	release_tree_mutex();
 
 	//insert the node to the tree

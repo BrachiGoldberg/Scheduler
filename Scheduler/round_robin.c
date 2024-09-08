@@ -23,9 +23,6 @@ void execute_queue(real_time_task_queue* queue) {
 	//sleep the system for sleep_time milliseconds
 	Sleep((DWORD)sleep_time);
 
-	DEBUG_MESSAGE_TASK_SCHEDULED(message, current_task->id, sleep_time);
-	LOG_DEBUG(message);
-
 	//update the task's times
 	current_task->remaining_time -= sleep_time;
 	current_task->execution_time += sleep_time;
