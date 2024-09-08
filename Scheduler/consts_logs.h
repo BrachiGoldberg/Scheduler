@@ -6,11 +6,11 @@
 #define TRACE_MESSAGE_EXECUTE_REAL_TIME_TASK "Execute real-time task (form the queue)"
 
 //macros of info messages
-#define INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
-    snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the real-time tasks queue", (task_id), (exec_time))
+#define INFO_MESSAGE_TASK_INSERT_TO_QUEUE(mess, task_id, exec_time) \
+    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld with %f execution time was inserted to the real-time tasks queue", (task_id), (exec_time))
 
-#define INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(mess, task_id, exec_time) \
-    snprintf((mess), STANDART_SIZE_MESS, "New task number %ld with %f execution time was inserted to the red-black tree", (task_id), (exec_time))
+#define INFO_MESSAGE_TASK_INSERT_TO_RB_TREE(mess, task_id, exec_time) \
+    snprintf((mess), STANDART_SIZE_MESS, "Task number %ld with %f execution time was inserted to the red-black tree", (task_id), (exec_time))
 
 #define INFO_MESSAGE_TASK_GET_CPU(mess, task_id, time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld got the CPU for %f milliseconds", (task_id), (time))
@@ -29,6 +29,9 @@
 
 #define INFO_MESSAGE_FREEING_REAL_TIME_TASK(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Freeing real-time task ID %ld", (task_id))
+
+#define INFO_MESSAGE_FREEING_TASK(mess, task_id) \
+    snprintf((mess), STANDART_SIZE_MESS, "Freeing task ID %ld", (task_id))
 
 #define INFO_MESSAGE_QUEUE_GOT_CPU(mess, acount) \
     snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the queue got the CPU in the current round", (acount))

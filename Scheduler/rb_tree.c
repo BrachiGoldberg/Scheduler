@@ -17,19 +17,30 @@ rb_tree* initial_rb_tree() {
 }
 
 void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
+	// Check if the tasks_tree is NULL and log an error
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		return;
+	}
+
 	// Create new node
 	rb_node* node = create_rb_node(task);
+	if (node == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
+		exit(EXIT_FAILURE);
+	}
 
 	// Update the tree properties
+	lock_tree_mutex();
 	tree->num_of_tasks++;
 	tree->total_weights += task->weight;
+	if (tree->most_left != NULL) {
+		task->vruntime = tree->most_left->task->vruntime;
+	}
+	release_tree_mutex();
 
+	//insert the node to the tree
 	rb_tree_insert_task(tree, node);
-
-	// Info log message
-	char message[STANDART_SIZE_MESS];
-	INFO_MESSAGE_NEW_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->remaining_time);
-	LOG_INFO(message);
 }
 
 void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
@@ -54,7 +65,6 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 		tree->root = tree->most_left = node;
 	}
 	else {
-		node->task->vruntime = tree->most_left->task->weight + 0.5;
 		add_node_to_tree(tree->root, node);
 
 		if (node->parent->color == RED) {
@@ -77,8 +87,16 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 		}
 	}
 
+	//update the most left pointer after insertion node to the tree
+	update_the_most_left_pointer(tree);
+
 	//release the tree
 	release_tree_mutex();
+
+	// Info log message
+	char message[STANDART_SIZE_MESS];
+	INFO_MESSAGE_TASK_INSERT_TO_RB_TREE(message, node->task->id, node->task->remaining_time);
+	LOG_INFO(message);
 }
 
 void add_node_to_tree(rb_node* root, rb_node* node) {
@@ -170,6 +188,25 @@ void change_colors_hierarchical(rb_tree* tree, rb_node* grandfather) {
 	grandfather->left->color = grandfather->right->color = BLACK;
 	if (grandfather->parent != NULL && grandfather->parent->color == RED) {
 		rotate_tree(tree, grandfather);
+	}
+}
+
+void update_the_most_left_pointer(rb_tree* tree) {
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		exit(EXIT_FAILURE);
+	}
+
+	if (tree->root != NULL) {
+		rb_node* pointer = tree->root;
+
+		while (pointer->left != NULL) {
+			pointer = pointer->left;
+		}
+		tree->most_left = pointer;
+	}
+	else {
+		tree->most_left = NULL;
 	}
 }
 
@@ -355,13 +392,6 @@ void remove_node_from_rb_tree(rb_tree* tree, rb_node* node) {
 		// Rebalancing after deletion
 		deleteFixup(tree, x);
 	}
-
-	// Updating the number of tasks and the total weight
-	tree->num_of_tasks--;
-	tree->total_weights -= node->task->weight;
-
-	free(node->task);
-	free(node);
 }
 
 void deleteFixup(rb_tree* tree, rb_node* x) {
@@ -422,7 +452,7 @@ void deleteFixup(rb_tree* tree, rb_node* x) {
 	x->color = BLACK;
 }
 
-void delete_most_left_leaf(rb_tree* tree) {
+rb_node* delete_most_left_leaf(rb_tree* tree) {
 	if (tree == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
 		return;
@@ -451,17 +481,6 @@ void delete_most_left_leaf(rb_tree* tree) {
 
 	// Deleting the leaf from the tree and maintaining the balance
 	remove_node_from_rb_tree(tree, most_left_leaf);
+
+	return most_left_leaf;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

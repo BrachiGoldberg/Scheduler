@@ -16,7 +16,7 @@ task* create_task(int nice_input, double execution_time_input, long double weigh
 	new_task->weight = weight_calculation;
 
 	// Default values
-	new_task->slice = new_task->vruntime = 0;
+	new_task->vruntime = 0;
 
 	char message[STANDART_SIZE_MESS];
 	INFO_MESSAGE_CREATED_NEW_TASK(message, new_task->id, new_task->remaining_time, new_task->weight);
@@ -31,5 +31,11 @@ void free_task(task* task) {
 		return; // Return instead of freeing NULL pointer
 	}
 	free(task);
+
+	// Log task freeing
+	char mess[STANDART_SIZE_MESS];
+	INFO_MESSAGE_FREEING_TASK(mess, task->id);
+	LOG_INFO(mess);
+
 	task = NULL;
 }

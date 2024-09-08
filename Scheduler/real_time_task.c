@@ -16,6 +16,7 @@ real_time_task* create_real_time_task(int priority, double execution_time, long 
 	// Initialize task properties
 	new_task->id = ID;
 	new_task->remaining_time = execution_time;
+	new_task->execution_time = 0;
 	new_task->weight = weight;
 
 	// Log task creation
