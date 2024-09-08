@@ -17,15 +17,33 @@ rb_tree* initial_rb_tree() {
 }
 
 void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
+	// Check if the tasks_tree is NULL and log an error
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		return;
+	}
+
 	// Create new node
 	rb_node* node = create_rb_node(task);
-
+	if (node == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
+		exit(EXIT_FAILURE);
+	}
+	
 	// Update the tree properties
 	lock_tree_mutex();
 	tree->num_of_tasks++;
 	tree->total_weights += task->weight;
+	if (tree->most_left == NULL) {
+		task->vruntime = 0;
+		tree->most_left = node;
+	}
+	else {
+		task->vruntime = tree->most_left->task->vruntime;
+	}
 	release_tree_mutex();
 
+	//insert the node to the tree
 	rb_tree_insert_task(tree, node);
 
 	// Info log message
@@ -56,8 +74,6 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 		tree->root = tree->most_left = node;
 	}
 	else {
-		//TODO how to calculate the vruntime???????
-		node->task->vruntime = tree->most_left->task->weight + 0.5;
 		add_node_to_tree(tree->root, node);
 
 		if (node->parent->color == RED) {
@@ -418,7 +434,7 @@ void deleteFixup(rb_tree* tree, rb_node* x) {
 	x->color = BLACK;
 }
 
-void delete_most_left_leaf(rb_tree* tree) {
+rb_node* delete_most_left_leaf(rb_tree* tree) {
 	if (tree == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
 		return;
@@ -447,4 +463,6 @@ void delete_most_left_leaf(rb_tree* tree) {
 
 	// Deleting the leaf from the tree and maintaining the balance
 	remove_node_from_rb_tree(tree, most_left_leaf);
+
+	return most_left_leaf;
 }

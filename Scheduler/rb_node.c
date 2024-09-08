@@ -4,7 +4,6 @@ rb_node* create_rb_node(task* task) {
 	// Check if task is NULL and log an error if necessary
 	if (task == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
-		//not exit??
 		return NULL;
 	}
 
