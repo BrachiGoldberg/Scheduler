@@ -482,5 +482,6 @@ rb_node* delete_most_left_leaf(rb_tree* tree) {
 	// Deleting the leaf from the tree and maintaining the balance
 	remove_node_from_rb_tree(tree, most_left_leaf);
 
+	most_left_leaf->parent = most_left_leaf->left = most_left_leaf->right = NULL;
 	return most_left_leaf;
 }
