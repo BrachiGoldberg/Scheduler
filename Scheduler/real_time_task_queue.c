@@ -43,16 +43,6 @@ void push_task_node(real_time_task_queue* real_time_task_queue, queue_node* real
 	LOG_INFO(message);
 }
 
-void remove_node(real_time_task_queue* real_time_task_queue, queue_node* real_time_node) {
-	
-	lock_queue_mutex();
-	real_time_task_queue->num_of_tasks--;
-	real_time_task_queue->total_weights -= real_time_node->task->weight;
-	release_queue_mutex();
-
-	free_queue_node(real_time_node);
-}
-
 queue_node* pop_task_node(real_time_task_queue* real_time_task_queue) {
 	if (real_time_task_queue == NULL) {
 		LOG_ERROR(ERROR_MESSAGE_QUEUE_NOT_INITIALIZED);
