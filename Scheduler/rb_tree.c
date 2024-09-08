@@ -21,8 +21,10 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 	rb_node* node = create_rb_node(task);
 
 	// Update the tree properties
+	lock_tree_mutex();
 	tree->num_of_tasks++;
 	tree->total_weights += task->weight;
+	release_tree_mutex();
 
 	rb_tree_insert_task(tree, node);
 
@@ -54,6 +56,7 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 		tree->root = tree->most_left = node;
 	}
 	else {
+		//TODO how to calculate the vruntime???????
 		node->task->vruntime = tree->most_left->task->weight + 0.5;
 		add_node_to_tree(tree->root, node);
 
