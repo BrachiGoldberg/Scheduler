@@ -44,7 +44,7 @@ void execute_queue(real_time_task_queue* queue) {
 		LOG_INFO(mess);
 
 		//the task finished - remove the task from the system
-		free_queue_node(node);
+		remove_node(queue, node);
 	}
 	else {
 		//insert the task again to the end of the queue

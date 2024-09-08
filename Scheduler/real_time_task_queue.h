@@ -15,7 +15,9 @@ struct {
 	int num_of_tasks; //the count for all the real timr task in thr queue
 }typedef real_time_task_queue;
 
+void queue_new_task_arrival(real_time_task_queue* queue, queue_node* new_node);
 void push_task_node(real_time_task_queue* real_time_task_queue, queue_node* real_time_node);
+void remove_node(real_time_task_queue* real_time_task_queue, queue_node* real_time_node);
 queue_node* pop_task_node(real_time_task_queue* real_time_task_queue);
 int is_queue_empty(real_time_task_queue* real_time_task_queue);
 real_time_task_queue* initialize_queue();
