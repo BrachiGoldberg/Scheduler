@@ -43,6 +43,6 @@ void free_rb_tree(rb_node* node);
 
 void remove_node_from_rb_tree(rb_tree* tree, rb_node* node);
 void deleteFixup(rb_tree* tree, rb_node* x);
-void delete_most_left_leaf(rb_tree* tree);
+rb_node* delete_most_left_leaf(rb_tree* tree);
 
 #endif // !RB_TREE_H

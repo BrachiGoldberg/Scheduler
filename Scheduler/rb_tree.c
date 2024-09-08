@@ -448,16 +448,3 @@ void delete_most_left_leaf(rb_tree* tree) {
 	// Deleting the leaf from the tree and maintaining the balance
 	remove_node_from_rb_tree(tree, most_left_leaf);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
