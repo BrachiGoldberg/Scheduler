@@ -29,7 +29,7 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 		LOG_ERROR(ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	// Update the tree properties
 	lock_tree_mutex();
 	tree->num_of_tasks++;
@@ -86,6 +86,9 @@ void rb_tree_insert_task(rb_tree* tree, rb_node* node) {
 			}
 		}
 	}
+
+	//update the most left pointer after insertion node to the tree
+	update_the_most_left_pointer(tree);
 
 	//release the tree
 	release_tree_mutex();
@@ -185,6 +188,25 @@ void change_colors_hierarchical(rb_tree* tree, rb_node* grandfather) {
 	grandfather->left->color = grandfather->right->color = BLACK;
 	if (grandfather->parent != NULL && grandfather->parent->color == RED) {
 		rotate_tree(tree, grandfather);
+	}
+}
+
+void update_the_most_left_pointer(rb_tree* tree) {
+	if (tree == NULL) {
+		LOG_ERROR(ERROR_MESSAGE_TREE_NOT_INITIALIZED);
+		exit(EXIT_FAILURE);
+	}
+
+	if (tree->root != NULL) {
+		rb_node* pointer = tree->root;
+
+		while (pointer->left != NULL) {
+			pointer = pointer->left;
+		}
+		tree->most_left = pointer;
+	}
+	else {
+		tree->most_left = NULL;
 	}
 }
 
@@ -369,7 +391,7 @@ void remove_node_from_rb_tree(rb_tree* tree, rb_node* node) {
 	if (y_original_color == BLACK && x != NULL) {
 		// Rebalancing after deletion
 		deleteFixup(tree, x);
-	}	
+	}
 }
 
 void deleteFixup(rb_tree* tree, rb_node* x) {
