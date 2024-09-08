@@ -37,7 +37,6 @@ void rb_tree_new_task_arrival(rb_tree* tree, task* task) {
 	if (tree->most_left != NULL) {
 		task->vruntime = tree->most_left->task->vruntime;
 	}
-
 	release_tree_mutex();
 
 	//insert the node to the tree
