@@ -1,8 +1,8 @@
 #ifndef GENERAL_SETTINGS_H
 #define GENERAL_SETTINGS_H
 
-static long ID = 0;
-#define SCHED_LATENCY 20      // Latency  in milliseconds
+static long ID;
+#define SCHED_LATENCY 30      // Latency  in milliseconds
 #define MIN_QUANTUM 30         // Minimum quantum time in milliseconds
 
 #define QUANTUM_TREE 3        // Quantum-The number of tasks  in the tree structure 
@@ -15,5 +15,7 @@ static long ID = 0;
 #define LOGGER_FILE "log.log"
 #define MAX_LOGGER_FILE_SIZE (1024 * 1024) // 1MB
 #define MAX_LOGGER_BUCKUP_FILES 20
+
+long get_id();
 
 #endif // !GENERAL_SETTINGS_H

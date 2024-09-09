@@ -1,13 +1,14 @@
 #define TEST_S
 
 #include "pch.h"
-#include "../Scheduler/scheduler.h"
+#include "scheduler.h"
 
 
 TEST(TestCaseName, TestName) {
 
-	//scheduler sched;
+	scheduler sched;
 	//initial_all_structs(&sched);
+	scheduling_tasks(&sched);
 
 	//new_task_arrival(10, 100, &sched);
 	//new_task_arrival(5, 80, &sched);
