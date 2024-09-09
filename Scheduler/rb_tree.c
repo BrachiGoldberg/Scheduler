@@ -474,9 +474,6 @@ rb_node* delete_most_left_leaf(rb_tree* tree) {
 	else {
 		rb_node* parent = most_left_leaf->parent;
 		tree->most_left = parent;
-		while (tree->most_left != NULL && tree->most_left->left == NULL) {
-			tree->most_left = tree->most_left->parent;
-		}
 	}
 
 	// Deleting the leaf from the tree and maintaining the balance
