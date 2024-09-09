@@ -30,12 +30,12 @@ void free_task(task* task) {
 		LOG_ERROR(ERROR_MESSAGE_ACCESSING_NULL_POINTER);
 		return; // Return instead of freeing NULL pointer
 	}
-	free(task);
-
 	// Log task freeing
 	char mess[STANDART_SIZE_MESS];
 	INFO_MESSAGE_FREEING_TASK(mess, task->id);
 	LOG_INFO(mess);
+	
+	free(task);
 
 	task = NULL;
 }
