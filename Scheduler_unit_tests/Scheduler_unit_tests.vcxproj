@@ -99,6 +99,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Scheduler\Scheduler\scheduler.h" />
     <ClInclude Include="..\Scheduler\cfs.h" />
     <ClInclude Include="..\Scheduler\consts_logs.h" />
     <ClInclude Include="..\Scheduler\general_settings.h" />
@@ -111,7 +112,6 @@
     <ClInclude Include="..\Scheduler\real_time_task.h" />
     <ClInclude Include="..\Scheduler\real_time_task_queue.h" />
     <ClInclude Include="..\Scheduler\round_robin.h" />
-    <ClInclude Include="..\Scheduler\scheduler.h" />
     <ClInclude Include="..\Scheduler\task.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -139,6 +139,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Scheduler\Scheduler.vcxproj">
+      <Project>{d05508a7-a4d0-4042-ac5c-dc21467c70b7}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

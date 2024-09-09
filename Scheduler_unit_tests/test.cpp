@@ -1,6 +1,6 @@
 #define TEST_S
-
-#include "pch.h";
+#include "pch.h"
+#include "../Scheduler/scheduler.h"
 TEST(TestCaseName, TestName) {
 
 	scheduler sched;
