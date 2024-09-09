@@ -32,4 +32,8 @@ void scheduling_tasks(scheduler* sched);
 DWORD WINAPI input_thread(LPVOID arg);
 DWORD WINAPI task_thread(LPVOID arg);
 
+void initial_all_structs(scheduler* sched);
+void create_input_thread(HANDLE* thread_name, scheduler* sched);
+void create_task_thread(HANDLE* thread_name, scheduler* sched);
+
 #endif // SCHEDULER_H
