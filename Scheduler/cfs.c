@@ -38,13 +38,7 @@ void execute_tree(rb_tree* tasks_tree) {
 	Sleep((DWORD)sleep_time);
 
 	//update vruntime
-	double vrun;
-	if (most_left->task->nice != 0) {
-		vrun = sleep_time * (DEFUALT_WEIGHT / weight);
-	}
-	else {
-		vrun = sleep_time;
-	}
+	double vrun = sleep_time * (DEFUALT_WEIGHT / weight);
 	most_left->task->vruntime += vrun;
 
 	// Update task times
