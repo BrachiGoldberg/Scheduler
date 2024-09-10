@@ -1,30 +1,27 @@
-import subprocess
 import time
 import random
 
-#open the input file
-with open(r"C:\Users\user1\Desktop\ProjectWestern\Scheduler\Scheduler\SchedulerUnitTestProject\input.txt", "r") as file:
-    path = r"C:\Users\user1\Desktop\ProjectWestern\Scheduler\Scheduler\x64\Debug\Scheduler.exe"
-    process = subprocess.Popen([path], stdin=subprocess.PIPE, text=True)
+def open_input_file(file_name, process):
+    # open the input file
+    try:
+        with open(file_name, "r") as file:
+            while True:
+                num_lines = random.randint(1, 5) * 2  # Read a random number of lines (1-5 pairs)
+                lines = [file.readline() for _ in range(num_lines)]
 
-    while True:
-        line_index = 0
+                if not any(lines):  # Break if we reach the end of the file
+                    break
 
-        num_lines = random.randint(1, 5) * 2
+                # Write the lines to the process input
+                process.stdin.writelines(lines)  
+                process.stdin.flush()  # Ensure all input is flushed to the process
 
-        lines = [file.readline() for _ in range(num_lines)]
+                # Wait time between sending input
+                wait_time = random.uniform(0.5, 2.0)  # seconds
+                print(f"Read {num_lines} lines. Waiting for {wait_time * 1000:.0f} milliseconds...")
+                time.sleep(wait_time)  # Simulate delay before sending more input
 
-        if not any(lines):
-            break
-
-        process.stdin.writelines(lines)
-        process.stdin.flush()
-        wait_time = random.uniform(500, 2000) / 1000
-        print(f"Read {num_lines} lines. Waiting for {wait_time * 1000:.0f} milliseconds...")
-        time.sleep(wait_time)
-
-    time.sleep(20)
-    process.stdin.close()
-    process.terminate()
-    print("finish test")
-input("Press Enter to exit...")
+    except FileNotFoundError:
+        print(f"Error: The file '{file_name}' was not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
