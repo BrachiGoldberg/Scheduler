@@ -1,7 +1,13 @@
 #include "scheduler.h"
 
+ID = 0;
+
+long get_id() {
+	return ++ID;
+}
+
 void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
-	long double weight = DEFULT_WEIGHT / pow(1.25, nice);
+	long double weight = DEFUALT_WEIGHT / pow(1.25, nice);
 
 	// Create a log message for the new task arrival
 	char message[STANDART_SIZE_MESS];
@@ -79,7 +85,7 @@ DWORD WINAPI task_thread(LPVOID param) {
 }
 
 void initial_all_structs(scheduler* sched) {
-
+	ID = 3;
 	int success = logger_initFileLogger(LOGGER_FILE, MAX_LOGGER_FILE_SIZE, MAX_LOGGER_BUCKUP_FILES);
 	if (success == 0) {
 		printf(ERROR_MESSAGE_LOGGER_INIT_FAILED);
