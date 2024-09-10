@@ -63,6 +63,8 @@ void execute_tree(rb_tree* tasks_tree) {
 		LOG_INFO(message);
 
 		free_rb_node(most_left);
+
+		logger_flush();
 	}
 	else {
 		rb_tree_insert_task(tasks_tree, most_left);
