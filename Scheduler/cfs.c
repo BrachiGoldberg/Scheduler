@@ -19,12 +19,12 @@ void execute_tree(rb_tree* tasks_tree) {
 	//get the most left leaf and delete it from the tree
 	rb_node* most_left = delete_most_left_leaf(tasks_tree);
 
+	long double total_weights = tasks_tree->total_weights;
 	//unlock the tree
 	release_tree_mutex();
 
 	// Extract task details
 	long double weight = most_left->task->weight;
-	long double total_weights = tasks_tree->total_weights;
 	double remaining_time = most_left->task->remaining_time;
 	double execution_time = most_left->task->execution_time;
 
@@ -32,13 +32,13 @@ void execute_tree(rb_tree* tasks_tree) {
 	double time_slice = SCHED_LATENCY * (weight / total_weights);
 
 	// Determine the sleep time, ensuring it is within the remaining execution time
-	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);	
+	double sleep_time = min(max(time_slice, MIN_TIME_SLICE), remaining_time);
 
 	// Sleep for the determined time
 	Sleep((DWORD)sleep_time);
 
 	//update vruntime
-	double vrun = (sleep_time * ((total_weights - weight) / total_weights));
+	double vrun = sleep_time * ((total_weights - weight) / total_weights);
 	most_left->task->vruntime += vrun;
 
 	// Update task times

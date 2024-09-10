@@ -7,7 +7,7 @@ long get_id() {
 }
 
 void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
-	long double weight = DEFULT_WEIGHT / pow(1.25, nice);
+	long double weight = DEFUALT_WEIGHT / pow(1.25, nice);
 
 	// Create a log message for the new task arrival
 	char message[STANDART_SIZE_MESS];
