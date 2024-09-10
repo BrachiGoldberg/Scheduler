@@ -2,8 +2,6 @@
 
 // Function to create a new real-time task
 real_time_task* create_real_time_task(int priority, double execution_time, long double weight) {
-	// Increment global ID counter (ensure ID is defined globally)
-	ID++;
 
 	// Allocate memory for the new task
 	real_time_task* new_task = (real_time_task*)malloc(sizeof(real_time_task));
@@ -14,7 +12,7 @@ real_time_task* create_real_time_task(int priority, double execution_time, long 
 	}
 
 	// Initialize task properties
-	new_task->id = ID;
+	new_task->id = get_id();
 	new_task->remaining_time = execution_time;
 	new_task->execution_time = 0;
 	new_task->weight = weight;
