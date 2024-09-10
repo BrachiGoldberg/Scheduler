@@ -3,8 +3,8 @@ import time
 import random
 
 #open the input file
-with open(r"input.txt", "r") as file:
-    path = r"C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\Scheduler\x64\Debug\Scheduler.exe"
+with open(r"C:\Users\user1\Desktop\ProjectWestern\Scheduler\Scheduler\SchedulerUnitTestProject\input.txt", "r") as file:
+    path = r"C:\Users\user1\Desktop\ProjectWestern\Scheduler\Scheduler\x64\Debug\Scheduler.exe"
     process = subprocess.Popen([path], stdin=subprocess.PIPE, text=True)
 
     while True:
@@ -27,3 +27,4 @@ with open(r"input.txt", "r") as file:
     process.stdin.close()
     process.terminate()
     print("finish test")
+input("Press Enter to exit...")
