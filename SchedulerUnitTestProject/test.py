@@ -107,7 +107,7 @@ class MyTestCase(unittest.TestCase):
         # each task got the CPU increase the amount in the appropriate dic.
         # find if the higher priority got the CPU more then the lowers.
 
-        file_name = r"input.txt"
+        file_name = r"inputs/input.txt"
         time_to_wait = 1400  # in milliseconds // 7*200
 
         self.create_process()
@@ -117,22 +117,34 @@ class MyTestCase(unittest.TestCase):
         self.process.stdin.close()
         self.process.terminate()
 
-        real_time = {}
         not_real_time = {}
+        tasks_info = {}
 
         lines = []
 
-        round_robin_file = r"round_robin.c"
         cfs_file = r"cfs.c"
 
         pattern_task_finished = r"Task number \d+ finished"
         pattern_task_got_CPU = r"Task number \d+ got the CPU"
+        pattern_task_created = r"Created new (?:real-time )?task ID (\d+) with execution time [\d.]+ and weight ([\d.]+)"
 
         pattern_task_finished_obj = re.compile(pattern_task_finished)
         pattern_task_got_CPU_obj = re.compile(pattern_task_got_CPU)
+        pattern_task_created_obj = re.compile(pattern_task_created)
 
+        assert_value = True
         with open(r"logs/log.log") as file:
-            for line in file:
+            content = file.read()
+
+            for line in content.splitlines():
+
+                # check if the line is creating new task
+                created_task = pattern_task_created_obj.findall(line)
+                if len(created_task) != 0:
+                    # insert the task to the tasks info
+                    task = created_task[0]
+                    tasks_info[task[0]] = task[1]
+
                 match = pattern_task_finished_obj.findall(line)
                 if len(match) == 0:
                     lines.append(line)
@@ -153,24 +165,17 @@ class MyTestCase(unittest.TestCase):
                                     not_real_time[task_id] += 1
                                 else:
                                     not_real_time[task_id] = 1
-                            else:
-                                if task_id in real_time:
-                                    real_time[task_id] += 1
-                                else:
-                                    real_time[task_id] = 1
-
-                    print("the dict of real time tasks is:")
-                    print(real_time)
-                    print("the dict of not real time tasks is:")
-                    print(not_real_time)
+                    if len(not_real_time) > 1:
+                        max_executed = max(not_real_time)
+                        min_executed = min(not_real_time)
+                        if tasks_info[max_executed] < tasks_info[min_executed]:
+                            assert_value = False
+                            break
 
                     # clear the structures
-                    real_time = {}
                     not_real_time = {}
-
                     lines = []
-
-        print(self.process)
+        self.assertEqual(True, assert_value)
 
     def test_all_tasks_completed(self):
         file_name = r"inputs/input_tasks_completion_check.txt"
@@ -183,7 +188,7 @@ class MyTestCase(unittest.TestCase):
         time.sleep(time_to_wait / 1000)
         self.process.stdin.close()
         self.process.terminate()
-        self.process.wait()  
+        self.process.wait()
 
         # Define regex patterns for task creation and task completion
         task_creation_pattern = re.compile(r"Created new task ID (\d+)")
@@ -206,7 +211,7 @@ class MyTestCase(unittest.TestCase):
             # Check for real-time task creation
             real_time_creation_match = real_time_task_creation_pattern.search(line)
             if real_time_creation_match:
-                 created_tasks.add(real_time_creation_match.group(1))
+                created_tasks.add(real_time_creation_match.group(1))
 
             # Check for task completion
             finished_match = task_finished_pattern.search(line)
@@ -218,6 +223,7 @@ class MyTestCase(unittest.TestCase):
 
         # Print a success message if all tasks have been completed
         print("All tasks have been successfully completed.")
+
 
 if __name__ == '__main__':
     unittest.main()
