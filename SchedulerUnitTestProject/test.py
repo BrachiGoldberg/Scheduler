@@ -11,6 +11,12 @@ class MyTestCase(unittest.TestCase):
     file_name = ["input.txt"]
     process = None
 
+    def setUp(self):
+        print("before {}".format(self._testMethodName))
+
+    def tearDown(self):
+        print("after {}".format(self._testMethodName))
+
     def create_process(self):
         # delete the log file before creating the process
         if os.path.isdir("logs"):
@@ -77,6 +83,35 @@ class MyTestCase(unittest.TestCase):
 
         uniq_id = set(flattened_ids)
         self.assertEqual(len(uniq_id), 5)
+
+    def test_many_real_time_tasks_task_entered_and_got_CPU(self):
+        # there are 9 real time tasks and after them 1 not real time task
+        # the min time the last task get the CPU is 5*20
+
+        file_name = r"input_many_real_time_tasks_task_entered_and_got_CPU.txt"
+        number_lines = 20
+        time_to_wait = 100  # in milliseconds
+
+        self.create_process()
+        input_output.open_input_file(file_name, self.process, number_lines)
+
+        time.sleep(time_to_wait / 1000)
+        self.process.stdin.close()
+        self.process.terminate()
+
+        # read the log file
+        with open(r"logs/log.log") as file:
+            content = file.read()
+
+        pattern_to_find_id = r"Created new task ID \d+"
+        match = re.findall(pattern_to_find_id, content)[0]
+        # extract the task ID
+        task_id = re.findall(r"\d+", match)[0]
+
+        pattern_execute_task = r"Task number "+task_id+" got the CPU"
+        execute_match = re.findall(pattern_execute_task, content)
+
+        self.assertGreater(len(execute_match), 0)
 
 
 if __name__ == '__main__':
