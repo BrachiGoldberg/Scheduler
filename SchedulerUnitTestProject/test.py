@@ -5,8 +5,8 @@ import time
 
 
 class MyTestCase(unittest.TestCase):
-    process_path = r"C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\Scheduler\x64\Debug\Scheduler.exe"
-    file_name = ["input.txt"]
+    process_path = r"C:\Users\WIN 10\Desktop\בוטקמפ\ניסוי\Scheduler\x64\Debug\Scheduler.exe"
+    file_name = ["output.txt"]
     process = None
 
     def create_process(self):
@@ -21,11 +21,12 @@ class MyTestCase(unittest.TestCase):
             input_output.open_input_file(file, self.process)
 
             # wait time until terminate the process
-            time.sleep(10)
+            time.sleep(50)
             self.process.stdin.close()
             self.process.terminate()
 
             self.assertEqual(False, False)  # add assertion here
+
             print("finish test")
 
 
