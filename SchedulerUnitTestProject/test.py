@@ -8,15 +8,9 @@ import shutil
 
 
 class MyTestCase(unittest.TestCase):
-    process_path = r"C:\Users\WIN 10\Desktop\בוטקמפ\ניסוי\Scheduler\x64\Debug\Scheduler.exe"
+    process_path = r"C:\Users\user1\Desktop\ProjectWestern\Scheduler\Scheduler\x64\Debug\Scheduler.exe"
     file_name = ["output.txt"]
     process = None
-
-    def setUp(self):
-        print("before {}".format(self._testMethodName))
-
-    def tearDown(self):
-        print("after {}".format(self._testMethodName))
 
     def create_process(self):
         # delete the log file before creating the process
@@ -25,6 +19,14 @@ class MyTestCase(unittest.TestCase):
 
         # create the process
         self.process = subprocess.Popen([self.process_path], stdin=subprocess.PIPE, text=True)
+
+    # Commented out code
+    
+    def setUp(self):
+        print("before {}".format(self._testMethodName))
+
+    def tearDown(self):
+        print("after {}".format(self._testMethodName))
 
     def test_something(self):
         for file in self.file_name:
@@ -43,19 +45,13 @@ class MyTestCase(unittest.TestCase):
             print("finish test")
 
     def test_all_tasks_begun(self):
-        # input_all_tasks_begun.txt file:
-        # min quantum of real time task: 20, max: 20
-        # max time wait for all tasks need to begin: 20*5 = 100 milliseconds
-        # min time wait for all tasks need to begin: 8*3+20*2 = 64 milliseconds
-
         file_name = r"inputs/input_all_tasks_begun.txt"
-        # number_lines = 10
         time_to_wait = 60  # in milliseconds
 
         self.create_process()
         input_output.open_input_file(file_name, self.process)
 
-        time.sleep(time_to_wait/1000)
+        time.sleep(time_to_wait / 1000)
         self.process.stdin.close()
         self.process.terminate()
 
@@ -74,11 +70,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(uniq_id), 5)
 
     def test_many_real_time_tasks_task_entered_and_got_CPU(self):
-        # there are 9 real time tasks and after them 1 not real time task
-        # the min time the last task get the CPU is 5*20
-
         file_name = r"inputs/input_many_real_time_tasks_task_entered_and_got_CPU.txt"
-        # number_lines = 20
         time_to_wait = 100  # in milliseconds
 
         self.create_process()
@@ -94,14 +86,60 @@ class MyTestCase(unittest.TestCase):
 
         pattern_to_find_id = r"Created new task ID \d+"
         match = re.findall(pattern_to_find_id, content)[0]
-        # extract the task ID
         task_id = re.findall(r"\d+", match)[0]
 
-        pattern_execute_task = r"Task number "+task_id+" got the CPU"
+        pattern_execute_task = r"Task number " + task_id + " got the CPU"
         execute_match = re.findall(pattern_execute_task, content)
 
         self.assertGreater(len(execute_match), 0)
+    
 
+    def test_all_tasks_completed(self):
+        file_name = r"inputs/input_tasks_completion_check.txt"
+        time_to_wait = 100  # in milliseconds
+
+        self.create_process()
+        input_output.open_input_file(file_name, self.process)
+
+        # Wait for the tasks to run and complete
+        time.sleep(time_to_wait / 1000)
+        self.process.stdin.close()
+        self.process.terminate()
+        self.process.wait()  
+
+        # Define regex patterns for task creation and task completion
+        task_creation_pattern = re.compile(r"Created new task ID (\d+)")
+        real_time_task_creation_pattern = re.compile(r"Created new real-time task ID (\d+)")
+        task_finished_pattern = re.compile(r"Task number (\d+) finished")
+
+        created_tasks = set()
+        finished_tasks = set()
+
+        # Read the log file
+        with open(r"logs/log.log") as file:
+            content = file.read()
+
+        # Find task creation and task completion entries
+        for line in content.splitlines():
+            # Check for regular task creation
+            creation_match = task_creation_pattern.search(line)
+            if creation_match:
+                created_tasks.add(creation_match.group(1))
+            # Check for real-time task creation
+            real_time_creation_match = real_time_task_creation_pattern.search(line)
+            if real_time_creation_match:
+                 created_tasks.add(real_time_creation_match.group(1))
+
+            # Check for task completion
+            finished_match = task_finished_pattern.search(line)
+            if finished_match:
+                finished_tasks.add(finished_match.group(1))
+
+        # Check that all created tasks have finished
+        self.assertEqual(created_tasks, finished_tasks, "Not all tasks have completed.")
+
+        # Print a success message if all tasks have been completed
+        print("All tasks have been successfully completed.")
 
 if __name__ == '__main__':
     unittest.main()
