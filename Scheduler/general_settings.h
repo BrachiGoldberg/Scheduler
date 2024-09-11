@@ -12,7 +12,7 @@ static long ID;
 
 #define MIN_TIME_SLICE 8      // Minimum time slice in milliseconds
 
-#define LOGGER_FILE "log.log"
+#define LOGGER_FILE "logs/log.log"
 #define MAX_LOGGER_FILE_SIZE (1024 * 1024) // 1MB
 #define MAX_LOGGER_BUCKUP_FILES 20
 

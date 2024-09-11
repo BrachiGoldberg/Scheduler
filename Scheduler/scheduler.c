@@ -85,7 +85,6 @@ DWORD WINAPI task_thread(LPVOID param) {
 }
 
 void initial_all_structs(scheduler* sched) {
-	ID = 3;
 	int success = logger_initFileLogger(LOGGER_FILE, MAX_LOGGER_FILE_SIZE, MAX_LOGGER_BUCKUP_FILES);
 	if (success == 0) {
 		printf(ERROR_MESSAGE_LOGGER_INIT_FAILED);
