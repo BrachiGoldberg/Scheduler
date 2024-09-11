@@ -8,6 +8,7 @@ def open_input_file(file_name, process):
 
         while True:
             num_lines = random.randint(1, 5) * 2
+
             lines = [file.readline() for _ in range(num_lines)]
 
             if not any(lines):
