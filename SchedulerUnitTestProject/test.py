@@ -8,7 +8,7 @@ import shutil
 
 
 class MyTestCase(unittest.TestCase):
-    process_path = r"C:\Users\WIN 10\Desktop\בוטקמפ\ניסוי\Scheduler\x64\Debug\Scheduler.exe"
+    process_path = r"C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\Scheduler\x64\Debug\Scheduler.exe"
     file_name = ["output.txt"]
     process = None
 
@@ -55,7 +55,7 @@ class MyTestCase(unittest.TestCase):
         self.create_process()
         input_output.open_input_file(file_name, self.process)
 
-        time.sleep(time_to_wait/1000)
+        time.sleep(time_to_wait / 1000)
         self.process.stdin.close()
         self.process.terminate()
 
@@ -97,10 +97,82 @@ class MyTestCase(unittest.TestCase):
         # extract the task ID
         task_id = re.findall(r"\d+", match)[0]
 
-        pattern_execute_task = r"Task number "+task_id+" got the CPU"
+        pattern_execute_task = r"Task number " + task_id + " got the CPU"
         execute_match = re.findall(pattern_execute_task, content)
 
         self.assertGreater(len(execute_match), 0)
+
+    def test_CPU_is_divided_fairly(self):
+
+        # create 2 dictionaries. one for real time tasks and second for not real time tasks
+        # between one task finished to other check the divisions
+        # each task got the CPU increase the amount in the appropriate dic.
+        # find if the higher priority got the CPU more then the lowers.
+
+        file_name = r"input.txt"
+        time_to_wait = 1400  # in milliseconds // 7*200
+
+        self.create_process()
+        input_output.open_input_file(file_name, self.process)
+
+        time.sleep(time_to_wait / 1000)
+        self.process.stdin.close()
+        self.process.terminate()
+
+        real_time = {}
+        not_real_time = {}
+
+        lines = []
+
+        round_robin_file = r"round_robin.c"
+        cfs_file = r"cfs.c"
+
+        pattern_task_finished = r"Task number \d+ finished"
+        pattern_task_got_CPU = r"Task number \d+ got the CPU"
+
+        pattern_task_finished_obj = re.compile(pattern_task_finished)
+        pattern_task_got_CPU_obj = re.compile(pattern_task_got_CPU)
+
+        with open(r"logs/log.log") as file:
+            for line in file:
+                match = pattern_task_finished_obj.findall(line)
+                if len(match) == 0:
+                    lines.append(line)
+                else:
+                    for extract_line in lines:
+                        match = pattern_task_got_CPU_obj.findall(extract_line)
+                        if len(match) != 0:  # save the id in the appropriate structure
+
+                            # extract the appropriate structure
+                            cfs = re.findall(cfs_file, extract_line)
+
+                            # extract the task id
+                            task_id = re.findall(r"\d+", match[0])[0]
+
+                            # saving
+                            if len(cfs) != 0:
+                                if task_id in not_real_time:
+                                    not_real_time[task_id] += 1
+                                else:
+                                    not_real_time[task_id] = 1
+                            else:
+                                if task_id in real_time:
+                                    real_time[task_id] += 1
+                                else:
+                                    real_time[task_id] = 1
+
+                    print("the dict of real time tasks is:")
+                    print(real_time)
+                    print("the dict of not real time tasks is:")
+                    print(not_real_time)
+
+                    # clear the structures
+                    real_time = {}
+                    not_real_time = {}
+
+                    lines = []
+
+        print(self.process)
 
 
 if __name__ == '__main__':
