@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import re
 import unittest
 import input_output
@@ -6,17 +7,19 @@ import time
 import os
 import shutil
 
+load_dotenv()
+
 
 class MyTestCase(unittest.TestCase):
-    process_path = r"C:\Users\user1\Documents\ברכי\תיכנות\קמאטק - בודקמפ\scheduler-project\Scheduler\x64\Debug\Scheduler.exe"
+    process_path = os.environ["PROCESS_PATH"]
     file_name = ["output.txt"]
     process = None
 
     def setUp(self):
-        print("before {}".format(self._testMethodName))
+        print("Now {} is running".format(self._testMethodName))
 
     def tearDown(self):
-        print("after {}".format(self._testMethodName))
+        print("{} finished".format(self._testMethodName))
 
     def create_process(self):
         # delete the log file before creating the process
