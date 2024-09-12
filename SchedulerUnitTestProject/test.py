@@ -37,7 +37,7 @@ class MyTestCase(unittest.TestCase):
             input_output.open_input_file(file, self.process)
 
             # wait time until terminate the process
-            time.sleep(50)
+            time.sleep(5)
             self.process.stdin.close()
             self.process.terminate()
 
@@ -60,6 +60,7 @@ class MyTestCase(unittest.TestCase):
         time.sleep(time_to_wait / 1000)
         self.process.stdin.close()
         self.process.terminate()
+        self.process.wait()
 
         # read the log file
         pattern = r"Task number \d+ got the CPU for"
@@ -88,6 +89,7 @@ class MyTestCase(unittest.TestCase):
         time.sleep(time_to_wait / 1000)
         self.process.stdin.close()
         self.process.terminate()
+        self.process.wait()
 
         # read the log file
         with open(r"logs/log.log") as file:
@@ -119,6 +121,7 @@ class MyTestCase(unittest.TestCase):
         time.sleep(time_to_wait / 1000)
         self.process.stdin.close()
         self.process.terminate()
+        self.process.wait()
 
         not_real_time = {}
         tasks_info = {}
