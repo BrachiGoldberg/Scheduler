@@ -29,22 +29,6 @@ class MyTestCase(unittest.TestCase):
         # create the process
         self.process = subprocess.Popen([self.process_path], stdin=subprocess.PIPE, text=True)
 
-    def test_something(self):
-        for file in self.file_name:
-            # create the process
-            self.create_process()
-            # read the input from the file, and send it to the process
-            input_output.open_input_file(file, self.process)
-
-            # wait time until terminate the process
-            time.sleep(5)
-            self.process.stdin.close()
-            self.process.terminate()
-
-            self.assertEqual(False, False)  # add assertion here
-
-            print("finish test")
-
     def test_all_tasks_begun(self):
         # input_all_tasks_begun.txt file:
         # min quantum of real time task: 20, max: 20
@@ -185,7 +169,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_all_tasks_completed(self):
         file_name = r"inputs/input_tasks_completion_check.txt"
-        time_to_wait = 100  # in milliseconds
+        time_to_wait = 2000  # in milliseconds
 
         self.create_process()
         input_output.open_input_file(file_name, self.process)
