@@ -1,3 +1,4 @@
+from datetime import datetime
 from dotenv import load_dotenv
 import re
 import unittest
@@ -166,6 +167,39 @@ class MyTestCase(unittest.TestCase):
                     not_real_time = {}
                     lines = []
         self.assertEqual(True, assert_value)
+
+    def test_high_priority_finished_first(self):
+        file_name = r"inputs/input_high_priority_finished_first.txt"
+        time_to_wait = 300
+
+        self.create_process()
+        input_output.open_input_file(file_name, self.process)
+
+        time.sleep(time_to_wait / 1000)
+        self.process.stdin.close()
+        self.process.terminate()
+        self.process.wait()
+
+        # Define patterns for task 1 and task 2
+        pattern_task_1_finished = r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 1 finished"
+        pattern_task_2_finished = r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 2 finished"
+
+        # read the log file
+        with open("logs/log.log") as file:
+            content = file.read()
+
+        # Extract the matched times for both tasks
+        matched_task_1 = re.findall(pattern_task_1_finished, content)
+        matched_task_2 = re.findall(pattern_task_2_finished, content)
+
+        if not matched_task_1 or not matched_task_2:
+            self.assertFalse(False, "there is no matched log entry")
+        else:
+            time_format = "%H:%M:%S.%f"
+            time_1 = datetime.strptime(matched_task_1[0], time_format)
+            time_2 = datetime.strptime(matched_task_2[0], time_format)
+
+            self.assertTrue(time_2 < time_1)
 
     def test_all_tasks_completed(self):
         file_name = r"inputs/input_tasks_completion_check.txt"
