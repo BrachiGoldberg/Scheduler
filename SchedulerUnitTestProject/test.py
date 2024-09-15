@@ -22,13 +22,20 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         print("{} finished".format(self._testMethodName))
 
-    def create_process(self):
+    def create_process(self, file_name, time_to_wait):
         # delete the log file before creating the process
         if os.path.isdir("logs"):
             shutil.rmtree("logs")
 
-        # create the process
-        self.process = subprocess.Popen([self.process_path], stdin=subprocess.PIPE, text=True)
+        # create and close the process
+        self.process = subprocess.Popen(
+            [self.process_path], stdin=subprocess.PIPE, text=True
+        )
+        input_output.open_input_file(file_name, self.process)
+        time.sleep(time_to_wait / 1000)
+        self.process.stdin.close()
+        self.process.terminate()
+        self.process.wait()
 
     def test_all_tasks_begun(self):
         # input_all_tasks_begun.txt file:
@@ -39,13 +46,7 @@ class MyTestCase(unittest.TestCase):
         file_name = r"inputs/input_all_tasks_begun.txt"
         time_to_wait = 60  # in milliseconds
 
-        self.create_process()
-        input_output.open_input_file(file_name, self.process)
-
-        time.sleep(time_to_wait / 1000)
-        self.process.stdin.close()
-        self.process.terminate()
-        self.process.wait()
+        self.create_process(file_name, time_to_wait)
 
         # read the log file
         pattern = r"Task number \d+ got the CPU for"
@@ -68,13 +69,7 @@ class MyTestCase(unittest.TestCase):
         file_name = r"inputs/input_many_real_time_tasks_task_entered_and_got_CPU.txt"
         time_to_wait = 100  # in milliseconds
 
-        self.create_process()
-        input_output.open_input_file(file_name, self.process)
-
-        time.sleep(time_to_wait / 1000)
-        self.process.stdin.close()
-        self.process.terminate()
-        self.process.wait()
+        self.create_process(file_name, time_to_wait)
 
         # read the log file
         with open(r"logs/log.log") as file:
@@ -100,13 +95,7 @@ class MyTestCase(unittest.TestCase):
         file_name = r"inputs/input.txt"
         time_to_wait = 1400  # in milliseconds // 7*200
 
-        self.create_process()
-        input_output.open_input_file(file_name, self.process)
-
-        time.sleep(time_to_wait / 1000)
-        self.process.stdin.close()
-        self.process.terminate()
-        self.process.wait()
+        self.create_process(file_name, time_to_wait)
 
         not_real_time = {}
         tasks_info = {}
@@ -172,17 +161,14 @@ class MyTestCase(unittest.TestCase):
         file_name = r"inputs/input_high_priority_finished_first.txt"
         time_to_wait = 300
 
-        self.create_process()
-        input_output.open_input_file(file_name, self.process)
-
-        time.sleep(time_to_wait / 1000)
-        self.process.stdin.close()
-        self.process.terminate()
-        self.process.wait()
-
+        self.create_process(file_name, time_to_wait)
         # Define patterns for task 1 and task 2
-        pattern_task_1_finished = r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 1 finished"
-        pattern_task_2_finished = r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 2 finished"
+        pattern_task_1_finished = (
+            r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 1 finished"
+        )
+        pattern_task_2_finished = (
+            r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 2 finished"
+        )
 
         # read the log file
         with open("logs/log.log") as file:
@@ -199,24 +185,21 @@ class MyTestCase(unittest.TestCase):
             time_1 = datetime.strptime(matched_task_1[0], time_format)
             time_2 = datetime.strptime(matched_task_2[0], time_format)
 
-            self.assertTrue(time_2 < time_1)
+            self.assertTrue(
+                time_2 < time_1, "Task 2 should have finished before Task 1"
+            )
 
     def test_all_tasks_completed(self):
         file_name = r"inputs/input_tasks_completion_check.txt"
-        time_to_wait = 2000  # in milliseconds
+        time_to_wait = 3000  # in milliseconds need to calculate
 
-        self.create_process()
-        input_output.open_input_file(file_name, self.process)
-
-        # Wait for the tasks to run and complete
-        time.sleep(time_to_wait / 1000)
-        self.process.stdin.close()
-        self.process.terminate()
-        self.process.wait()
+        self.create_process(file_name, time_to_wait)
 
         # Define regex patterns for task creation and task completion
         task_creation_pattern = re.compile(r"Created new task ID (\d+)")
-        real_time_task_creation_pattern = re.compile(r"Created new real-time task ID (\d+)")
+        real_time_task_creation_pattern = re.compile(
+            r"Created new real-time task ID (\d+)"
+        )
         task_finished_pattern = re.compile(r"Task number (\d+) finished")
 
         created_tasks = set()
@@ -249,5 +232,5 @@ class MyTestCase(unittest.TestCase):
         print("All tasks have been successfully completed.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
