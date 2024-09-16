@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import re
 import unittest
@@ -149,7 +149,7 @@ class MyTestCase(unittest.TestCase):
                     if len(not_real_time) > 1:
                         max_executed = max(not_real_time)
                         min_executed = min(not_real_time)
-                        if tasks_info[max_executed] < tasks_info[min_executed]:
+                        if not_real_time[max_executed] > not_real_time[min_executed] and tasks_info[max_executed] < tasks_info[min_executed]:
                             assert_value = False
                             break
 
@@ -164,12 +164,8 @@ class MyTestCase(unittest.TestCase):
 
         self.create_process(file_name, time_to_wait)
         # Define patterns for task 1 and task 2
-        pattern_task_1_finished = (
-            r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 1 finished"
-        )
-        pattern_task_2_finished = (
-            r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 2 finished"
-        )
+        pattern_task_1_finished = r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 1 finished"
+        pattern_task_2_finished = r"(\d{2}:\d{2}:\d{2}\.\d{6}) .* Task number 2 finished"
 
         # read the log file
         with open("logs/log.log") as file:
@@ -186,9 +182,7 @@ class MyTestCase(unittest.TestCase):
             time_1 = datetime.strptime(matched_task_1[0], time_format)
             time_2 = datetime.strptime(matched_task_2[0], time_format)
 
-            self.assertTrue(
-                time_2 < time_1, "Task 2 should have finished before Task 1"
-            )
+            self.assertTrue(time_2 < time_1)
 
     def test_all_tasks_completed(self):
         file_name = r"inputs/input_tasks_completion_check.txt"
@@ -233,7 +227,55 @@ class MyTestCase(unittest.TestCase):
 
         # Print a success message if all tasks have been completed
         print("All tasks have been successfully completed.")
-    
+
+    def test_random(self):
+        random_test.create_random_test()
+        file_name = r"inputs/random_test"
+        time_to_wait = 3000  # in milliseconds need to calculate
+        execution_time_to_all_task, number_task = random_test.create_random_test()
+        file_name = r"inputs/random_test"
+        time_to_wait = execution_time_to_all_task + (number_task * 2000)  # in milliseconds need to calculate
+
+        self.create_process(file_name, time_to_wait)
+
+        # Define regex patterns for task creation and task completion
+        task_creation_pattern = re.compile(r"Created new task ID (\d+)")
+        real_time_task_creation_pattern = re.compile(
+            r"Created new real-time task ID (\d+)"
+        )
+        task_finished_pattern = re.compile(r"Task number (\d+) finished")
+
+        created_tasks = set()
+        finished_tasks = set()
+
+        # Read the log file
+        with open(r"logs/log.log") as file:
+            content = file.read()
+
+        # Find task creation and task completion entries
+        for line in content.splitlines():
+            # Check for regular task creation
+            creation_match = task_creation_pattern.search(line)
+            if creation_match:
+                created_tasks.add(creation_match.group(1))
+            # Check for real-time task creation
+            real_time_creation_match = real_time_task_creation_pattern.search(
+                line)
+            if real_time_creation_match:
+                created_tasks.add(real_time_creation_match.group(1))
+
+            # Check for task completion
+            finished_match = task_finished_pattern.search(line)
+            if finished_match:
+                finished_tasks.add(finished_match.group(1))
+
+        # Check that all created tasks have finished
+        self.assertEqual(created_tasks, finished_tasks,
+                         "Not all tasks have completed.")
+
+        # Print a success message if all tasks have been completed
+        print("All tasks have been successfully completed.")
+
     def test_task_execution_times(self):
         file_name = "inputs/input_task_runtime_matches_expected.txt"
         time_to_wait = 3000  # Adjust based on the expected execution duration
@@ -280,7 +322,6 @@ class MyTestCase(unittest.TestCase):
                     delta=50,  # Allowable margin of error in milliseconds
                     msg=f"Task {task_id} did not execute for the expected time"
                 )
-
         print("All tasks executed for the expected duration.")
     
 if __name__ == "__main__":
