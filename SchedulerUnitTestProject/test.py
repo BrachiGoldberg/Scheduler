@@ -282,7 +282,6 @@ class MyTestCase(unittest.TestCase):
                 )
 
         print("All tasks executed for the expected duration.")
-   
     
 if __name__ == "__main__":
     unittest.main()
