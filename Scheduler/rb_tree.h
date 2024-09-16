@@ -2,12 +2,11 @@
 #define RB_TREE_H
 
 #include <stdlib.h>
-
+#include "task.h"
 #include "rb_node.h"
 #include "mutex.h"
-#include "consts_logs.h"
 #include "logger.h"
-#include "task.h"
+#include "consts_logs.h"
 
 typedef struct {
 	int num_of_tasks;
