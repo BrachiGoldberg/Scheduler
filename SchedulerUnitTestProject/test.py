@@ -226,7 +226,7 @@ class MyTestCase(unittest.TestCase):
         # Print a success message if all tasks have been completed
         print("All tasks have been successfully completed.")
 
-    def random_test(self):
+    def test_random(self):
         random_test.create_random_test()
         file_name = r"inputs/random_test"
         time_to_wait = 3000  # in milliseconds need to calculate
@@ -267,6 +267,7 @@ class MyTestCase(unittest.TestCase):
 
         # Print a success message if all tasks have been completed
         print("All tasks have been successfully completed.")
+
 
 if __name__ == "__main__":
     unittest.main()
