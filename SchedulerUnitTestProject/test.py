@@ -217,7 +217,8 @@ class MyTestCase(unittest.TestCase):
             if creation_match:
                 created_tasks.add(creation_match.group(1))
             # Check for real-time task creation
-            real_time_creation_match = real_time_task_creation_pattern.search(line)
+            real_time_creation_match = real_time_task_creation_pattern.search(
+                line)
             if real_time_creation_match:
                 created_tasks.add(real_time_creation_match.group(1))
 
@@ -227,7 +228,8 @@ class MyTestCase(unittest.TestCase):
                 finished_tasks.add(finished_match.group(1))
 
         # Check that all created tasks have finished
-        self.assertEqual(created_tasks, finished_tasks, "Not all tasks have completed.")
+        self.assertEqual(created_tasks, finished_tasks,
+                         "Not all tasks have completed.")
 
         # Print a success message if all tasks have been completed
         print("All tasks have been successfully completed.")
@@ -252,6 +254,7 @@ class MyTestCase(unittest.TestCase):
         # Read the log file
         with open(r"logs/log.log") as file:
             content = file.read()
+
         # Find task creation and task completion entries
         for line in content.splitlines():
             # Check for regular task creation
@@ -259,7 +262,8 @@ class MyTestCase(unittest.TestCase):
             if creation_match:
                 created_tasks.add(creation_match.group(1))
             # Check for real-time task creation
-            real_time_creation_match = real_time_task_creation_pattern.search(line)
+            real_time_creation_match = real_time_task_creation_pattern.search(
+                line)
             if real_time_creation_match:
                 created_tasks.add(real_time_creation_match.group(1))
 
@@ -269,11 +273,60 @@ class MyTestCase(unittest.TestCase):
                 finished_tasks.add(finished_match.group(1))
 
         # Check that all created tasks have finished
-        self.assertEqual(created_tasks, finished_tasks, "Not all tasks have completed.")
+        self.assertEqual(created_tasks, finished_tasks,
+                         "Not all tasks have completed.")
 
         # Print a success message if all tasks have been completed
         print("All tasks have been successfully completed.")
 
+    def test_task_execution_times(self):
+        file_name = "inputs/input_task_runtime_matches_expected.txt"
+        time_to_wait = 3000  # Adjust based on the expected execution duration
 
+        self.create_process(file_name, time_to_wait)
+
+        # Define patterns for task creation and task completion
+        task_creation_pattern = re.compile(r"Created new (?:real-time )?task ID (\d+) with execution time ([\d.]+)")
+        task_finished_pattern = re.compile(r"Task number (\d+) finished at (\d{2}:\d{2}:\d{2}\.\d{6})")
+
+        task_execution_times = {}
+        task_finish_times = {}
+
+        # Read the log file
+        with open("logs/log.log") as file:
+            content = file.read()
+
+            # Find task creation entries
+            for line in content.splitlines():
+                creation_match = task_creation_pattern.search(line)
+                if creation_match:
+                    task_id, exec_time = creation_match.groups()
+                    task_execution_times[task_id] = float(exec_time)
+
+                # Find task completion entries
+                finish_match = task_finished_pattern.search(line)
+                if finish_match:
+                    task_id, finish_time_str = finish_match.groups()
+                    finish_time = datetime.strptime(finish_time_str, "%H:%M:%S.%f")
+                    task_finish_times[task_id] = finish_time
+
+        # Check if task execution times match the expected durations
+        for task_id, exec_time in task_execution_times.items():
+            if task_id in task_finish_times:
+                finish_time = task_finish_times[task_id]
+                # Assume start time is the log entry time - execution time
+                # This assumes that the execution time is given in milliseconds
+                # and that tasks are started and finished within the given time.
+                start_time = finish_time - timedelta(milliseconds=exec_time)
+                # Check if the task execution time is close to the expected value
+                self.assertAlmostEqual(
+                    (finish_time - start_time).total_seconds() * 1000,
+                    exec_time,
+                    delta=50,  # Allowable margin of error in milliseconds
+                    msg=f"Task {task_id} did not execute for the expected time"
+                )
+        print("All tasks executed for the expected duration.")
+   
+    
 if __name__ == "__main__":
     unittest.main()
