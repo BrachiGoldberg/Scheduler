@@ -234,7 +234,7 @@ class MyTestCase(unittest.TestCase):
         time_to_wait = 3000  # in milliseconds need to calculate
         execution_time_to_all_task, number_task = random_test.create_random_test()
         file_name = r"inputs/random_test"
-        time_to_wait = execution_time_to_all_task + (number_task * 1000)  # in milliseconds need to calculate
+        time_to_wait = execution_time_to_all_task + (number_task * 2000)  # in milliseconds need to calculate
 
         self.create_process(file_name, time_to_wait)
 
