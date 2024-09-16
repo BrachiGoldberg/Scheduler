@@ -7,6 +7,7 @@ import subprocess
 import time
 import os
 import shutil
+import random_test
 
 load_dotenv()
 
