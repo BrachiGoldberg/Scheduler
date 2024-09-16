@@ -61,7 +61,7 @@ class MyTestCase(unittest.TestCase):
 
         # read the log file
         pattern = r"Task number \d+ got the CPU for"
-        with open(r"logs/log.log") as file:
+        with open(r"log.log") as file:
             content = file.read()
 
         matches = re.findall(pattern, content)
@@ -89,7 +89,7 @@ class MyTestCase(unittest.TestCase):
         self.process.terminate()
 
         # read the log file
-        with open(r"logs/log.log") as file:
+        with open(r"log.log") as file:
             content = file.read()
 
         pattern_to_find_id = r"Created new task ID \d+"
