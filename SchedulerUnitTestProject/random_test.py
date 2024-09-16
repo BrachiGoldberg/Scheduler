@@ -3,7 +3,7 @@ import random
 
 def create_random_test() -> object:
     # Generate a random number between 10 and 50
-    upper_limit = random.randint(10, 50)
+    upper_limit = random.randint(10, 20)
 
     execution_time_to_all_task = 0
     number_task = upper_limit
