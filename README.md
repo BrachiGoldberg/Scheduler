@@ -56,7 +56,7 @@ The system was tested for:
 
 1.  **Clone the Repository**:
        ```bash
-    `git clone https://github.com/Hadassa-Buganim/Scheduler` 
+    git clone https://github.com/Hadassa-Buganim/Scheduler
 2.  **Build**: Use your preferred build system or IDE (e.g., Visual Studio, GCC, etc.) to compile the project.
 3.  **Run**: Run the executable to start the scheduler. Provide task input as required.
 
