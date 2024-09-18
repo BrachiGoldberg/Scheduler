@@ -52,8 +52,6 @@ The system was tested for:
 
 ## design doc.
 
-https://docs.google.com/document/d/1S1QtP8BVTsiuO3Uc9ajalpEFWD7gok741cDvUtTF39o/edit
-
 ## How to Build and Run
 
 1.  **Clone the Repository**:
