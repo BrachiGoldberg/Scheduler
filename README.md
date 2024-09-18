@@ -52,7 +52,7 @@ The system was tested for:
 
 ## link to design document
 
-[design duc.](https://drive.google.com/file/d/1fKt1YYleIkIUKsPGdLhlybJt1pHoy6Rz/view?usp=drive_link)
+[design doc.](https://drive.google.com/file/d/1fKt1YYleIkIUKsPGdLhlybJt1pHoy6Rz/view?usp=drive_link)
 
 ## How to Build and Run
 
