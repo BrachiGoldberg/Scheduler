@@ -50,6 +50,10 @@ The system was tested for:
 3.  **Handling System Load**: Ensuring the system can handle a mix of real-time and non-real-time tasks efficiently.
 4.  **Random Tasks**: Ensuring tasks complete correctly when random priorities and execution times are assigned.
 
+## design doc.
+
+https://docs.google.com/document/d/1S1QtP8BVTsiuO3Uc9ajalpEFWD7gok741cDvUtTF39o/edit
+
 ## How to Build and Run
 
 1.  **Clone the Repository**:
