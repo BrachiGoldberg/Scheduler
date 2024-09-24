@@ -22,8 +22,10 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 	else {
 		task* new_task = create_task(nice, execution_time, weight);
 		rb_tree_new_task_arrival(sched_point->tasks_tree, new_task);
-
 	}
+	LOG_DEBUG(DEBUG_MESSAGE_EXECUTE_THREAD_WOKE_UP);
+	SetEvent(wake_event);
+
 }
 
 void scheduling_tasks(scheduler* sched) {
@@ -40,6 +42,8 @@ void scheduling_tasks(scheduler* sched) {
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
 		//while the queue is not empty
+		
+
 		for (number_of_tasks_per_queue = 0; !is_queue_empty(sched->queue) && number_of_tasks_per_queue < QUANTUM_QUEUE;
 			number_of_tasks_per_queue++) {
 			execute_queue(sched->queue);
@@ -57,6 +61,12 @@ void scheduling_tasks(scheduler* sched) {
 
 		//INFO_MESSAGE_TREE_GOT_CPU(message, time_tree);
 		//LOG_INFO(message);
+		if (is_queue_empty(sched->queue) && is_most_left_empty(sched->tasks_tree)) {
+
+			LOG_DEBUG(DEBUG_MESSAGE_NO_TASKS_AVAILABLE); // 
+			WaitForSingleObject(wake_event, INFINITE); // 
+
+		}
 	}
 
 }
@@ -116,3 +126,4 @@ void create_task_thread(HANDLE* thread_name, scheduler* sched) {
 		return EXIT_FAILURE;
 	}
 }
+
