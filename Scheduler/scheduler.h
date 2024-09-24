@@ -19,6 +19,7 @@
 #include "logger.h"
 #include "consts_logs.h"
 
+HANDLE event_handler;
 
 typedef struct
 {

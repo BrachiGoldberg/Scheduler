@@ -14,7 +14,7 @@ void execute_queue(real_time_task_queue* queue) {
 	}
 
 	char message[STANDART_SIZE_MESS];
-	DEBAG_MESSAGE_CALCULATE_QUANTUM(message, current_task->id, quantum);
+	DEBUG_MESSAGE_CALCULATE_QUANTUM(message, current_task->id, quantum);
 	LOG_DEBUG(message);
 
 	//sleep time in milliseconds
