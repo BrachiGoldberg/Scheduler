@@ -39,11 +39,20 @@
 #define INFO_MESSAGE_TREE_GOT_CPU(mess, account) \
     snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the tree got the CPU in the current round", (account))
 
+#define INFO_MESSAGE_CLOSE_THE_WINDOW_CTRL_C(signum)\
+   snprintf((signum), STANDART_SIZE_MESS, "Signal %d received, cleaning up...", (signum))
+
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
 
 #define INFO_MESSAGE_TREE_INITIALIZED "The red-black tree was initialized"
 
 #define INFO_MESSAGE_QUEUE_INITIALIZED "The queue was initialized"
+
+#define INFO_MESSAGE_CLEANING_UP_RESOURCES "Cleaning up resources"
+
+#define INFO_MESSSAGE_CLOSE_THE_WINDOW_X_BUTTON "Console window is closing, cleaning up..."
+
+#define INFO_MESSAGE_SET_CONSOLE_HANDLER "Handler set up."
 
 //macros of debug messages
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
@@ -59,6 +68,9 @@
 #define DEBUG_MESSAGE_NO_TASK_AVAILABLE "No task available, thread go to sleep...."
 
 #define DEBUG_MESSAGE_WAKE_UP_TASK_THREAD "Input thread send event to the task thread"
+
+
+
 
 //macors 0f error messages
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"
@@ -90,5 +102,7 @@
 #define ERROR_MESSAGE_CREATE_TASK_TREAD_FAILED "Failed to create task thread"
 
 #define ERROR_MESSAGE_CREATE_INPUT_TREAD_FAILED "Failed to create input thread"
+
+#define ERROR_MESSAGE_SET_CONSOLE_HANDLER_FAILED "Error setting up handler."
 
 #endif // !CONSTS_LOGS_H

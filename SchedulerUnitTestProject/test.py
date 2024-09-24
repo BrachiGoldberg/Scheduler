@@ -323,7 +323,6 @@ class MyTestCase(unittest.TestCase):
                     msg=f"Task {task_id} did not execute for the expected time"
                 )
         print("All tasks executed for the expected duration.")
-   
     
 if __name__ == "__main__":
     unittest.main()
