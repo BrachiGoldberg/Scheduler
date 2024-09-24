@@ -24,6 +24,8 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 		rb_tree_new_task_arrival(sched_point->tasks_tree, new_task);
 
 	}
+	SetEvent(event_handler);
+	LOG_DEBUG(DEBUG_MESSAGE_WAKE_UP_TASK_THREAD);
 }
 
 void scheduling_tasks(scheduler* sched) {
@@ -38,6 +40,12 @@ void scheduling_tasks(scheduler* sched) {
 	//scheduling tasks
 	while (1) {
 
+		//if there is no task available the thread go to sleep
+		while (is_queue_empty(sched->queue) && is_most_left_empty(sched->tasks_tree)) {
+			LOG_DEBUG(DEBUG_MESSAGE_NO_TASK_AVAILABLE);
+			WaitForSingleObject(event_handler, INFINITE);
+		}
+
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
 		//while the queue is not empty
 		for (number_of_tasks_per_queue = 0; !is_queue_empty(sched->queue) && number_of_tasks_per_queue < QUANTUM_QUEUE;
@@ -45,20 +53,13 @@ void scheduling_tasks(scheduler* sched) {
 			execute_queue(sched->queue);
 		}
 
-		/*INFO_MESSAGE_QUEUE_GOT_CPU(message, time_queue);
-		LOG_INFO(message);*/
-
 		//if the QUANTUM_QUEUE time finished or the queue is empty,
 		//the scheduler schedule the tasks' rb_tree
 		for (number_of_tasks_per_tree = 0; !is_most_left_empty(sched->tasks_tree) && number_of_tasks_per_tree < QUANTUM_TREE;
 			number_of_tasks_per_tree++) {
 			execute_tree(sched->tasks_tree);
 		}
-
-		//INFO_MESSAGE_TREE_GOT_CPU(message, time_tree);
-		//LOG_INFO(message);
 	}
-
 }
 
 DWORD WINAPI input_thread(LPVOID param) {
@@ -70,7 +71,6 @@ DWORD WINAPI input_thread(LPVOID param) {
 		scanf("%lf", &execution_time);
 		new_task_arrival(nice, execution_time, sched);
 	}
-
 
 	return 0;
 }
@@ -97,6 +97,8 @@ void initial_all_structs(scheduler* sched) {
 
 	create_tree_mutex();
 	create_queue_mutex();
+
+	event_handler = CreateEvent(NULL, 0, 0, NULL);
 }
 
 void create_input_thread(HANDLE* thread_name, scheduler* sched) {

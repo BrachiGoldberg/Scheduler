@@ -49,12 +49,16 @@
 #define DEBUG_MESSAGE_TASK_SCHEDULED(mess, task_id, exec_time) \
     snprintf((mess), STANDART_SIZE_MESS, "Task number %ld scheduled with %f milliseconds", (task_id), (exec_time))
 
-#define DEBAG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
+#define DEBUG_MESSAGE_CALCULATE_QUANTUM(mess, task_id, quantum) \
     snprintf((mess), STANDART_SIZE_MESS, "Calculated quantum: %f for task ID: %d", quantum, task_id)
 
-#define DEBAG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL "Rotation skipped as parent of node is NULL"
+#define DEBUG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL "Rotation skipped as parent of node is NULL"
 
-#define DEBAG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL "Rotation skipped as the grandparent of the node is NULL"
+#define DEBUG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL "Rotation skipped as the grandparent of the node is NULL"
+
+#define DEBUG_MESSAGE_NO_TASK_AVAILABLE "No task available, thread go to sleep...."
+
+#define DEBUG_MESSAGE_WAKE_UP_TASK_THREAD "Input thread send event to the task thread"
 
 //macors 0f error messages
 #define ERROR_MESSAGE_MEMORY_ALLOCATION_FAILED "Memory allocation failed"

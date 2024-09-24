@@ -125,14 +125,14 @@ void add_node_to_tree(rb_node* root, rb_node* node) {
 
 void rotate_tree(rb_tree* tree, rb_node* current) {
 	if (current->parent == NULL) {
-		LOG_DEBUG(DEBAG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL);
+		LOG_DEBUG(DEBUG_MESSAGE_ROTATION_SKIPPED_FATHER_NULL);
 		return;
 	}
 
 	rb_node* node_parent = current->parent;
 	rb_node* grandfather = node_parent->parent;
 	if (grandfather == NULL) {
-		LOG_DEBUG(DEBAG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL);
+		LOG_DEBUG(DEBUG_MESSAGE_ROTATION_SKIPPED_GRANDPARENT_NULL);
 		return;
 	}
 
