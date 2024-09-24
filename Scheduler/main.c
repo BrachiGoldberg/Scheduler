@@ -18,7 +18,7 @@ scheduler sched;
 
 // Function to clean up resources
 void cleanup_resources() {
-    LOG_INFO(INFO_MESSAGE_CLEANING_UP_RESOURCES);
+
     CloseHandle(input_thread_handle);
     CloseHandle(task_thread_handle);
 
@@ -27,13 +27,16 @@ void cleanup_resources() {
 
     free_queue(sched.queue);
     free_struct_rb_tree(sched.tasks_tree);
+
+    LOG_INFO(INFO_MESSAGE_CLEANING_UP_RESOURCES);
+    logger_flush();
 }
 
 // Signal handler for SIGINT (e.g., Ctrl+C)
 void cleanup(int signum) {
     LOG_INFO(INFO_MESSAGE_CLOSE_THE_WINDOW_CTRL_C(signum));
     cleanup_resources();
-    exit(1);
+    exit(EXIT_FAILURE);
 }
 
 // Handler for console close event (e.g., clicking the 'X' button)
@@ -56,12 +59,11 @@ int main() {
     }
     else {
         LOG_ERROR(ERROR_MESSAGE_SET_CONSOLE_HANDLER_FAILED);
-        return 1;
+        return EXIT_FAILURE;
     }
 
     // Register cleanup function for SIGINT (e.g., Ctrl+C)
     signal(SIGINT, cleanup);
-
     
 
     // Create the input thread
