@@ -14,15 +14,10 @@ void new_task_arrival(int nice, double execution_time, scheduler* sched_point) {
 	if (nice < -20) {
 		queue_node* node = create_queue_node(nice, execution_time, weight);
 		queue_new_task_arrival(sched_point->queue, node);
-
-		//// Log the addition of a new task to the queue
-		//INFO_MESSAGE_NEW_TASK_INSERT_TO_QUEUE(message, node->task->id, execution_time);
-		//LOG_INFO(message);
 	}
 	else {
 		task* new_task = create_task(nice, execution_time, weight);
 		rb_tree_new_task_arrival(sched_point->tasks_tree, new_task);
-
 	}
 	SetEvent(event_handler);
 	LOG_DEBUG(DEBUG_MESSAGE_WAKE_UP_TASK_THREAD);
@@ -41,9 +36,10 @@ void scheduling_tasks(scheduler* sched) {
 	while (1) {
 
 		//if there is no task available the thread go to sleep
-		while (is_queue_empty(sched->queue) && is_most_left_empty(sched->tasks_tree)) {
-			LOG_DEBUG(DEBUG_MESSAGE_NO_TASK_AVAILABLE);
+		if (is_queue_empty(sched->queue) && is_most_left_empty(sched->tasks_tree)) {
+			LOG_DEBUG(DEBUG_MESSAGE_NO_TASK_AVAILABLE);	
 			WaitForSingleObject(event_handler, INFINITE);
+			ResetEvent(event_handler);
 		}
 
 		//first, schedule the tasks' queue for QUANTUM_QUEUE times
@@ -53,12 +49,18 @@ void scheduling_tasks(scheduler* sched) {
 			execute_queue(sched->queue);
 		}
 
+		INFO_MESSAGE_QUEUE_GOT_CPU(message, number_of_tasks_per_queue);
+		LOG_INFO(message);
+
 		//if the QUANTUM_QUEUE time finished or the queue is empty,
 		//the scheduler schedule the tasks' rb_tree
 		for (number_of_tasks_per_tree = 0; !is_most_left_empty(sched->tasks_tree) && number_of_tasks_per_tree < QUANTUM_TREE;
 			number_of_tasks_per_tree++) {
 			execute_tree(sched->tasks_tree);
 		}
+
+		INFO_MESSAGE_TREE_GOT_CPU(message, number_of_tasks_per_tree);
+		LOG_INFO(message);
 	}
 }
 
@@ -98,7 +100,7 @@ void initial_all_structs(scheduler* sched) {
 	create_tree_mutex();
 	create_queue_mutex();
 
-	event_handler = CreateEvent(NULL, 0, 0, NULL);
+	event_handler = CreateEvent(NULL, TRUE, FALSE, NULL);
 }
 
 void create_input_thread(HANDLE* thread_name, scheduler* sched) {

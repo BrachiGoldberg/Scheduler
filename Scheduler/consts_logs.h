@@ -33,11 +33,11 @@
 #define INFO_MESSAGE_FREEING_TASK(mess, task_id) \
     snprintf((mess), STANDART_SIZE_MESS, "Freeing task ID %ld", (task_id))
 
-#define INFO_MESSAGE_QUEUE_GOT_CPU(mess, acount) \
-    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the queue got the CPU in the current round", (acount))
+#define INFO_MESSAGE_QUEUE_GOT_CPU(mess, account) \
+    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the queue got the CPU in the current round", (account))
 
-#define INFO_MESSAGE_TREE_GOT_CPU(mess, acount) \
-    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the tree got the CPU in the current round", (acount))
+#define INFO_MESSAGE_TREE_GOT_CPU(mess, account) \
+    snprintf((mess), STANDART_SIZE_MESS, "%d tasks from the tree got the CPU in the current round", (account))
 
 #define INFO_MESSAGE_START_SECHEDULING_TASKS "Starting task scheduling process"
 
